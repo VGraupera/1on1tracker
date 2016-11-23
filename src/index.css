@@ -1,0 +1,34 @@
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 0 10px;
+}
+
+.wrapper {
+  position:relative;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+pre {
+  font-family: Roboto, sans-serif;
+  overflow-y: auto;
+}
