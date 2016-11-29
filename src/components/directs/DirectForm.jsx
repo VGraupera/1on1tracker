@@ -69,7 +69,6 @@ export default class DirectForm extends Component {
             type="tel"
             hintText="Phone number"
             floatingLabelText="Phone number"
-            ref="name" withRef
             style={{ width: '100%' }}
           />
           <Field
