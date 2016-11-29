@@ -64,6 +64,15 @@ export default class DirectForm extends Component {
             style={{ width: '100%' }}
           />
           <Field
+            name="phone"
+            component={TextField}
+            type="tel"
+            hintText="Phone number"
+            floatingLabelText="Phone number"
+            ref="name" withRef
+            style={{ width: '100%' }}
+          />
+          <Field
             name="startDate"
             component={DatePicker}
             formatDate={this.formatDate}

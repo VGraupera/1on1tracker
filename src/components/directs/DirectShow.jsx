@@ -34,6 +34,10 @@ class DirectShow extends Component {
       <div className="container">
         <Card>
           <CardTitle title={direct.name} />
+          {direct.phone && (<CardText>
+            <a href={`tel:${direct.phone}`}>{direct.phone}</a>
+          </CardText>
+          )}
           <CardText>
             {direct.notes}
           </CardText>
