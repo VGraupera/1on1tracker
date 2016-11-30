@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 import MeetingForm, { validate } from './MeetingForm';
 import meetingActions from '../../actions/meetings';
 
@@ -27,6 +28,11 @@ class MeetingEdit extends Component {
           {...this.props}
           onSubmit={this.onSubmit}
           onDelete={this.onDelete}
+        />
+        <RaisedButton label="Delete"
+          secondary={true}
+          style={{ marginTop: 20 }}
+          onTouchTap={this.onDelete}
         />
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
 
@@ -26,7 +27,11 @@ class DirectEdit extends Component {
         <DirectForm
           {...this.props}
           onSubmit={this.onSubmit}
-          onDelete={this.onDelete}
+        />
+        <RaisedButton label="Delete"
+          secondary={true}
+          style={{ marginTop: 20 }}
+          onTouchTap={this.onDelete}
         />
       </div>
     );
