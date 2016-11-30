@@ -51,6 +51,7 @@ export default class MeetingForm extends Component {
 
   render() {
     const { formType, handleSubmit, pristine, submitting } = this.props;
+    const submitText = formType === 'edit' ? "Update" : "Create";
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -89,20 +90,11 @@ export default class MeetingForm extends Component {
           style={{ width: '100%' }}
         />
         <div>
-          {formType === 'edit' ? (
-            <RaisedButton
-              type="submit"
-              label="Update"
-              primary={true}
-              disabled={pristine || submitting} />
-          ) : (
-            <RaisedButton
-              type="submit"
-              label="Create"
-              primary={true}
-              disabled={pristine || submitting}
-            />
-          )}
+          <RaisedButton
+            type="submit"
+            label={submitText}
+            primary={true}
+            disabled={pristine || submitting} />
         </div>
       </form>
     );
