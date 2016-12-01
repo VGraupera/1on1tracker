@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import MeetingForm, { validate } from './MeetingForm';
 import meetingActions from '../../actions/meetings';
+import * as headerActions from '../../actions/header';
 
 class MeetingEdit extends Component {
   constructor() {
     super();
     this.onDelete = this.onDelete.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.setText('Edit Meeting');
   }
 
   onDelete() {
@@ -23,13 +28,13 @@ class MeetingEdit extends Component {
   render() {
     return (
       <div className="container">
-        <h2>Edit Meeting</h2>
         <MeetingForm
           {...this.props}
           onSubmit={this.onSubmit}
           onDelete={this.onDelete}
         />
-        <RaisedButton label="Delete"
+        <RaisedButton
+          label="Delete"
           secondary={true}
           style={{ marginTop: 20 }}
           onTouchTap={this.onDelete}
@@ -42,6 +47,7 @@ class MeetingEdit extends Component {
 MeetingEdit.propTypes = {
   update: React.PropTypes.func.isRequired,
   remove: React.PropTypes.func.isRequired,
+  setText: React.PropTypes.func.isRequired,
   params: React.PropTypes.object.isRequired,
 };
 
@@ -62,6 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   update: meetingActions.update,
   remove: meetingActions.remove,
+  setText: headerActions.setText,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'meeting', validate })(MeetingEdit));

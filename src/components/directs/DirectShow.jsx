@@ -4,6 +4,7 @@ import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import directActions from '../../actions/directs';
 import DirectMeetingList from './DirectMeetingList';
+import * as headerActions from '../../actions/header';
 
 class DirectShow extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class DirectShow extends Component {
 
   componentDidMount() {
     this.props.find(this.props.params.id);
+    this.props.setText('Show Direct');
   }
 
   onEdit() {
@@ -63,5 +65,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-export default connect(mapStateToProps, { find: directActions.find })(DirectShow);
+export default connect(mapStateToProps,
+  { find: directActions.find,
+    setText: headerActions.setText,
+  })(DirectShow);

@@ -45,7 +45,7 @@ export default class DirectForm extends Component {
 
   render() {
     const { formType, handleSubmit, pristine, submitting } = this.props;
-    const submitText = formType === 'edit' ? "Update" : "Create";
+    const submitText = formType === 'edit' ? 'Update' : 'Create';
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -102,5 +102,4 @@ DirectForm.propTypes = {
   formType: PropTypes.oneOf(['create', 'edit']),
   handleSubmit: PropTypes.func,
   onSubmit: PropTypes.func,
-  onDelete: PropTypes.func,
 };

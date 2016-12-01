@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import MeetingForm, { validate } from './MeetingForm';
 import meetingActions from '../../actions/meetings';
+import * as headerActions from '../../actions/header';
 
 class MeetingNew extends Component {
   constructor() {
@@ -12,6 +13,10 @@ class MeetingNew extends Component {
 
   componentWillMount() {
     this.props.reset();
+  }
+
+  componentDidMount() {
+    this.props.setText("New Meeting");
   }
 
   onSubmit(meeting) {
@@ -24,7 +29,6 @@ class MeetingNew extends Component {
   render() {
     return (
       <div className="container">
-        <h2>New Meeting</h2>
         <MeetingForm {...this.props} onSubmit={this.onSubmit} />
       </div>
     );
@@ -51,4 +55,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
                        { create: meetingActions.create,
-                         reset: meetingActions.resetActive })(reduxForm({ form: 'meeting', validate })(MeetingNew));
+                         reset: meetingActions.resetActive,
+                         setText: headerActions.setText })(reduxForm({ form: 'meeting', validate })(MeetingNew));

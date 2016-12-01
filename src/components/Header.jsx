@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 
-import Auth from './Auth';
 import * as types from '../actions/types';
 
 class Header extends Component {
@@ -18,9 +17,8 @@ class Header extends Component {
   render() {
     return (
         <AppBar style={{ position: 'fixed', top: 0 }}
-          title="1:1 Tracker"
+          title={this.props.header.text}
           onTitleTouchTap={this.returnHome}
-          iconElementRight={<Auth />}
           onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
         />
     );
@@ -34,6 +32,7 @@ Header.contextTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    header: state.header,
   };
 };
 

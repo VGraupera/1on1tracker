@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import * as headerActions from '../../actions/header';
 
 import DirectItem from './DirectItem';
 
 class DirectList extends Component {
+
+  componentDidMount() {
+    this.props.setText('Directs');
+  }
 
   renderDirects() {
     let rows = [];
@@ -21,28 +26,25 @@ class DirectList extends Component {
   }
 
   render() {
-    const style = {
+    const buttonStyle = {
       margin: 0,
       top: 'auto',
       right: 20,
-      bottom: 20,
+      bottom: 76,
       left: 'auto',
       position: 'fixed',
     };
 
     return (
-      <div className="container">
-        <h1>Direct Reports</h1>
-        <List>
-          {this.renderDirects()}
-        </List>
+      <List style={{ paddingTop: 60, paddingBottom: 56 }}>
+        {this.renderDirects()}
         <FloatingActionButton
-          style={style}
+          style={buttonStyle}
           containerElement={<Link to="/directs/new" />}
         >
           <ContentAdd />
         </FloatingActionButton>
-      </div>
+      </List>
     );
   }
 }
@@ -57,4 +59,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(DirectList);
+export default connect(mapStateToProps, { setText: headerActions.setText })(DirectList);

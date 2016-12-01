@@ -3,20 +3,14 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { green100, green500, green700 } from 'material-ui/styles/colors';
 
-
 import Header from './Header';
 import LeftDrawer from './LeftDrawer';
+import BottomNav from './BottomNav';
 import store from '../store';
 import { listenToAuth } from '../actions/auth';
 
 const propTypes = {
   children: PropTypes.object.isRequired,
-};
-
-const styles = {
-  container: {
-    paddingTop: 56,
-  },
 };
 
 const muiTheme = getMuiTheme({
@@ -47,13 +41,16 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={styles.container}>
+        <div>
           <Header onLeftIconButtonTouchTap={this.handleMenuTap}  />
           <LeftDrawer open={this.state.open}
             onRequestChange={(open) => this.setState({open})}
             handleNavigate={this.handleNavigate}
           />
           {React.cloneElement(this.props.children, this.props)}
+          <BottomNav
+            handleNavigate={this.handleNavigate}
+          />
         </div>
       </MuiThemeProvider>
     );

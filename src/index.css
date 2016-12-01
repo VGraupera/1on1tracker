@@ -16,14 +16,6 @@ body {
   padding: 0;
 }
 
-.container {
-  padding: 0 10px;
-}
-
-.wrapper {
-  position:relative;
-}
-
 h1, h2, h3, h4 {
   font-weight: normal;
 }
@@ -31,4 +23,8 @@ h1, h2, h3, h4 {
 pre {
   font-family: Roboto, sans-serif;
   overflow-y: auto;
+}
+
+.container {
+  padding: 56px 8px 56px 8px;
 }

@@ -51,7 +51,7 @@ export default class MeetingForm extends Component {
 
   render() {
     const { formType, handleSubmit, pristine, submitting } = this.props;
-    const submitText = formType === 'edit' ? "Update" : "Create";
+    const submitText = formType === 'edit' ? 'Update' : 'Create';
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -94,7 +94,8 @@ export default class MeetingForm extends Component {
             type="submit"
             label={submitText}
             primary={true}
-            disabled={pristine || submitting} />
+            disabled={pristine || submitting}
+          />
         </div>
       </form>
     );
@@ -109,5 +110,4 @@ MeetingForm.propTypes = {
   formType: PropTypes.oneOf(['create', 'edit']),
   handleSubmit: PropTypes.func,
   onSubmit: PropTypes.func,
-  onDelete: PropTypes.func,
 };

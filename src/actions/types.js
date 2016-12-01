@@ -21,3 +21,6 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const FLASH_NOTICE = 'FLASH_NOTICE';
 export const FLASH_INFO = 'FLASH_INFO';
 export const FLASH_ERROR = 'FLASH_ERROR';
+
+export const HEADER_SET_TEXT = 'HEADER_SET_TEXT';
+export const HEADER_RESET = 'HEADER_RESET';

@@ -3,42 +3,41 @@ import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
+import Auth from './Auth';
 import * as types from '../actions/types';
 
 class LeftDrawer extends Component {
   render() {
-
-    let signedInItems ;
+    let signedInItems;
     if (this.props.auth.status === types.AUTH_LOGGED_IN) {
-      signedInItems =  (
+      signedInItems = (
         <div>
           <MenuItem
-            primaryText={this.props.auth.username} />
-          <Divider />
-          <MenuItem
-            onTouchTap={() => this.props.handleNavigate('/directs')}
-            primaryText='Direct Reports' />
-          <MenuItem
-            onTouchTap={() => this.props.handleNavigate('/meetings')}
-            primaryText='Meetings' />
-          <Divider />
+            primaryText={this.props.auth.username}
+          />
+          <MenuItem>
+            <Auth />
+          </MenuItem>
         </div>
-      )
+      );
     }
 
     return (
-      <div>
-        <Drawer
-          open={this.props.open}
-          docked={false}
-          onRequestChange={this.props.onRequestChange}
-        >
-          {signedInItems}
-          <MenuItem
-            onTouchTap={() => this.props.handleNavigate('/about')}
-            primaryText='About' />
-        </Drawer>
-      </div>
+      <Drawer
+        open={this.props.open}
+        docked={false}
+        onRequestChange={this.props.onRequestChange}
+      >
+        <MenuItem>
+          <h2>1on1 Tracker</h2>
+        </MenuItem>
+        {signedInItems}
+        <Divider />
+        <MenuItem
+          onTouchTap={() => this.props.handleNavigate('/about')}
+          primaryText='About'
+        />
+      </Drawer>
     );
   }
 }
@@ -50,4 +49,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(LeftDrawer);
-

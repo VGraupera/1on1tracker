@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
+import * as headerActions from '../../actions/header';
 
 class DirectNew extends Component {
   constructor() {
@@ -14,6 +15,10 @@ class DirectNew extends Component {
     this.props.reset();
   }
 
+  componentDidMount() {
+    this.props.setText('New Direct');
+  }
+
   onSubmit(direct) {
     this.props.create(direct);
   }
@@ -21,7 +26,6 @@ class DirectNew extends Component {
   render() {
     return (
       <div className="container">
-        <h2>New Direct</h2>
         <DirectForm {...this.props} onSubmit={this.onSubmit} />
       </div>
     );
@@ -41,4 +45,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
   { create: directActions.create,
-    reset: directActions.resetActive })(reduxForm({ form: 'direct', validate })(DirectNew));
+    reset: directActions.resetActive,
+    setText: headerActions.setText,
+  })(reduxForm({ form: 'direct', validate })(DirectNew));

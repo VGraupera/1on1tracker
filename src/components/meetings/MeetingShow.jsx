@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import meetingActions from '../../actions/meetings';
+import * as headerActions from '../../actions/header';
 
 class MeetingShow extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class MeetingShow extends Component {
 
   componentDidMount() {
     this.props.find(this.props.params.id);
+    this.props.setText('Show Meeting');
   }
 
   onEdit() {
@@ -24,7 +26,7 @@ class MeetingShow extends Component {
   }
 
   render() {
-    const { meeting, directs, loading, error } = this.props;
+    const { meeting, loading, error } = this.props;
 
     if (loading) {
       return <div className="container">Loading...</div>;
@@ -79,4 +81,7 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { find: meetingActions.find })(MeetingShow);
+export default connect(mapStateToProps,
+  { find: meetingActions.find,
+    setText: headerActions.setText,
+  })(MeetingShow);

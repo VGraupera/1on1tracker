@@ -38,7 +38,7 @@ export default function Routes(store) {
         <Route path=":id/edit" component={MeetingEdit} />
         <Route path=":id" component={MeetingShow} />
       </Route>
-      <Route path='*' component={NotFound} />
+      <Route path="*" component={NotFound} />
     </Route>
   );
 }

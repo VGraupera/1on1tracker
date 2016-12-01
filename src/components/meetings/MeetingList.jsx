@@ -6,18 +6,24 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import MeetingItem from './MeetingItem';
+import * as HeaderActions from '../../actions/header';
 
 class MeetingList extends Component {
+  componentDidMount() {
+    this.props.setText('Meetings');
+  }
 
   renderMeetings() {
     let rows = [];
     if (this.props.meetings) {
       rows = Object.keys(this.props.meetings).map((qid) => {
         const meeting = this.props.meetings[qid];
-        return (<MeetingItem
-          key={qid}
-          meeting={meeting}
-          id={qid} />
+        return (
+          <MeetingItem
+            key={qid}
+            meeting={meeting}
+            id={qid}
+          />
         );
       });
     }
@@ -25,28 +31,25 @@ class MeetingList extends Component {
   }
 
   render() {
-    const style = {
+    const buttonStyle = {
       margin: 0,
       top: 'auto',
       right: 20,
-      bottom: 20,
+      bottom: 76,
       left: 'auto',
       position: 'fixed',
     };
 
     return (
-      <div className="container">
-        <h1>Meetings</h1>
-        <List>
-          {this.renderMeetings()}
-        </List>
+      <List style={{ paddingTop: 60, paddingBottom: 56 }}>
+        {this.renderMeetings()}
         <FloatingActionButton
-          style={style}
+          style={buttonStyle}
           containerElement={<Link to="/meetings/new" />}
         >
           <ContentAdd />
         </FloatingActionButton>
-      </div>
+      </List>
     );
   }
 }
@@ -60,4 +63,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(MeetingList);
+export default connect(mapStateToProps, { setText: HeaderActions.setText })(MeetingList);
