@@ -16,9 +16,10 @@ class MeetingNew extends Component {
   }
 
   componentDidMount() {
-    this.props.setText("New Meeting");
+    this.props.setText('New Meeting');
   }
 
+  /* eslint no-param-reassign: ["error", { "props": false }] */
   onSubmit(meeting) {
     if (meeting.meetingDate instanceof Date) {
       meeting.meetingDate = meeting.meetingDate.toISOString();
@@ -54,6 +55,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps,
-                       { create: meetingActions.create,
-                         reset: meetingActions.resetActive,
-                         setText: headerActions.setText })(reduxForm({ form: 'meeting', validate })(MeetingNew));
+  { create: meetingActions.create,
+    reset: meetingActions.resetActive,
+    setText: headerActions.setText })(reduxForm({ form: 'meeting', validate })(MeetingNew));
