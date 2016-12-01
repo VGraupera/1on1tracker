@@ -9,7 +9,7 @@ Instead of continuing to use paper, or forgetting things, I wanted an
 app to keep track of my one-on-ones, plus I wanted to learn more about React and Firebase,
 so I created this.
 
-A *live* version can be found at [https://www.1on1tracker.com](https://www.1on1tracker.com])
+A *live* version can be found at [https://www.1on1tracker.com](https://www.1on1tracker.com)
 
 ###Stack
 
