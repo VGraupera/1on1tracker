@@ -78,9 +78,13 @@ export const logoutUser = () => {
   };
 };
 
+export function isAuthenticated(state) {
+   return state.auth.status === types.AUTH_LOGGED_IN;
+}
+
 export function requireAuth(nextState, replace) {
   return (dispatch, getState) => {
-    if (getState().auth.status !== types.AUTH_LOGGED_IN) {
+    if (!isAuthenticated(getState())) {
       replace({
         pathname: '/',
         state: { nextPathname: nextState.location.pathname },
@@ -88,3 +92,4 @@ export function requireAuth(nextState, replace) {
     }
   };
 }
+

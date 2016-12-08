@@ -26,6 +26,7 @@ export default class MeetingForm extends Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
+
   onSubmit(direct) {
     this.props.onSubmit(direct);
   }
@@ -103,7 +104,7 @@ export default class MeetingForm extends Component {
 }
 
 MeetingForm.contextTypes = {
-  router: React.PropTypes.object,
+  router: React.PropTypes.object.isRequired,
 };
 
 MeetingForm.propTypes = {

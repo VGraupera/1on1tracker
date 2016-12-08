@@ -25,14 +25,14 @@ export default function Routes(store) {
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
-      <Route path="/directs" onEnter={checkAuth}>
+      <Route path="directs" onEnter={checkAuth}>
         <IndexRoute component={DirectList} />
         <Route path="new" component={DirectNew} />
         <Route path=":id/edit" component={DirectEdit} />
         <Route path=":id/meetings/new" component={MeetingNew} />
         <Route path=":id" component={DirectShow} />
       </Route>
-      <Route path="/meetings" onEnter={checkAuth}>
+      <Route path="meetings" onEnter={checkAuth}>
         <IndexRoute component={MeetingList} />
         <Route path="new" component={MeetingNew} />
         <Route path=":id/edit" component={MeetingEdit} />

@@ -1,20 +1,43 @@
-import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import React, { Component, PropTypes } from 'react';
+import {
+  reduxForm,
+  isDirty,
+ } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import MeetingForm, { validate } from './MeetingForm';
+import { withRouter } from 'react-router';
+
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
 class MeetingEdit extends Component {
+
   constructor() {
     super();
     this.onDelete = this.onDelete.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.warnIfUnsavedChanges = this.warnIfUnsavedChanges.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.router.setRouteLeaveHook(this.props.location, (route) => this.warnIfUnsavedChanges(route));
+    window.onbeforeunload = () => this.warnIfUnsavedChanges();
   }
 
   componentDidMount() {
     this.props.setText('Edit Meeting');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.route.path !== prevProps.route.path) {
+      this.props.router.setRouteLeaveHook(this.props.route, (route) => this.warnIfUnsavedChanges(route));
+    }
+  }
+
+  warnIfUnsavedChanges(route) {
+    if (this.props.dirty)
+      return 'Are you sure you want to leave this page? You have unsaved changes.';
   }
 
   onDelete() {
@@ -45,10 +68,17 @@ class MeetingEdit extends Component {
 }
 
 MeetingEdit.propTypes = {
-  update: React.PropTypes.func.isRequired,
-  remove: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
-  params: React.PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+  router: PropTypes.shape({
+    setRouteLeaveHook: PropTypes.func,
+  }).isRequired,
+  route: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
 };
 
 const mapStateToProps = (state) => {
@@ -59,6 +89,7 @@ const mapStateToProps = (state) => {
   return {
     initialValues,
     formType: 'edit',
+    dirty: isDirty('meeting')(state),
     error: state.meetings.error,
     directs: state.directs.list,
     directsKeys: state.directs.keys,
@@ -71,4 +102,4 @@ const mapDispatchToProps = {
   setText: headerActions.setText,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'meeting', validate })(MeetingEdit));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'meeting', validate })(MeetingEdit)));
