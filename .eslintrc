@@ -1,8 +1,11 @@
 {
   "extends": "airbnb",
+  "plugins": [ "react" ],
   "rules": {
       "no-underscore-dangle": 0,
       "no-console": 0,
-      "arrow-body-style": 0
+      "arrow-body-style": 0,
+      "jsx-boolean-value": 0,
+      "anchor-has-content": 0
   }
 }
