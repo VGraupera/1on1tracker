@@ -2,22 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { Link } from 'react-router';
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
 class MeetingShow extends Component {
-  constructor() {
-    super();
-    this.onEdit = this.onEdit.bind(this);
-  }
-
   componentDidMount() {
     this.props.find(this.props.params.id);
     this.props.setText('Show Meeting');
-  }
-
-  onEdit() {
-    this.context.router.push(`/meetings/${this.props.params.id}/edit`);
   }
 
   directByKey(key) {
@@ -58,17 +50,16 @@ class MeetingShow extends Component {
             ) : 'None' }
           </CardText>
           <CardActions>
-            <FlatButton label="Edit" onTouchTap={this.onEdit} />
+            <FlatButton
+              label="Edit"
+              containerElement={<Link to={`/meetings/${this.props.params.id}/edit`} />}
+            />
           </CardActions>
         </Card>
       </div>
     );
   }
 }
-
-MeetingShow.contextTypes = {
-  router: React.PropTypes.object,
-};
 
 const mapStateToProps = (state) => {
   return {
@@ -79,7 +70,6 @@ const mapStateToProps = (state) => {
     error: state.meetings.error,
   };
 };
-
 
 export default connect(mapStateToProps,
   { find: meetingActions.find,

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import {
   DatePicker,
   TextField,
@@ -19,22 +19,7 @@ export const validate = (values) => {
   return errors;
 };
 
-export default class MeetingForm extends Component {
-  constructor() {
-    super();
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onCancel = this.onCancel.bind(this);
-  }
-
-
-  onSubmit(direct) {
-    this.props.onSubmit(direct);
-  }
-
-  onCancel() {
-    this.context.router.goBack();
-  }
-
+class MeetingForm extends Component {
   formatDate(date) {
     return date.toLocaleDateString();
   }
@@ -55,7 +40,7 @@ export default class MeetingForm extends Component {
     const submitText = formType === 'edit' ? 'Update' : 'Create';
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
+      <form onSubmit={handleSubmit(this.props.onSubmit)}>
         <Field
           name="directKey"
           component={SelectField}
@@ -103,12 +88,10 @@ export default class MeetingForm extends Component {
   }
 }
 
-MeetingForm.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-};
-
 MeetingForm.propTypes = {
   formType: PropTypes.oneOf(['create', 'edit']),
   handleSubmit: PropTypes.func,
   onSubmit: PropTypes.func,
 };
+
+export default reduxForm({ form: 'meeting', validate })(MeetingForm);

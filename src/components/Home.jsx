@@ -12,7 +12,11 @@ const Home = (props) => {
       <p>
         Create a free account using Google
       </p>
-      <RaisedButton primary={true} label="Sign up" onTouchTap={props.openAuth} />
+      <RaisedButton
+        primary={true}
+        label="Sign up"
+        onTouchTap={props.openAuth}
+      />
     </div>
   );
 };

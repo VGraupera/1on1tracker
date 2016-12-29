@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import { push } from 'react-router-redux';
+import { browserHistory } from 'react-router'
 
 import { firebaseAuth } from '../firebase/firebase';
 import * as types from './types';
@@ -22,7 +23,7 @@ export const listenToAuth = () => {
         // reload on auth update.
         directActions.subscribe(dispatch, getState);
         meetingActions.subscribe(dispatch, getState);
-        dispatch(push('/directs'));
+        browserHistory.push('/directs');
       } else {
         if (getState().auth.status !== types.AUTH_ANONYMOUS) {
           dispatch({ type: types.AUTH_LOGOUT });
@@ -73,13 +74,13 @@ export const logoutUser = () => {
       () => {
         dispatch({ type: types.AUTH_LOGOUT });
         dispatch(push('/'));
-      }
+      },
     );
   };
 };
 
 export function isAuthenticated(state) {
-   return state.auth.status === types.AUTH_LOGGED_IN;
+  return state.auth.status === types.AUTH_LOGGED_IN;
 }
 
 export function requireAuth(nextState, replace) {
@@ -92,4 +93,3 @@ export function requireAuth(nextState, replace) {
     }
   };
 }
-

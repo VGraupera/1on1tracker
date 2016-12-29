@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { green100, green500, green700 } from 'material-ui/styles/colors';
+import { browserHistory } from 'react-router'
 
 import Header from './Header';
 import LeftDrawer from './LeftDrawer';
@@ -35,7 +36,7 @@ class App extends Component {
 
   handleNavigate = (path) => {
     this.setState({open: false});
-    this.context.router.push(path);
+    browserHistory.push(path);
   }
 
   render() {
@@ -47,7 +48,7 @@ class App extends Component {
             onRequestChange={(open) => this.setState({open})}
             handleNavigate={this.handleNavigate}
           />
-          {React.cloneElement(this.props.children, this.props)}
+          {this.props.children}
           <BottomNav
             handleNavigate={this.handleNavigate}
           />
@@ -57,10 +58,5 @@ class App extends Component {
   }
 }
 
-App.contextTypes = {
-  router: React.PropTypes.object,
-};
-
 App.propTypes = propTypes;
-
 export default App;

@@ -1,18 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import {
-  reduxForm,
-  isDirty,
- } from 'redux-form';
+import { isDirty } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import MeetingForm, { validate } from './MeetingForm';
 import { withRouter } from 'react-router';
+import MeetingForm from './MeetingForm';
 
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
 class MeetingEdit extends Component {
-
   constructor() {
     super();
     this.onDelete = this.onDelete.bind(this);
@@ -20,24 +16,18 @@ class MeetingEdit extends Component {
     this.warnIfUnsavedChanges = this.warnIfUnsavedChanges.bind(this);
   }
 
-  componentWillMount() {
-    this.props.router.setRouteLeaveHook(this.props.location, (route) => this.warnIfUnsavedChanges(route));
-    window.onbeforeunload = () => this.warnIfUnsavedChanges();
-  }
-
   componentDidMount() {
     this.props.setText('Edit Meeting');
+    console.log(`componentDidMount ${this.props.location.pathname} ${this.props.route.path}`);
+
+    this.props.router.setRouteLeaveHook(this.props.route, this.warnIfUnsavedChanges);
+    window.onbeforeunload = () => this.warnIfUnsavedChanges();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.route.path !== prevProps.route.path) {
-      this.props.router.setRouteLeaveHook(this.props.route, (route) => this.warnIfUnsavedChanges(route));
+    this.props.router.setRouteLeaveHook(this.props.route, (route) => this.warnIfUnsavedChanges(route));
     }
-  }
-
-  warnIfUnsavedChanges(route) {
-    if (this.props.dirty)
-      return 'Are you sure you want to leave this page? You have unsaved changes.';
   }
 
   onDelete() {
@@ -48,13 +38,18 @@ class MeetingEdit extends Component {
     this.props.update(this.props.params.id, meeting);
   }
 
+  warnIfUnsavedChanges(nextLocation) {
+    if (this.props.dirty) {
+      return 'Are you sure you want to leave this page? You have unsaved changes.';
+    }
+  }
+
   render() {
     return (
       <div className="container">
         <MeetingForm
           {...this.props}
           onSubmit={this.onSubmit}
-          onDelete={this.onDelete}
         />
         <RaisedButton
           label="Delete"
@@ -75,7 +70,7 @@ MeetingEdit.propTypes = {
   router: PropTypes.shape({
     setRouteLeaveHook: PropTypes.func,
   }).isRequired,
-  route: PropTypes.object.isRequired,
+  // route: PropTypes.object.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
@@ -83,7 +78,8 @@ MeetingEdit.propTypes = {
 
 const mapStateToProps = (state) => {
   const meeting = state.meetings.activeMeeting;
-  const initialValues = { ...meeting,
+  const initialValues = {
+    ...meeting,
     meetingDate: meeting.meetingDate ? new Date(meeting.meetingDate) : null,
   };
   return {
@@ -102,4 +98,4 @@ const mapDispatchToProps = {
   setText: headerActions.setText,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'meeting', validate })(MeetingEdit)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MeetingEdit));

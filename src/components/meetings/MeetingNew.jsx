@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import MeetingForm, { validate } from './MeetingForm';
+import MeetingForm from './MeetingForm';
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
@@ -30,7 +29,10 @@ class MeetingNew extends Component {
   render() {
     return (
       <div className="container">
-        <MeetingForm {...this.props} onSubmit={this.onSubmit} />
+        <MeetingForm
+          {...this.props}
+          onSubmit={this.onSubmit}
+        />
       </div>
     );
   }
@@ -57,4 +59,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps,
   { create: meetingActions.create,
     reset: meetingActions.resetActive,
-    setText: headerActions.setText })(reduxForm({ form: 'meeting', validate })(MeetingNew));
+    setText: headerActions.setText,
+  })(MeetingNew);
