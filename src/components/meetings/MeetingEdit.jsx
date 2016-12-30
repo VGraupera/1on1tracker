@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { isDirty } from 'redux-form';
+import { isDirty, hasSubmitSucceeded } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { withRouter } from 'react-router';
@@ -18,15 +18,15 @@ class MeetingEdit extends Component {
 
   componentDidMount() {
     this.props.setText('Edit Meeting');
-    console.log(`componentDidMount ${this.props.location.pathname} ${this.props.route.path}`);
-
     this.props.router.setRouteLeaveHook(this.props.route, this.warnIfUnsavedChanges);
     window.onbeforeunload = () => this.warnIfUnsavedChanges();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.route.path !== prevProps.route.path) {
-    this.props.router.setRouteLeaveHook(this.props.route, (route) => this.warnIfUnsavedChanges(route));
+      this.props.router.setRouteLeaveHook(
+        this.props.route, (route) => this.warnIfUnsavedChanges(route)
+      );
     }
   }
 
@@ -39,7 +39,7 @@ class MeetingEdit extends Component {
   }
 
   warnIfUnsavedChanges(nextLocation) {
-    if (this.props.dirty) {
+    if (this.props.dirty && !this.props.submitted) {
       return 'Are you sure you want to leave this page? You have unsaved changes.';
     }
   }
@@ -70,10 +70,6 @@ MeetingEdit.propTypes = {
   router: PropTypes.shape({
     setRouteLeaveHook: PropTypes.func,
   }).isRequired,
-  // route: PropTypes.object.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
 };
 
 const mapStateToProps = (state) => {
@@ -86,6 +82,7 @@ const mapStateToProps = (state) => {
     initialValues,
     formType: 'edit',
     dirty: isDirty('meeting')(state),
+    submitted: hasSubmitSucceeded('meeting')(state),
     error: state.meetings.error,
     directs: state.directs.list,
     directsKeys: state.directs.keys,
