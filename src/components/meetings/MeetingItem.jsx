@@ -10,15 +10,19 @@ class MeetingItem extends Component {
     return this.props.directs[index];
   }
 
+  meetingSummary(meeting) {
+    const dateString = new Date(meeting.meetingDate).toLocaleDateString();
+    const notesString = meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes;
+    return `${dateString} : ${notesString || ''}`;
+  }
+
   render() {
     const { meeting, id } = this.props;
     const direct = this.directByKey(meeting.directKey);
 
     return (<ListItem
       primaryText={direct.name}
-      secondaryText={new Date(meeting.meetingDate).toLocaleDateString() +
-        ' : ' +
-        (meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes) }
+      secondaryText={this.meetingSummary(meeting)}
       containerElement={<Link to={`/meetings/${id}`} />}
     />
     );

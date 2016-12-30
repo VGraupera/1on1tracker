@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
@@ -55,6 +55,7 @@ class MeetingList extends Component {
 }
 
 MeetingList.propTypes = {
+  setText: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

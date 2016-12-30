@@ -40,6 +40,8 @@ class MeetingNew extends Component {
 
 MeetingNew.propTypes = {
   create: React.PropTypes.func.isRequired,
+  setText: React.PropTypes.func.isRequired,
+  reset: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
