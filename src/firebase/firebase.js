@@ -24,31 +24,21 @@ export class FirebaseApi {
     if (!state.auth.uid) return;
     let ref = this._baseRef(getState);
 
-    // if we care about ordering then we need to convert to an array
-    // or the ordering will be lost by making object .val()
     if (this._orderBy) {
       ref = ref.orderByChild(this._orderBy);
-      ref.on('value', (snapshot) => {
-        let keys = [];
-        let list = [];
-        snapshot.forEach(child => {
-          keys.push(child.key);
-          list.push(child.val());
-        });
-        dispatch({
-          type: this._constants.LOAD_SUCCESS,
-          keys,
-          list
-        });
-      });
-    } else {
-      ref.on('value', (snapshot) => {
-        dispatch({
-          type: this._constants.LOAD_SUCCESS,
-          payload: snapshot.val(),
-        });
-      });
     }
+
+    ref.on('value', (snapshot) => {
+      let itemsMap = new Map();
+      snapshot.forEach(child => {
+        itemsMap.set(child.key, child.val());
+      });
+      dispatch({
+        type: this._constants.LOAD_SUCCESS,
+        payload: itemsMap,
+      });
+    });
+
 
     this._unsubscribe = (dispatch, getState) => ref.off();
   }

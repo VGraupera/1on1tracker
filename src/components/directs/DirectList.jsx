@@ -15,11 +15,10 @@ class DirectList extends Component {
   }
 
   renderDirects() {
-    let rows = [];
+    const rows = [];
     if (this.props.directs) {
-      rows = Object.keys(this.props.directs).map((index) => {
-        const direct = this.props.directs[index];
-        return <DirectItem key={index} direct={direct} id={this.props.directsKeys[index]} />;
+      this.props.directs.forEach((direct, key) => {
+        rows.push(<DirectItem key={key} direct={direct} id={key} />);
       });
     }
     return rows;

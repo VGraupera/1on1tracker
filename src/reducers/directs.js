@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   activeDirect: null,
   activeDirectKey: null,
   list: [],
-  keys: [],
   loading: false,
   error: null,
 };
@@ -13,8 +12,7 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.LOAD_DIRECTS_SUCCESS:
       return { ...state,
-        list: action.list,
-        keys: action.keys,
+        list: action.payload,
       };
     case types.UNLOAD_DIRECTS_SUCCESS:
       return INITIAL_STATE;
