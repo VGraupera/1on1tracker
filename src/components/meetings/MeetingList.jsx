@@ -14,15 +14,14 @@ class MeetingList extends Component {
   }
 
   renderMeetings() {
-    let rows = [];
+    const rows = [];
     if (this.props.meetings) {
-      rows = Object.keys(this.props.meetings).map((qid) => {
-        const meeting = this.props.meetings[qid];
-        return (
+      this.props.meetings.forEach((meeting, key) => {
+        rows.push (
           <MeetingItem
-            key={qid}
+            key={key}
             meeting={meeting}
-            id={qid}
+            id={key}
           />
         );
       });

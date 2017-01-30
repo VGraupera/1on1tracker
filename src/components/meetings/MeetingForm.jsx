@@ -27,9 +27,8 @@ class MeetingForm extends Component {
   renderDirects() {
     let rows = [];
 
-    this.props.directs.forEach((direct, index) => {
-      const key = this.props.directsKeys[index];
-      rows.push(<MenuItem key={index} value={key} primaryText={direct.name} />);
+    this.props.directs.forEach((direct, key) => {
+      rows.push(<MenuItem key={key} value={key} primaryText={direct.name} />);
     });
 
     return rows;

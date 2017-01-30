@@ -9,7 +9,7 @@ class DirectMeetingList extends Component {
 
   constructor() {
     super();
-    this.state = { selectedMeetingKeys: [] };
+    this.state = { selectedMeetings: null };
   }
 
   componentDidMount() {
@@ -17,25 +17,23 @@ class DirectMeetingList extends Component {
   }
 
   onMount() {
-    const allMeetingKeys = Object.keys(this.props.meetings);
-    this.setState({ selectedMeetingKeys: allMeetingKeys.filter(meetingKey =>
-      this.props.meetings[meetingKey].directKey === this.props.directId)
-    });
+    const selectedMeetings = new Map([...this.props.meetings]
+                              .filter(([key, value]) =>
+                                value.directKey === this.props.directId));
+    this.setState({ selectedMeetings });
   }
 
   renderMeetings() {
-    let rows = [];
-    if (this.props.meetings) {
-      rows = this.state.selectedMeetingKeys.map((qid) => {
-        const meeting = this.props.meetings[qid];
-        return (
+    const rows = [];
+    if (this.props.meetings && this.state.selectedMeetings) {
+      this.state.selectedMeetings.forEach((meeting, key) => {
+        rows.push(
           <ListItem
-            key={qid}
+            key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
-            containerElement={<Link to={`/meetings/${qid}`} />}
-          />
-        );
+            containerElement={<Link to={`/meetings/${key}`} />}
+          />);
       });
     }
     return rows;

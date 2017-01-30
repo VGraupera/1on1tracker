@@ -12,11 +12,6 @@ class MeetingShow extends Component {
     this.props.setText('Show Meeting');
   }
 
-  directByKey(key) {
-    const index = this.props.directsKeys.findIndex(k => k === key);
-    return this.props.directs[index];
-  }
-
   render() {
     const { meeting, loading, error } = this.props;
 
@@ -28,7 +23,7 @@ class MeetingShow extends Component {
       return <span>No Meeting</span>;
     }
 
-    const direct = this.directByKey(meeting.directKey);
+    const direct = this.props.directs.get(meeting.directKey);
     return (
       <div className="container">
         <Card>
@@ -65,7 +60,6 @@ const mapStateToProps = (state) => {
   return {
     meeting: state.meetings.activeMeeting,
     directs: state.directs.list,
-    directsKeys: state.directs.keys,
     loading: state.meetings.loading,
     error: state.meetings.error,
   };
