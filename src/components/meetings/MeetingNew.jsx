@@ -21,6 +21,7 @@ class MeetingNew extends Component {
   /* eslint no-param-reassign: ["error", { "props": false }] */
   onSubmit(meeting) {
     if (meeting.meetingDate instanceof Date) {
+      meeting.meetingDateReverse = 0 - meeting.meetingDate;
       meeting.meetingDate = meeting.meetingDate.toISOString();
     }
     this.props.create(meeting);
@@ -54,7 +55,6 @@ const mapStateToProps = (state) => {
     formType: 'create',
     error: state.meetings.error,
     directs: state.directs.list,
-    directsKeys: state.directs.keys,
   };
 };
 

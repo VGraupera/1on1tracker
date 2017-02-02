@@ -7,5 +7,5 @@ export default new FirebaseApi('meetings', {
   SET_ACTIVE: types.SET_ACTIVE_MEETING,
   RESET_ACTIVE: types.RESET_ACTIVE_MEETING,
   CREATE: types.CREATE_MEETING,
-});
-
+},
+'meetingDateReverse');
