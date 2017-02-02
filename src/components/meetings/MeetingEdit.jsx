@@ -35,6 +35,10 @@ class MeetingEdit extends Component {
   }
 
   onSubmit(meeting) {
+    if (meeting.meetingDate instanceof Date) {
+      meeting.meetingDateReverse = 0 - meeting.meetingDate;
+      meeting.meetingDate = meeting.meetingDate.toISOString();
+    }
     this.props.update(this.props.params.id, meeting);
   }
 
@@ -85,7 +89,6 @@ const mapStateToProps = (state) => {
     submitted: hasSubmitSucceeded('meeting')(state),
     error: state.meetings.error,
     directs: state.directs.list,
-    directsKeys: state.directs.keys,
   };
 };
 
