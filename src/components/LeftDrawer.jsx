@@ -4,12 +4,13 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import Auth from './Auth';
-import * as types from '../actions/types';
+import { isAuthenticated } from '../actions/auth';
+
 
 class LeftDrawer extends Component {
   render() {
     let signedInItems;
-    if (this.props.auth.status === types.AUTH_LOGGED_IN) {
+    if (isAuthenticated(this.props)) {
       signedInItems = (
         <div>
           <MenuItem
@@ -28,14 +29,22 @@ class LeftDrawer extends Component {
         docked={false}
         onRequestChange={this.props.onRequestChange}
       >
-        <MenuItem>
+        <MenuItem
+          onTouchTap={() => {
+            if (isAuthenticated(this.props)) {
+              this.props.handleNavigate('/directs');
+            } else {
+              this.props.handleNavigate('/');
+            }
+          }}
+        >
           <h2>1on1 Tracker</h2>
         </MenuItem>
         {signedInItems}
         <Divider />
         <MenuItem
           onTouchTap={() => this.props.handleNavigate('/about')}
-          primaryText='About'
+          primaryText="About"
         />
       </Drawer>
     );

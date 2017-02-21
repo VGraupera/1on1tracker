@@ -15,6 +15,6 @@ class About extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect(null, { setText: headerActions.setText })(About);

@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 
-import * as types from '../actions/types';
+import { isAuthenticated } from '../actions/auth';
 
 class Header extends Component {
   returnHome = () => {
-    if (this.props.auth.status !== types.AUTH_LOGGED_IN) {
-      this.context.router.push('/');
+    if (isAuthenticated(this.props)) {
+      this.context.router.push('/directs');
     } else {
       // push from react-router-redux is not working here with material-ui
-      this.context.router.push('/directs');
+      this.context.router.push('/');
     }
   }
 
