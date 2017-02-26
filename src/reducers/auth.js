@@ -8,7 +8,7 @@ import {
   AUTH_OPEN } from '../actions/types';
 
 const INITIAL_STATE = {
-  username: null,
+  displayName: null,
   uid: null,
   email: null,
   photoURL: null,
@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
     case AUTH_OPEN:
       return {
         status: AUTH_AWAITING_RESPONSE,
-        username: 'guest',
+        displayName: 'guest',
         uid: null,
         email: null,
         photoURL: null,
@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
     case AUTH_LOGIN:
       return {
         status: AUTH_LOGGED_IN,
-        username: action.username,
+        displayName: action.displayName,
         uid: action.uid,
         email: action.email,
         photoURL: action.photoURL,
@@ -37,7 +37,7 @@ export default (state = INITIAL_STATE, action) => {
     case AUTH_ERROR:
       return {
         status: AUTH_ANONYMOUS,
-        username: 'guest',
+        displayName: 'guest',
         uid: null,
         email: null,
         photoURL: null,

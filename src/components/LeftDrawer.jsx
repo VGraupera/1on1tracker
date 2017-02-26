@@ -14,7 +14,7 @@ class LeftDrawer extends Component {
       signedInItems = (
         <div>
           <MenuItem
-            primaryText={this.props.auth.username}
+            primaryText={this.props.auth.displayName}
           />
           <MenuItem>
             <Auth />

@@ -1,29 +1,41 @@
 import * as firebase from 'firebase';
 import { push } from 'react-router-redux';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
-import { firebaseAuth } from '../firebase/firebase';
+import { firebaseAuth, firebaseDb } from '../firebase/firebase';
 import * as types from './types';
 
 import directActions from './directs';
 import meetingActions from './meetings';
+
+const recordLogin = (accountData) => {
+  firebaseDb.ref('accounts').child(accountData.uid).set(accountData)
+    .then(() => {
+      console.log('Login recorded');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export const listenToAuth = () => {
   return (dispatch, getState) => {
     firebaseAuth.onAuthStateChanged((authData) => {
       if (authData) {
         dispatch({
+          ...authData.toJSON(),
           type: types.AUTH_LOGIN,
-          uid: authData.uid,
-          username: authData.displayName,
-          email: authData.email,
-          photoURL: authData.photoURL,
         });
 
         // reload on auth update.
         directActions.subscribe(dispatch, getState);
         meetingActions.subscribe(dispatch, getState);
         browserHistory.push('/directs');
+
+        recordLogin({
+          ...authData.toJSON(),
+          lastLogin: new Date().toISOString(),
+        });
       } else {
         if (getState().auth.status !== types.AUTH_ANONYMOUS) {
           dispatch({ type: types.AUTH_LOGOUT });
