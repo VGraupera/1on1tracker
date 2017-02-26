@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import * as headerActions from '../actions/header';
 import { openAuth } from '../actions/auth';
 
-class Home extends Component {
+export class Home extends Component {
   componentDidMount() {
     this.props.setText('1on1 Tracker');
   }
