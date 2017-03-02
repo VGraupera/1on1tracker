@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { green100, green500, green700 } from 'material-ui/styles/colors';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
 import Header from './Header';
 import LeftDrawer from './LeftDrawer';
@@ -25,17 +25,17 @@ const muiTheme = getMuiTheme({
 class App extends Component {
   constructor() {
     super();
-    this.state = {open: false};
+    this.state = { open: false };
   }
 
   componentDidMount() {
     store.dispatch(listenToAuth());
   }
 
-  handleMenuTap = () => this.setState({open: !this.state.open});
+  handleMenuTap = () => this.setState({ open: !this.state.open });
 
   handleNavigate = (path) => {
-    this.setState({open: false});
+    this.setState({ open: false });
     browserHistory.push(path);
   }
 
@@ -43,9 +43,10 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <Header onLeftIconButtonTouchTap={this.handleMenuTap}  />
-          <LeftDrawer open={this.state.open}
-            onRequestChange={(open) => this.setState({open})}
+          <Header onLeftIconButtonTouchTap={this.handleMenuTap} />
+          <LeftDrawer
+            open={this.state.open}
+            onRequestChange={open => this.setState({ open })}
             handleNavigate={this.handleNavigate}
           />
           {this.props.children}
