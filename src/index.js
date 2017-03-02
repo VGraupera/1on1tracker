@@ -14,8 +14,10 @@ injectTapEventPlugin();
 ReactGA.initialize('UA-2153940-18');
 
 history.listen((location) => {
-  ReactGA.set({ page: location.pathname });
-  ReactGA.pageview(location.pathname);
+  if (process.env.NODE_ENV === 'production') {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  }
 });
 
 const router = (
