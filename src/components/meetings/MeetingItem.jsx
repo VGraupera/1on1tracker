@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { ListItem } from 'material-ui/List';
 
 class MeetingItem extends Component {
-  meetingSummary(meeting) {
+  static summary(meeting) {
     const dateString = new Date(meeting.meetingDate).toLocaleDateString();
     const notesString = meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes;
     return `${dateString} : ${notesString || ''}`;
@@ -18,17 +18,20 @@ class MeetingItem extends Component {
 
       return (<ListItem
         primaryText={direct.name}
-        secondaryText={this.meetingSummary(meeting)}
+        secondaryText={MeetingItem.summary(meeting)}
         containerElement={<Link to={`/meetings/${id}`} />}
       />
       );
     }
 
     return null;
-
-  }}
+  }
+}
 
 MeetingItem.propTypes = {
+  directs: React.PropTypes.object.isRequired,
+  meeting: React.PropTypes.object.isRequired,
+  id: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
