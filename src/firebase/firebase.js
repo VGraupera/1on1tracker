@@ -29,8 +29,8 @@ export class FirebaseApi {
     }
 
     ref.on('value', (snapshot) => {
-      let itemsMap = new Map();
-      snapshot.forEach(child => {
+      const itemsMap = new Map();
+      snapshot.forEach((child) => {
         itemsMap.set(child.key, child.val());
       });
       dispatch({
@@ -40,10 +40,10 @@ export class FirebaseApi {
     });
 
 
-    this._unsubscribe = (dispatch, getState) => ref.off();
+    this._unsubscribe = () => ref.off();
   }
 
-  unsubscribe(dispatch, getState) {
+  unsubscribe(dispatch) {
     if (this._unsubscribe) this._unsubscribe();
     dispatch({
       type: this._constants.UNLOAD_SUCCESS,
@@ -58,14 +58,14 @@ export class FirebaseApi {
         dispatch({
           type: this._constants.SET_ACTIVE,
           payload: snapshot.val(),
-          key: key
+          key,
         });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(push('/404'));
         dispatch({
           type: types.FLASH_ERROR,
-          error: `Record not found!`,
+          error: 'Record not found!',
         });
       });
     };
@@ -83,7 +83,7 @@ export class FirebaseApi {
         });
         dispatch({
           type: types.FLASH_NOTICE,
-          message: "Successfully deleted",
+          message: 'Successfully deleted',
         });
       })
       .catch((error) => {
@@ -127,10 +127,9 @@ export class FirebaseApi {
             reject(error);
           } else {
             dispatch(push(`/${this._path}`));
-            //dispatch(push(`/${this._path}/${key}`));
             dispatch({
               type: types.FLASH_NOTICE,
-              message: "Successfully created",
+              message: 'Successfully created',
             });
             resolve();
           }
@@ -142,6 +141,6 @@ export class FirebaseApi {
   resetActive = () => {
     return {
       type: this._constants.RESET_ACTIVE,
-    }
+    };
   }
 }
