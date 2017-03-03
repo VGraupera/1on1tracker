@@ -13,6 +13,7 @@ import DirectList from './components/directs/DirectList';
 import DirectNew from './components/directs/DirectNew';
 import DirectEdit from './components/directs/DirectEdit';
 import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 import About from './components/About';
 import NotFound from './components/404';
 
@@ -25,6 +26,7 @@ export default function Routes(store) {
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
+      <Route path="dashboard" component={Dashboard} />
       <Route path="directs" onEnter={checkAuth}>
         <IndexRoute component={DirectList} />
         <Route path="new" component={DirectNew} />
