@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as headerActions from '../actions/header';
 
 class About extends Component {
-
   componentDidMount() {
     this.props.setText('About');
   }
@@ -16,5 +15,9 @@ class About extends Component {
     );
   }
 }
+
+About.propTypes = {
+  setText: React.PropTypes.func.isRequired,
+};
 
 export default connect(null, { setText: headerActions.setText })(About);

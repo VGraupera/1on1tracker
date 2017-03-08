@@ -19,6 +19,10 @@ export class Dashboard extends Component {
   }
 }
 
+Dashboard.propTypes = {
+  setText: React.PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = {
   setText: headerActions.setText,
 };
