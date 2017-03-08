@@ -12,6 +12,10 @@ import DirectShow from './components/directs/DirectShow';
 import DirectList from './components/directs/DirectList';
 import DirectNew from './components/directs/DirectNew';
 import DirectEdit from './components/directs/DirectEdit';
+import FollowUpShow from './components/followUps/FollowUpShow';
+import FollowUpList from './components/followUps/FollowUpList';
+import FollowUpNew from './components/followUps/FollowUpNew';
+import FollowUpEdit from './components/followUps/FollowUpEdit';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
@@ -39,6 +43,12 @@ export default function Routes(store) {
         <Route path="new" component={MeetingNew} />
         <Route path=":id/edit" component={MeetingEdit} />
         <Route path=":id" component={MeetingShow} />
+      </Route>
+      <Route path="followUps" onEnter={checkAuth}>
+        <IndexRoute component={FollowUpList} />
+        <Route path="new" component={FollowUpNew} />
+        <Route path=":id/edit" component={FollowUpEdit} />
+        <Route path=":id" component={FollowUpShow} />
       </Route>
       <Route path="*" component={NotFound} />
     </Route>
