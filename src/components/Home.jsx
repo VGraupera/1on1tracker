@@ -29,6 +29,11 @@ export class Home extends Component {
   }
 }
 
+Home.propTypes = {
+  setText: React.PropTypes.func.isRequired,
+  openAuth: React.PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = {
   openAuth,
   setText: headerActions.setText,

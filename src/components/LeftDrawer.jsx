@@ -4,8 +4,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import Auth from './Auth';
-import { isAuthenticated } from '../actions/auth';
-
+import { isAuthenticated, rootPath } from '../actions/auth';
 
 class LeftDrawer extends Component {
   render() {
@@ -31,11 +30,7 @@ class LeftDrawer extends Component {
       >
         <MenuItem
           onTouchTap={() => {
-            if (isAuthenticated(this.props)) {
-              this.props.handleNavigate('/directs');
-            } else {
-              this.props.handleNavigate('/');
-            }
+            this.props.handleNavigate(rootPath(isAuthenticated(this.props)));
           }}
         >
           <h2>1on1 Tracker</h2>
@@ -50,6 +45,15 @@ class LeftDrawer extends Component {
     );
   }
 }
+
+LeftDrawer.propTypes = {
+  handleNavigate: React.PropTypes.func.isRequired,
+  open: React.PropTypes.bool,
+};
+
+LeftDrawer.defaultProps = {
+  open: false,
+};
 
 const mapStateToProps = (state) => {
   return {
