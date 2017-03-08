@@ -36,6 +36,7 @@ export default function Routes(store) {
         <Route path="new" component={DirectNew} />
         <Route path=":id/edit" component={DirectEdit} />
         <Route path=":id/meetings/new" component={MeetingNew} />
+        <Route path=":id/followUps/new" component={FollowUpNew} />
         <Route path=":id" component={DirectShow} />
       </Route>
       <Route path="meetings" onEnter={checkAuth}>
