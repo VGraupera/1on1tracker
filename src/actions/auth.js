@@ -7,16 +7,22 @@ import * as types from './types';
 
 import directActions from './directs';
 import meetingActions from './meetings';
+import followUpActions from './followUps';
 
 const recordLogin = (accountData) => {
   firebaseDb.ref('accounts').child(accountData.uid).set(accountData)
-    .then(() => {
-      console.log('Login recorded');
-    })
     .catch((error) => {
       console.log(error);
     });
 };
+
+export function isAuthenticated(state) {
+  return state.auth.status === types.AUTH_LOGGED_IN;
+}
+
+export function rootPath(authenticated) {
+  return authenticated ? '/dashboard' : '/';
+}
 
 export const listenToAuth = () => {
   return (dispatch, getState) => {
@@ -30,16 +36,15 @@ export const listenToAuth = () => {
         // reload on auth update.
         directActions.subscribe(dispatch, getState);
         meetingActions.subscribe(dispatch, getState);
-        browserHistory.push('/directs');
+        followUpActions.subscribe(dispatch, getState);
+        browserHistory.push(rootPath(true));
 
         recordLogin({
           ...authData.toJSON(),
           lastLogin: new Date().toISOString(),
         });
-      } else {
-        if (getState().auth.status !== types.AUTH_ANONYMOUS) {
-          dispatch({ type: types.AUTH_LOGOUT });
-        }
+      } else if (getState().auth.status !== types.AUTH_ANONYMOUS) {
+        dispatch({ type: types.AUTH_LOGOUT });
       }
     });
   };
@@ -51,23 +56,8 @@ export const openAuth = () => {
 
     const provider = new firebase.auth.GoogleAuthProvider();
     firebaseAuth.signInWithRedirect(provider);
-
-    firebaseAuth.getRedirectResult().then((result) => {
-      if (result.credential) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const token = result.credential.accessToken;
-        console.log(result);
-      }
-      // The signed-in user info.
-      const user = result.user;
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
+    firebaseAuth.getRedirectResult().catch((error) => {
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
       console.log(errorMessage);
       dispatch({
         type: types.AUTH_ERROR,
@@ -81,25 +71,18 @@ export const openAuth = () => {
 export const logoutUser = () => {
   return (dispatch, getState) => {
     directActions.unsubscribe(dispatch, getState);
-    firebaseAuth.signOut()
-    .then(
-      () => {
-        dispatch({ type: types.AUTH_LOGOUT });
-        dispatch(push('/'));
-      },
-    );
+    firebaseAuth.signOut().then(() => {
+      dispatch({ type: types.AUTH_LOGOUT });
+      dispatch(push(rootPath(false)));
+    });
   };
 };
-
-export function isAuthenticated(state) {
-  return state.auth.status === types.AUTH_LOGGED_IN;
-}
 
 export function requireAuth(nextState, replace) {
   return (dispatch, getState) => {
     if (!isAuthenticated(getState())) {
       replace({
-        pathname: '/',
+        pathname: rootPath(false),
         state: { nextPathname: nextState.location.pathname },
       });
     }
