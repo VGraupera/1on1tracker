@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {
   DatePicker,
@@ -20,12 +20,12 @@ export const validate = (values) => {
 };
 
 class MeetingForm extends Component {
-  formatDate(date) {
+  static formatDate(date) {
     return date.toLocaleDateString();
   }
 
   renderDirects() {
-    let rows = [];
+    const rows = [];
 
     this.props.directs.forEach((direct, key) => {
       rows.push(<MenuItem key={key} value={key} primaryText={direct.name} />);
@@ -52,7 +52,7 @@ class MeetingForm extends Component {
         <Field
           name="meetingDate"
           component={DatePicker}
-          formatDate={this.formatDate}
+          formatDate={MeetingForm.formatDate}
           autoOk={true}
           hintText="Meeting Date"
         />
@@ -88,9 +88,12 @@ class MeetingForm extends Component {
 }
 
 MeetingForm.propTypes = {
-  formType: PropTypes.oneOf(['create', 'edit']),
-  handleSubmit: PropTypes.func,
-  onSubmit: PropTypes.func,
+  formType: React.PropTypes.oneOf(['create', 'edit']),
+  handleSubmit: React.PropTypes.func,
+  onSubmit: React.PropTypes.func,
+  directs: React.PropTypes.object.isRequired,
+  pristine: React.PropTypes.bool,
+  submitting: React.PropTypes.bool,
 };
 
 export default reduxForm({ form: 'meeting', validate })(MeetingForm);

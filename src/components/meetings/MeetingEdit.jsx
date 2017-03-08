@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { isDirty, hasSubmitSucceeded } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -18,14 +18,18 @@ class MeetingEdit extends Component {
 
   componentDidMount() {
     this.props.setText('Edit Meeting');
-    this.props.router.setRouteLeaveHook(this.props.route, this.warnIfUnsavedChanges);
+    this.props.router.setRouteLeaveHook(
+      this.props.route,
+      this.warnIfUnsavedChanges,
+    );
     window.onbeforeunload = () => this.warnIfUnsavedChanges();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.route.path !== prevProps.route.path) {
       this.props.router.setRouteLeaveHook(
-        this.props.route, (route) => this.warnIfUnsavedChanges(route)
+        this.props.route,
+        this.warnIfUnsavedChanges,
       );
     }
   }
@@ -67,12 +71,15 @@ class MeetingEdit extends Component {
 }
 
 MeetingEdit.propTypes = {
-  update: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,
-  router: PropTypes.shape({
-    setRouteLeaveHook: PropTypes.func,
+  update: React.PropTypes.func.isRequired,
+  remove: React.PropTypes.func.isRequired,
+  setText: React.PropTypes.func.isRequired,
+  params: React.PropTypes.object.isRequired,
+  route: React.PropTypes.object.isRequired,
+  dirty: React.PropTypes.bool.isRequired,
+  submitted: React.PropTypes.bool.isRequired,
+  router: React.PropTypes.shape({
+    setRouteLeaveHook: React.PropTypes.func,
   }).isRequired,
 };
 

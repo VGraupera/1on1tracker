@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
@@ -17,7 +17,7 @@ class MeetingList extends Component {
     const rows = [];
     if (this.props.meetings) {
       this.props.meetings.forEach((meeting, key) => {
-        rows.push (
+        rows.push(
           <MeetingItem
             key={key}
             meeting={meeting}
@@ -54,7 +54,8 @@ class MeetingList extends Component {
 }
 
 MeetingList.propTypes = {
-  setText: PropTypes.func.isRequired,
+  setText: React.PropTypes.func.isRequired,
+  meetings: React.PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

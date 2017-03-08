@@ -56,6 +56,13 @@ class MeetingShow extends Component {
   }
 }
 
+MeetingShow.propTypes = {
+  setText: React.PropTypes.func.isRequired,
+  find: React.PropTypes.func.isRequired,
+  directs: React.PropTypes.object.isRequired,
+  meeting: React.PropTypes.object,
+};
+
 const mapStateToProps = (state) => {
   return {
     meeting: state.meetings.activeMeeting,
