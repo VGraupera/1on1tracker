@@ -54,6 +54,9 @@ FollowUpShow.propTypes = {
   find: React.PropTypes.func.isRequired,
   directs: React.PropTypes.object.isRequired,
   followUp: React.PropTypes.object,
+  params: React.PropTypes.shape({
+    id: React.PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => {

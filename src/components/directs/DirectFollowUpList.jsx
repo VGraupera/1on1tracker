@@ -5,11 +5,11 @@ import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-class DirectMeetingList extends Component {
+class DirectFollowUpList extends Component {
 
   constructor() {
     super();
-    this.state = { selectedMeetings: null };
+    this.state = { selectedItems: null };
   }
 
   componentDidMount() {
@@ -17,22 +17,22 @@ class DirectMeetingList extends Component {
   }
 
   onMount() {
-    const selectedMeetings = new Map([...this.props.meetings]
+    const selectedItems = new Map([...this.props.followUps]
                               .filter(([key, value]) =>
                                 value.directKey === this.props.directId));
-    this.setState({ selectedMeetings });
+    this.setState({ selectedItems });
   }
 
-  renderMeetings() {
+  renderItems() {
     const rows = [];
-    if (this.props.meetings && this.state.selectedMeetings) {
-      this.state.selectedMeetings.forEach((meeting, key) => {
+    if (this.props.followUps && this.state.selectedItems) {
+      this.state.selectedItems.forEach((item, key) => {
         rows.push(
           <ListItem
             key={key}
-            primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
-            secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
-            containerElement={<Link to={`/meetings/${key}`} />}
+            primaryText={new Date(item.followUpDate).toLocaleDateString()}
+            secondaryText={item.description}
+            containerElement={<Link to={`/followUps/${key}`} />}
           />);
       });
     }
@@ -46,30 +46,30 @@ class DirectMeetingList extends Component {
 
     return (
       <div className="wrapper">
-        <h1>Meetings</h1>
+        <h1>Follow Ups</h1>
         <FloatingActionButton
           style={style}
-          containerElement={<Link to={`/directs/${this.props.directId}/meetings/new`} />}
+          containerElement={<Link to={`/directs/${this.props.directId}/followUps/new`} />}
         >
           <ContentAdd />
         </FloatingActionButton>
         <List>
-          {this.renderMeetings()}
+          {this.renderItems()}
         </List>
       </div>
     );
   }
 }
 
-DirectMeetingList.propTypes = {
+DirectFollowUpList.propTypes = {
   directId: React.PropTypes.string.isRequired,
-  meetings: React.PropTypes.object.isRequired,
+  followUps: React.PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    meetings: state.meetings.list,
+    followUps: state.followUps.list,
   };
 };
 
-export default connect(mapStateToProps)(DirectMeetingList);
+export default connect(mapStateToProps)(DirectFollowUpList);

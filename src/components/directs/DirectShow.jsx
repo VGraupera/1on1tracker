@@ -4,6 +4,8 @@ import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import directActions from '../../actions/directs';
 import DirectMeetingList from './DirectMeetingList';
+import DirectFollowUpList from './DirectFollowUpList';
+
 import * as headerActions from '../../actions/header';
 
 class DirectShow extends Component {
@@ -48,6 +50,7 @@ class DirectShow extends Component {
           </CardActions>
         </Card>
         <DirectMeetingList directId={this.props.params.id} />
+        <DirectFollowUpList directId={this.props.params.id} />
       </div>
     );
   }
@@ -55,6 +58,14 @@ class DirectShow extends Component {
 
 DirectShow.contextTypes = {
   router: React.PropTypes.object,
+};
+
+DirectShow.propTypes = {
+  find: React.PropTypes.func.isRequired,
+  setText: React.PropTypes.func.isRequired,
+  params: React.PropTypes.shape({
+    id: React.PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -65,7 +76,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps,
+export default connect(
+  mapStateToProps,
   { find: directActions.find,
     setText: headerActions.setText,
   })(DirectShow);
