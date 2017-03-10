@@ -9,7 +9,7 @@ import * as headerActions from '../../actions/header';
 class MeetingShow extends Component {
   componentDidMount() {
     this.props.find(this.props.params.id);
-    this.props.setText('Show Meeting');
+    this.props.setText('Meeting');
   }
 
   render() {
@@ -28,7 +28,7 @@ class MeetingShow extends Component {
       <div className="container">
         <Card>
           <CardTitle
-            title={`Meeting with ${direct.name}`}
+            title={direct.name}
             subtitle={new Date(meeting.meetingDate).toLocaleDateString()}
           />
 
