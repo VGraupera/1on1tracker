@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { List } from 'material-ui/List';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
@@ -15,7 +18,7 @@ class FollowUpList extends Component {
 
   renderFollowUps() {
     const rows = [];
-    if (this.props.followUps) {
+    if (this.props.followUps && this.props.followUps.size > 0) {
       this.props.followUps.forEach((followUp, key) => {
         rows.push(
           <FollowUpItem
@@ -25,6 +28,12 @@ class FollowUpList extends Component {
           />
         );
       });
+    } else {
+      rows.push(
+        <ListItem
+          primaryText="No items"
+        />
+      );
     }
     return rows;
   }

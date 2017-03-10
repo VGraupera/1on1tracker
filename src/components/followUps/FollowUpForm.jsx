@@ -60,14 +60,14 @@ class FollowUpForm extends Component {
           component={DatePicker}
           formatDate={FollowUpForm.formatDate}
           autoOk={true}
-          hintText="FollowUp Date"
-          floatingLabelText="Date"
+          hintText="Due Date"
+          floatingLabelText="Due Date"
         />
         <Field
           name="description"
           component={TextField}
-          hintText="Description"
-          floatingLabelText="Description"
+          hintText="What needs to be done?"
+          floatingLabelText="What needs to be done?"
           multiLine={true}
           rows={4}
           style={{ width: '100%' }}

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class DirectFollowUpList extends Component {
 
@@ -25,7 +23,9 @@ class DirectFollowUpList extends Component {
 
   renderItems() {
     const rows = [];
-    if (this.props.followUps && this.state.selectedItems) {
+    if (this.props.followUps &&
+      this.state.selectedItems &&
+      this.state.selectedItems.size > 0) {
       this.state.selectedItems.forEach((item, key) => {
         rows.push(
           <ListItem
@@ -35,24 +35,18 @@ class DirectFollowUpList extends Component {
             containerElement={<Link to={`/followUps/${key}`} />}
           />);
       });
+    } else {
+      rows.push(
+        <ListItem
+          primaryText="No items"
+        />);
     }
     return rows;
   }
 
   render() {
-    const style = {
-      margin: 0,
-    };
-
     return (
       <div className="wrapper">
-        <h1>Follow Ups</h1>
-        <FloatingActionButton
-          style={style}
-          containerElement={<Link to={`/directs/${this.props.directId}/followUps/new`} />}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
         <List>
           {this.renderItems()}
         </List>
