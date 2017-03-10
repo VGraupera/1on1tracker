@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class DirectMeetingList extends Component {
 
@@ -25,7 +23,9 @@ class DirectMeetingList extends Component {
 
   renderMeetings() {
     const rows = [];
-    if (this.props.meetings && this.state.selectedMeetings) {
+    if (this.props.meetings &&
+      this.state.selectedMeetings &&
+      this.state.selectedMeetings.size > 0) {
       this.state.selectedMeetings.forEach((meeting, key) => {
         rows.push(
           <ListItem
@@ -35,24 +35,18 @@ class DirectMeetingList extends Component {
             containerElement={<Link to={`/meetings/${key}`} />}
           />);
       });
+    } else {
+      rows.push(
+        <ListItem
+          primaryText="No items"
+        />);
     }
     return rows;
   }
 
   render() {
-    const style = {
-      margin: 0,
-    };
-
     return (
       <div className="wrapper">
-        <h1>Meetings</h1>
-        <FloatingActionButton
-          style={style}
-          containerElement={<Link to={`/directs/${this.props.directId}/meetings/new`} />}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
         <List>
           {this.renderMeetings()}
         </List>

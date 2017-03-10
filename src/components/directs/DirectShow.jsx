@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Link } from 'react-router';
+import {
+  Card,
+  CardActions,
+  CardTitle,
+  CardText,
+} from 'material-ui/Card';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
+import {
+  Tabs,
+  Tab,
+} from 'material-ui/Tabs';
+import MeetingIcon from 'material-ui/svg-icons/action/speaker-notes';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
+
 import directActions from '../../actions/directs';
 import DirectMeetingList from './DirectMeetingList';
 import DirectFollowUpList from './DirectFollowUpList';
@@ -9,18 +26,9 @@ import DirectFollowUpList from './DirectFollowUpList';
 import * as headerActions from '../../actions/header';
 
 class DirectShow extends Component {
-  constructor() {
-    super();
-    this.onEdit = this.onEdit.bind(this);
-  }
-
   componentDidMount() {
     this.props.find(this.props.params.id);
-    this.props.setText('Show Direct');
-  }
-
-  onEdit() {
-    this.context.router.push(`/directs/${this.props.params.id}/edit`);
+    this.props.setText('Direct');
   }
 
   render() {
@@ -46,21 +54,40 @@ class DirectShow extends Component {
             {direct.notes}
           </CardText>
           <CardActions>
-            <FlatButton label="Edit" onTouchTap={this.onEdit} />
+            <List>
+              <ListItem
+                primaryText="New Meeting"
+                leftIcon={<MeetingIcon />}
+                containerElement={<Link to={`/directs/${this.props.params.id}/meetings/new`} />}
+              />
+              <ListItem
+                primaryText="New Follow Up"
+                leftIcon={<FollowUpIcon />}
+                containerElement={<Link to={`/directs/${this.props.params.id}/followUps/new`} />}
+              />
+              <ListItem
+                primaryText="Edit"
+                leftIcon={<EditIcon />}
+                containerElement={<Link to={`/directs/${this.props.params.id}/edit`} />}
+              />
+            </List>
           </CardActions>
         </Card>
-        <DirectMeetingList directId={this.props.params.id} />
-        <DirectFollowUpList directId={this.props.params.id} />
+        <Tabs>
+          <Tab label="Meetings" >
+            <DirectMeetingList directId={this.props.params.id} />
+          </Tab>
+          <Tab label="Follow Ups" >
+            <DirectFollowUpList directId={this.props.params.id} />
+          </Tab>
+        </Tabs>
       </div>
     );
   }
 }
 
-DirectShow.contextTypes = {
-  router: React.PropTypes.object,
-};
-
 DirectShow.propTypes = {
+  direct: React.PropTypes.object,
   find: React.PropTypes.func.isRequired,
   setText: React.PropTypes.func.isRequired,
   params: React.PropTypes.shape({
