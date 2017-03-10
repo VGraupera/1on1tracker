@@ -9,7 +9,7 @@ import * as headerActions from '../../actions/header';
 class FollowUpShow extends Component {
   componentDidMount() {
     this.props.find(this.props.params.id);
-    this.props.setText('Show Follow Up');
+    this.props.setText('Follow Up');
   }
 
   render() {
@@ -28,11 +28,11 @@ class FollowUpShow extends Component {
       <div className="container">
         <Card>
           <CardTitle
-            title={`FollowUp with ${direct.name}`}
+            title={direct.name}
             subtitle={new Date(followUp.followUpDate).toLocaleDateString()}
           />
           <CardText>
-            <h2>Description</h2>
+            <h2>What needs to be done?</h2>
             {followUp.description ? (
               <pre>{followUp.description}</pre>
             ) : 'None' }
