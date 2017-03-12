@@ -11,6 +11,9 @@ class MeetingNew extends Component {
   }
 
   componentWillMount() {
+    if (!this.props.initialValues.directKey) {
+      this.props.initialValues.directKey = this.props.params.id;
+    }
     this.props.reset();
   }
 
