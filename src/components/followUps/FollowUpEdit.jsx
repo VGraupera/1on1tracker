@@ -88,7 +88,6 @@ const mapStateToProps = (state) => {
   const initialValues = {
     ...followUp,
     followUpDate: new Date(followUp.followUpDate),
-    completed: !!followUp.completedAt,
   };
   return {
     initialValues,

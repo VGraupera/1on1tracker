@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
+import {
+  Card,
+  CardActions,
+  CardTitle,
+  CardText } from 'material-ui/Card';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
 import FlatButton from 'material-ui/FlatButton';
+import Checkbox from 'material-ui/Checkbox';
 import { Link } from 'react-router';
+
 import followUpActions from '../../actions/followUps';
 import * as headerActions from '../../actions/header';
 
@@ -27,6 +37,18 @@ class FollowUpShow extends Component {
     return (
       <div className="container">
         <Card>
+          <CardActions>
+            <List>
+              <ListItem
+                leftCheckbox={
+                  <Checkbox
+                    checked={followUp.completed}
+                  />
+                }
+                primaryText="Completed"
+              />
+            </List>
+          </CardActions>
           <CardTitle
             title={direct.name}
             subtitle={new Date(followUp.followUpDate).toLocaleDateString()}
@@ -35,7 +57,7 @@ class FollowUpShow extends Component {
             <h2>What needs to be done?</h2>
             {followUp.description ? (
               <pre>{followUp.description}</pre>
-            ) : 'None' }
+            ) : 'TBD' }
           </CardText>
           <CardActions>
             <FlatButton

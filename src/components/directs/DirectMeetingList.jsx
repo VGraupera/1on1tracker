@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { List, ListItem } from 'material-ui/List';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
 
 class DirectMeetingList extends Component {
 
@@ -38,7 +41,7 @@ class DirectMeetingList extends Component {
     } else {
       rows.push(
         <ListItem
-          primaryText="No items"
+          primaryText="No meetings"
         />);
     }
     return rows;

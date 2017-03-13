@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { List, ListItem } from 'material-ui/List';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
+import FollowUpItem from '../followUps/FollowUpItem';
 
 class DirectFollowUpList extends Component {
 
@@ -28,11 +31,12 @@ class DirectFollowUpList extends Component {
       this.state.selectedItems.size > 0) {
       this.state.selectedItems.forEach((item, key) => {
         rows.push(
-          <ListItem
+          <FollowUpItem
             key={key}
+            followUp={item}
+            id={key}
             primaryText={new Date(item.followUpDate).toLocaleDateString()}
-            secondaryText={item.description}
-            containerElement={<Link to={`/followUps/${key}`} />}
+            secondaryText={`${item.description || 'TBD'}`}
           />);
       });
     } else {

@@ -4,12 +4,11 @@ import { ListItem } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import { browserHistory } from 'react-router';
 
-
 class FollowUpItem extends Component {
   static summary(followUp) {
     const dateString = new Date(followUp.followUpDate).toLocaleDateString();
     const notesString = followUp.description;
-    return `${dateString} : ${notesString || ''}`;
+    return `${dateString} : ${notesString || 'TBD'}`;
   }
 
   constructor() {
@@ -30,13 +29,14 @@ class FollowUpItem extends Component {
       return (<ListItem
         leftCheckbox={
           <Checkbox
+            checked={followUp.completed}
             onClick={(e) => {
               e.stopPropagation();
             }}
           />
         }
-        primaryText={direct.name}
-        secondaryText={FollowUpItem.summary(followUp)}
+        primaryText={this.props.primaryText || direct.name}
+        secondaryText={this.props.secondaryText || FollowUpItem.summary(followUp)}
         onClick={this.onClick}
       />
       );
@@ -54,6 +54,8 @@ FollowUpItem.propTypes = {
   directs: React.PropTypes.object.isRequired,
   followUp: React.PropTypes.object.isRequired,
   id: React.PropTypes.string.isRequired,
+  primaryText: React.PropTypes.string,
+  secondaryText: React.PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
