@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
 import { Link } from 'react-router';
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
@@ -45,10 +50,18 @@ class MeetingShow extends Component {
             ) : 'None' }
           </CardText>
           <CardActions>
-            <FlatButton
-              label="Edit"
-              containerElement={<Link to={`/meetings/${this.props.params.id}/edit`} />}
-            />
+            <List>
+              <ListItem
+                primaryText="New Follow Up"
+                leftIcon={<FollowUpIcon />}
+                containerElement={<Link to={`/directs/${this.props.params.id}/followUps/new`} />}
+              />
+              <ListItem
+                primaryText="Edit"
+                leftIcon={<EditIcon />}
+                containerElement={<Link to={`/meetings/${this.props.params.id}/edit`} />}
+              />
+          </List>
           </CardActions>
         </Card>
       </div>
