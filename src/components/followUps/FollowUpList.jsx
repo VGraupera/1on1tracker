@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
 } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
@@ -34,7 +35,9 @@ class FollowUpList extends Component {
       <ListItem
         primaryText={this.state.showCompleted ? 'Hide Completed' : 'Show Completed'}
         onTouchTap={this.toggleCompleted}
+        style={{ textAlign: 'center', color: 'green' }}
       />,
+      <Divider />,
     );
 
     if (this.props.followUps && this.props.followUps.size > 0) {
@@ -71,15 +74,17 @@ class FollowUpList extends Component {
     };
 
     return (
-      <List style={{ paddingTop: 60, paddingBottom: 56 }}>
-        {this.renderFollowUps()}
-        <FloatingActionButton
-          style={buttonStyle}
-          containerElement={<Link to="/followUps/new" />}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
-      </List>
+      <div className="container followUps">
+        <List>
+          {this.renderFollowUps()}
+          <FloatingActionButton
+            style={buttonStyle}
+            containerElement={<Link to="/followUps/new" />}
+          >
+            <ContentAdd />
+          </FloatingActionButton>
+        </List>
+      </div>
     );
   }
 }

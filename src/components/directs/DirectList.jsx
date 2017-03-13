@@ -35,15 +35,17 @@ class DirectList extends Component {
     };
 
     return (
-      <List style={{ paddingTop: 60, paddingBottom: 56 }}>
-        {this.renderDirects()}
-        <FloatingActionButton
-          style={buttonStyle}
-          containerElement={<Link to="/directs/new" />}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
-      </List>
+      <div className="container directs">
+        <List>
+          {this.renderDirects()}
+          <FloatingActionButton
+            style={buttonStyle}
+            containerElement={<Link to="/directs/new" />}
+          >
+            <ContentAdd />
+          </FloatingActionButton>
+        </List>
+      </div>
     );
   }
 }
@@ -54,7 +56,6 @@ DirectList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     directs: state.directs.list,
-    directsKeys: state.directs.keys,
   };
 };
 

@@ -15,7 +15,7 @@ class MeetingList extends Component {
 
   renderMeetings() {
     const rows = [];
-    if (this.props.meetings) {
+    if (this.props.meetings && this.props.meetings.size > 0) {
       this.props.meetings.forEach((meeting, key) => {
         rows.push(
           <MeetingItem
@@ -40,15 +40,17 @@ class MeetingList extends Component {
     };
 
     return (
-      <List style={{ paddingTop: 60, paddingBottom: 56 }}>
-        {this.renderMeetings()}
-        <FloatingActionButton
-          style={buttonStyle}
-          containerElement={<Link to="/meetings/new" />}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
-      </List>
+      <div className="container meetings">
+        <List>
+          {this.renderMeetings()}
+          <FloatingActionButton
+            style={buttonStyle}
+            containerElement={<Link to="/meetings/new" />}
+          >
+            <ContentAdd />
+          </FloatingActionButton>
+        </List>
+      </div>
     );
   }
 }
