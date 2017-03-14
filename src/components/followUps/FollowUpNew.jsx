@@ -14,6 +14,9 @@ class FollowUpNew extends Component {
     if (!this.props.initialValues.directKey) {
       this.props.initialValues.directKey = this.props.params.id;
     }
+    if (!this.props.initialValues.meetingKey) {
+      this.props.initialValues.meetingKey = this.props.params.meetingId;
+    }
     this.props.reset();
   }
 
