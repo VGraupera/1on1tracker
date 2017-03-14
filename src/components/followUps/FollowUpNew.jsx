@@ -50,7 +50,6 @@ FollowUpNew.propTypes = {
 
 const mapStateToProps = (state) => {
   const initialValues = {
-    directKey: state.directs.activeDirectKey,
     followUpDate: new Date(),
   };
   return {

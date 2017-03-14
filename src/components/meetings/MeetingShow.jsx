@@ -36,7 +36,6 @@ class MeetingShow extends Component {
             title={direct.name}
             subtitle={new Date(meeting.meetingDate).toLocaleDateString()}
           />
-
           <CardText>
             <h2>Direct&apos;s Notes</h2>
             {meeting.directsNotes ? (
@@ -54,7 +53,7 @@ class MeetingShow extends Component {
               <ListItem
                 primaryText="New Follow Up"
                 leftIcon={<FollowUpIcon />}
-                containerElement={<Link to={`/directs/${this.props.params.id}/followUps/new`} />}
+                containerElement={<Link to={`/directs/${meeting.directKey}/followUps/new`} />}
               />
               <ListItem
                 primaryText="Edit"

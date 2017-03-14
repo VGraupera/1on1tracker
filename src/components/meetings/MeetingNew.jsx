@@ -50,7 +50,6 @@ MeetingNew.propTypes = {
 
 const mapStateToProps = (state) => {
   const initialValues = {
-    directKey: state.directs.activeDirectKey,
     meetingDate: new Date(),
   };
   return {
