@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isDirty, hasSubmitSucceeded } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { withRouter } from 'react-router';
+import { withRouter, browserHistory } from 'react-router';
 import FollowUpForm from './FollowUpForm';
 
 import followUpActions from '../../actions/followUps';
@@ -35,7 +35,9 @@ class FollowUpEdit extends Component {
   }
 
   onDelete() {
-    this.props.remove(this.props.params.id);
+    this.props.remove(this.props.params.id).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   onSubmit(followUp) {

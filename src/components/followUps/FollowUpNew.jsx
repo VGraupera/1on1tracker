@@ -54,6 +54,7 @@ FollowUpNew.propTypes = {
 const mapStateToProps = (state) => {
   const initialValues = {
     followUpDate: new Date(),
+    meetingKey: null,
   };
   return {
     initialValues,

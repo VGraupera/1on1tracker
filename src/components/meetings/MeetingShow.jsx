@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
+import {
+  Card,
+  CardActions,
+  CardTitle,
+  CardText,
+} from 'material-ui/Card';
 import {
   List,
   ListItem,
@@ -91,6 +96,9 @@ class MeetingShow extends Component {
           </CardText>
           <CardActions>
             <List>
+              {this.renderFollowUps()}
+            </List>
+            <List>
               <ListItem
                 primaryText="New Follow Up"
                 leftIcon={<FollowUpIcon />}
@@ -101,12 +109,9 @@ class MeetingShow extends Component {
                 leftIcon={<EditIcon />}
                 containerElement={<Link to={`/meetings/${this.props.params.id}/edit`} />}
               />
-          </List>
+            </List>
           </CardActions>
         </Card>
-        <List>
-          {this.renderFollowUps()}
-        </List>
       </div>
     );
   }

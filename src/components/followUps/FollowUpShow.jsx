@@ -1,25 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+
 import {
   Card,
   CardActions,
   CardTitle,
-  CardText } from 'material-ui/Card';
+  CardText,
+} from 'material-ui/Card';
+import Subheader from 'material-ui/Subheader';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import {
   List,
   ListItem,
 } from 'material-ui/List';
-import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
-import { Link } from 'react-router';
 
 import followUpActions from '../../actions/followUps';
+import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
 class FollowUpShow extends Component {
   componentDidMount() {
     this.props.find(this.props.params.id);
     this.props.setText('Follow Up');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (JSON.stringify(this.props.followUp) !== JSON.stringify(nextProps.followUp) &&
+      nextProps.followUp.meetingKey) {
+      this.props.findMeeting(nextProps.followUp.meetingKey);
+    }
+  }
+
+  renderLinkedMeeting() {
+    const rows = [];
+    const meeting = this.props.activeMeeting;
+    if (meeting) {
+        rows.push(
+          <Subheader>Re: this Meeting</Subheader>
+        );
+        rows.push(
+          <ListItem
+            key={this.props.followUp.meetingKey}
+            primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
+            secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
+            containerElement={<Link to={`/meetings/${this.props.followUp.meetingKey}`} />}
+          />);
+    }
+    return rows;
   }
 
   render() {
@@ -60,10 +89,14 @@ class FollowUpShow extends Component {
             ) : 'TBD' }
           </CardText>
           <CardActions>
-            <FlatButton
-              label="Edit"
-              containerElement={<Link to={`/followUps/${this.props.params.id}/edit`} />}
-            />
+            <List>
+              {this.renderLinkedMeeting()}
+              <ListItem
+                primaryText="Edit"
+                leftIcon={<EditIcon />}
+                containerElement={<Link to={`/followUps/${this.props.params.id}/edit`} />}
+              />
+            </List>
           </CardActions>
         </Card>
       </div>
@@ -74,6 +107,7 @@ class FollowUpShow extends Component {
 FollowUpShow.propTypes = {
   setText: React.PropTypes.func.isRequired,
   find: React.PropTypes.func.isRequired,
+  findMeeting: React.PropTypes.func.isRequired,
   directs: React.PropTypes.object.isRequired,
   followUp: React.PropTypes.object,
   params: React.PropTypes.shape({
@@ -84,13 +118,27 @@ FollowUpShow.propTypes = {
 const mapStateToProps = (state) => {
   return {
     followUp: state.followUps.activeFollowUp,
+    activeMeeting: state.meetings.activeMeeting,
     directs: state.directs.list,
     loading: state.followUps.loading,
     error: state.followUps.error,
   };
 };
 
-export default connect(mapStateToProps,
-  { find: followUpActions.find,
+const mapDispatchToProps = (dispatch) => {
+  return {
+    find: (id) => {
+      dispatch(followUpActions.find(id))
+    },
+    findMeeting: (id) => {
+      dispatch(meetingActions.find(id))
+    },
     setText: headerActions.setText,
-  })(FollowUpShow);
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FollowUpShow);
