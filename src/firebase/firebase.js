@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import { push } from 'react-router-redux';
 import { firebaseConfig } from './config';
 import * as types from '../actions/types';
 
@@ -62,7 +61,6 @@ export class FirebaseApi {
         });
       })
       .catch(() => {
-        dispatch(push('/404'));
         dispatch({
           type: types.FLASH_ERROR,
           error: 'Record not found!',
@@ -73,23 +71,26 @@ export class FirebaseApi {
 
   remove = (key) => {
     return (dispatch, getState) => {
-      this._baseRef(getState)
-      .child(key)
-      .remove()
-      .then(() => {
-        dispatch(push(`/${this._path}`));
-        dispatch({
-          type: this._constants.RESET_ACTIVE,
-        });
-        dispatch({
-          type: types.FLASH_NOTICE,
-          message: 'Successfully deleted',
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: types.FLASH_ERROR,
-          error: `Delete failed! ${error.message}`,
+      return new Promise((resolve, reject) => {
+        this._baseRef(getState)
+        .child(key)
+        .remove()
+        .then(() => {
+          dispatch({
+            type: this._constants.RESET_ACTIVE,
+          });
+          dispatch({
+            type: types.FLASH_NOTICE,
+            message: 'Successfully deleted',
+          });
+          resolve();
+        })
+        .catch((error) => {
+          dispatch({
+            type: types.FLASH_ERROR,
+            error: `Delete failed! ${error.message}`,
+          });
+          reject();
         });
       });
     };
@@ -102,7 +103,6 @@ export class FirebaseApi {
       .child(key)
       .update(record)
       .then(() => {
-        dispatch(push(`/${this._path}/${key}`));
         dispatch({
           type: types.FLASH_NOTICE,
           message: 'Saved!',
@@ -126,7 +126,6 @@ export class FirebaseApi {
           if (error) {
             reject(error);
           } else {
-            dispatch(push(`/${this._path}`));
             dispatch({
               type: types.FLASH_NOTICE,
               message: 'Successfully created',
