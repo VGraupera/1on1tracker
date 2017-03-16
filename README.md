@@ -55,13 +55,11 @@ The basic feature set is a list of meetings with notes linked to direct reports.
 
 - Better UI design and styling
 - Sorting
-- Action items
 - Search
 - Example questions
 - React Native version
-- Autosaving
 - Google hangout integration
-- Chatbot
+- Slack integration
 - Watch app
 - Reports
 - Test coverage
