@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
 import * as headerActions from '../../actions/header';
@@ -20,7 +21,9 @@ class DirectNew extends Component {
   }
 
   onSubmit(direct) {
-    this.props.create(direct);
+    this.props.create(direct).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   render() {
@@ -34,6 +37,7 @@ class DirectNew extends Component {
 
 DirectNew.propTypes = {
   create: React.PropTypes.func.isRequired,
+  setText: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

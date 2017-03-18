@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+
 import FollowUpForm from './FollowUpForm';
 import followUpActions from '../../actions/followUps';
 import * as headerActions from '../../actions/header';
@@ -14,7 +16,7 @@ class FollowUpNew extends Component {
     if (!this.props.initialValues.directKey) {
       this.props.initialValues.directKey = this.props.params.id;
     }
-    if (!this.props.initialValues.meetingKey) {
+    if (!this.props.initialValues.meetingKey && this.props.params.meetingId) {
       this.props.initialValues.meetingKey = this.props.params.meetingId;
     }
     this.props.reset();
@@ -30,7 +32,9 @@ class FollowUpNew extends Component {
       followUp.followUpDateReverse = 0 - followUp.followUpDate;
       followUp.followUpDate = followUp.followUpDate.toISOString();
     }
-    this.props.create(followUp);
+    this.props.create(followUp).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   render() {

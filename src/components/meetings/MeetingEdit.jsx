@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isDirty, hasSubmitSucceeded } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { withRouter } from 'react-router';
+import { withRouter, browserHistory } from 'react-router';
 import MeetingForm from './MeetingForm';
 
 import meetingActions from '../../actions/meetings';
@@ -34,8 +34,11 @@ class MeetingEdit extends Component {
     }
   }
 
-  onDelete() {
-    this.props.remove(this.props.params.id);
+  onDelete(event) {
+    event.preventDefault(); // Fix double touchtap bug
+    this.props.remove(this.props.params.id).then(() => {
+      browserHistory.push('/meetings');
+    });
   }
 
   onSubmit(meeting) {
@@ -43,7 +46,9 @@ class MeetingEdit extends Component {
       meeting.meetingDateReverse = 0 - meeting.meetingDate;
       meeting.meetingDate = meeting.meetingDate.toISOString();
     }
-    this.props.update(this.props.params.id, meeting);
+    this.props.update(this.props.params.id, meeting).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   warnIfUnsavedChanges(nextLocation) {

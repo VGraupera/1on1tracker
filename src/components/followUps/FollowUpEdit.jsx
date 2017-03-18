@@ -34,9 +34,10 @@ class FollowUpEdit extends Component {
     }
   }
 
-  onDelete() {
+  onDelete(event) {
+    event.preventDefault(); // Fix double touchtap bug
     this.props.remove(this.props.params.id).then(() => {
-      browserHistory.goBack();
+      browserHistory.push('/followUps');
     });
   }
 
@@ -45,7 +46,10 @@ class FollowUpEdit extends Component {
       followUp.followUpDateReverse = 0 - followUp.followUpDate;
       followUp.followUpDate = followUp.followUpDate.toISOString();
     }
-    this.props.update(this.props.params.id, followUp);
+
+    this.props.update(this.props.params.id, followUp).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   warnIfUnsavedChanges(nextLocation) {

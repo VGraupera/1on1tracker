@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import MeetingForm from './MeetingForm';
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
@@ -27,7 +28,9 @@ class MeetingNew extends Component {
       meeting.meetingDateReverse = 0 - meeting.meetingDate;
       meeting.meetingDate = meeting.meetingDate.toISOString();
     }
-    this.props.create(meeting);
+    this.props.create(meeting).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   render() {
@@ -60,7 +63,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps,
+export default connect(
+  mapStateToProps,
   { create: meetingActions.create,
     reset: meetingActions.resetActive,
     setText: headerActions.setText,

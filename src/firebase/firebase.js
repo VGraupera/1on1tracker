@@ -71,69 +71,61 @@ export class FirebaseApi {
 
   remove = (key) => {
     return (dispatch, getState) => {
-      return new Promise((resolve, reject) => {
-        this._baseRef(getState)
+      return this._baseRef(getState)
         .child(key)
         .remove()
         .then(() => {
-          dispatch({
-            type: this._constants.RESET_ACTIVE,
-          });
+          dispatch(this.resetActive());
           dispatch({
             type: types.FLASH_NOTICE,
             message: 'Successfully deleted',
           });
-          resolve();
         })
         .catch((error) => {
           dispatch({
             type: types.FLASH_ERROR,
             error: `Delete failed! ${error.message}`,
           });
-          reject();
         });
-      });
     };
   }
 
   update = (key, values) => {
     return (dispatch, getState) => {
-      const record = { ...values, updatedAt: new Date().toISOString() };
-      this._baseRef(getState)
-      .child(key)
-      .update(record)
-      .then(() => {
-        dispatch({
-          type: types.FLASH_NOTICE,
-          message: 'Saved!',
+      const record = {
+        ...values,
+        updatedAt: new Date().toISOString(),
+      };
+      return this._baseRef(getState)
+        .child(key)
+        .update(record)
+        .then(() => {
+          dispatch({
+            type: types.FLASH_NOTICE,
+            message: 'Saved!',
+          });
+        })
+        .catch((error) => {
+          dispatch({
+            type: types.FLASH_ERROR,
+            error: `Update failed! ${error}`,
+          });
         });
-      })
-      .catch((error) => {
-        dispatch({
-          type: types.FLASH_ERROR,
-          error: `Update failed! ${error}`,
-        });
-      });
     };
   }
 
   create = (values) => {
     return (dispatch, getState) => {
       const record = { ...values, createdAt: new Date().toISOString() };
-      return new Promise((resolve, reject) => {
-        this._baseRef(getState)
+      return this._baseRef(getState)
         .push(record, (error) => {
-          if (error) {
-            reject(error);
-          } else {
+          if (!error) {
             dispatch({
               type: types.FLASH_NOTICE,
               message: 'Successfully created',
             });
-            resolve();
           }
         });
-      });
     };
   }
 
