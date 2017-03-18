@@ -1,15 +1,66 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {
+  Card,
+  CardActions,
+  CardTitle,
+  CardText,
+} from 'material-ui/Card';
+import {
+  List,
+  ListItem,
+} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
 import { Link } from 'react-router';
+import FollowUpItem from '../followUps/FollowUpItem';
+
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
 class MeetingShow extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedItems: [],
+    };
+  }
+
   componentDidMount() {
     this.props.find(this.props.params.id);
     this.props.setText('Meeting');
+    this.onMount();
+  }
+
+  onMount() {
+    const selectedItems = new Map([...this.props.followUps]
+                              .filter(([key, value]) =>
+                                value.meetingKey === this.props.params.id));
+    this.setState({ selectedItems });
+  }
+
+  renderFollowUps() {
+    const rows = [];
+    if (this.props.followUps &&
+      this.state.selectedItems &&
+      this.state.selectedItems.size > 0) {
+        rows.push(
+          <Subheader>Followups from this Meeting</Subheader>
+        );
+
+      this.state.selectedItems.forEach((item, key) => {
+        rows.push(
+          <FollowUpItem
+            key={key}
+            followUp={item}
+            id={key}
+            primaryText={new Date(item.followUpDate).toLocaleDateString()}
+            secondaryText={`${item.description || 'TBD'}`}
+          />);
+      });
+    }
+    return rows;
   }
 
   render() {
@@ -31,7 +82,6 @@ class MeetingShow extends Component {
             title={direct.name}
             subtitle={new Date(meeting.meetingDate).toLocaleDateString()}
           />
-
           <CardText>
             <h2>Direct&apos;s Notes</h2>
             {meeting.directsNotes ? (
@@ -45,10 +95,21 @@ class MeetingShow extends Component {
             ) : 'None' }
           </CardText>
           <CardActions>
-            <FlatButton
-              label="Edit"
-              containerElement={<Link to={`/meetings/${this.props.params.id}/edit`} />}
-            />
+            <List>
+              {this.renderFollowUps()}
+            </List>
+            <List>
+              <ListItem
+                primaryText="New Follow Up"
+                leftIcon={<FollowUpIcon />}
+                containerElement={<Link to={`/directs/${meeting.directKey}/meetings/${this.props.params.id}/followUps/new`} />}
+              />
+              <ListItem
+                primaryText="Edit"
+                leftIcon={<EditIcon />}
+                containerElement={<Link to={`/meetings/${this.props.params.id}/edit`} />}
+              />
+            </List>
           </CardActions>
         </Card>
       </div>
@@ -70,6 +131,7 @@ const mapStateToProps = (state) => {
   return {
     meeting: state.meetings.activeMeeting,
     directs: state.directs.list,
+    followUps: state.followUps.list,
     loading: state.meetings.loading,
     error: state.meetings.error,
   };

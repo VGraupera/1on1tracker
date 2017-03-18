@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isDirty, hasSubmitSucceeded } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { withRouter } from 'react-router';
+import { withRouter, browserHistory } from 'react-router';
 import FollowUpForm from './FollowUpForm';
 
 import followUpActions from '../../actions/followUps';
@@ -34,8 +34,11 @@ class FollowUpEdit extends Component {
     }
   }
 
-  onDelete() {
-    this.props.remove(this.props.params.id);
+  onDelete(event) {
+    event.preventDefault(); // Fix double touchtap bug
+    this.props.remove(this.props.params.id).then(() => {
+      browserHistory.push('/followUps');
+    });
   }
 
   onSubmit(followUp) {
@@ -43,7 +46,10 @@ class FollowUpEdit extends Component {
       followUp.followUpDateReverse = 0 - followUp.followUpDate;
       followUp.followUpDate = followUp.followUpDate.toISOString();
     }
-    this.props.update(this.props.params.id, followUp);
+
+    this.props.update(this.props.params.id, followUp).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   warnIfUnsavedChanges(nextLocation) {

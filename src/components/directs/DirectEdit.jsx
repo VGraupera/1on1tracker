@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
@@ -17,12 +18,17 @@ class DirectEdit extends Component {
     this.props.setText('Edit Direct');
   }
 
-  onDelete() {
-    this.props.remove(this.props.params.id);
+  onDelete(event) {
+    event.preventDefault(); // Fix double touchtap bug
+    this.props.remove(this.props.params.id).then(() => {
+      browserHistory.push('/directs');
+    });
   }
 
   onSubmit(direct) {
-    this.props.update(this.props.params.id, direct);
+    this.props.update(this.props.params.id, direct).then(() => {
+      browserHistory.goBack();
+    });
   }
 
   render() {
@@ -68,4 +74,7 @@ const mapDispatchToProps = {
   setText: headerActions.setText,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'direct', validate })(DirectEdit));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(reduxForm({ form: 'direct', validate })(DirectEdit));

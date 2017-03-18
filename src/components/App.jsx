@@ -10,10 +10,6 @@ import BottomNav from './BottomNav';
 import store from '../store';
 import { listenToAuth } from '../actions/auth';
 
-const propTypes = {
-  children: PropTypes.object.isRequired,
-};
-
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: green500,
@@ -59,5 +55,8 @@ class App extends Component {
   }
 }
 
-App.propTypes = propTypes;
+App.propTypes = {
+  children: PropTypes.object.isRequired,
+};
+
 export default App;

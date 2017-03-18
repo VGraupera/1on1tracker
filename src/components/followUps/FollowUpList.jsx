@@ -53,7 +53,9 @@ class FollowUpList extends Component {
           />
         );
       });
-    } else {
+    };
+
+    if (rows.length === 2) {
       rows.push(
         <ListItem
           primaryText="No items"
