@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 import {
   Card,
@@ -31,6 +31,10 @@ class FollowUpShow extends Component {
       nextProps.followUp.meetingKey) {
       this.props.findMeeting(nextProps.followUp.meetingKey);
     }
+  }
+
+  handleNavigateToDirect = () => {
+    browserHistory.push(`/directs/${this.props.followUp.directKey}`);
   }
 
   renderLinkedMeeting() {
@@ -81,6 +85,7 @@ class FollowUpShow extends Component {
           <CardTitle
             title={direct.name}
             subtitle={new Date(followUp.followUpDate).toLocaleDateString()}
+            onClick={this.handleNavigateToDirect}
           />
           <CardText>
             <h2>What needs to be done?</h2>
@@ -128,14 +133,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     find: (id) => {
-      dispatch(followUpActions.find(id))
+      dispatch(followUpActions.find(id));
     },
     findMeeting: (id) => {
-      dispatch(meetingActions.find(id))
+      dispatch(meetingActions.find(id));
     },
     setText: headerActions.setText,
-  }
-}
+  };
+};
 
 
 export default connect(
