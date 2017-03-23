@@ -58,6 +58,13 @@ export default class DirectForm extends Component {
           style={{ width: '100%' }}
         />
         <Field
+          name="title"
+          component={TextField}
+          hintText="Job Title"
+          floatingLabelText="Job Title"
+          style={{ width: '100%' }}
+        />
+        <Field
           name="phone"
           component={TextField}
           type="tel"

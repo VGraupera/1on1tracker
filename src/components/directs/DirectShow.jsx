@@ -50,9 +50,14 @@ class DirectShow extends Component {
             <a href={`tel:${direct.phone}`}>{direct.phone}</a>
           </CardText>
           )}
-          <CardText>
+          {direct.title && (<CardText>
+            {direct.title}
+          </CardText>
+          )}
+          {direct.notes && (<CardText>
             {direct.notes}
           </CardText>
+          )}
           <CardActions>
             <List>
               <ListItem
