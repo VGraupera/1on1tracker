@@ -11,7 +11,7 @@ so I created this.
 
 A *live* version can be found at [https://www.1on1tracker.com](https://www.1on1tracker.com)
 
-###Stack
+### Stack
 
 - React
 - Redux
@@ -26,7 +26,7 @@ A *live* version can be found at [https://www.1on1tracker.com](https://www.1on1t
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-###Gallery
+### Gallery
 
 <img src="https://cloud.githubusercontent.com/assets/10377/20805560/fe7bb980-b7ab-11e6-849d-5569c81490b8.png" width="45%"></img>
 <img src="https://cloud.githubusercontent.com/assets/10377/20805559/fe7b5314-b7ab-11e6-8220-90c90051bdf4.png" width="45%"></img>
@@ -35,7 +35,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 
-###Deploy
+### Deploy
 
 - Create a firebase project
 - Enable Google Authentication
@@ -45,11 +45,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - install firebase CLI tools
 - firebase deploy
 
-###Code Style
+### Code Style
 
 For the most part, this code attempts to follow Airbnb's styleguide.
 
-##Roadmap
+## Roadmap
 
 The basic feature set is a list of meetings with notes linked to direct reports.
 
@@ -66,6 +66,6 @@ The basic feature set is a list of meetings with notes linked to direct reports.
 
 Want to talk about one on ones? Have an idea or question? Contact me.
 
-##Contact
+## Contact
 
 If you find this useful, follow me [@vgraupera](https://twitter.com/vgraupera)
