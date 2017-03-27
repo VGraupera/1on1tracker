@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Footer from './Footer';
+
 import * as headerActions from '../actions/header';
 import { openAuth } from '../actions/auth';
 
@@ -101,26 +103,24 @@ export class Home extends Component {
         <div style={style.sectionOdd}>
           <div>
             <h3>Dashboard</h3>
-          <img
-            src={dashboardScreenshot}
-            alt="dashboard screenshot"
-            style={style.screenshot}
-          />
-        <p>See recent meetings and pending follow up items at a glance</p>
-
-        </div>
-        <div>
-          <h3>List of Direct Reports</h3>
-          <img
-            src={directsScreenshot}
-            alt="directs screenshot"
-            style={style.screenshot}
+            <img
+              src={dashboardScreenshot}
+              alt="dashboard screenshot"
+              style={style.screenshot}
             />
-          <p>Quickly record one on ones from list of direct reports.</p>
-
-            </div>
+            <p>See recent meetings and pending follow up items at a glance</p>
+          </div>
+          <div>
+            <h3>List of Direct Reports</h3>
+            <img
+              src={directsScreenshot}
+              alt="directs screenshot"
+              style={style.screenshot}
+            />
+            <p>Quickly record one on ones from list of direct reports.</p>
+          </div>
         </div>
-
+        <Footer />
       </div>
     );
   }

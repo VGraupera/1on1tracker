@@ -1,0 +1,64 @@
+
+html {
+	font-family: Roboto, sans-serif;
+}
+body {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-weight: normal;
+}
+h2 {
+	font-weight: normal;
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+pre {
+	font-family: Roboto, sans-serif;
+	overflow-y: auto;
+}
+
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.container {
+	padding: 64px 8px 56px;
+}
+
+.dashboard {
+}
+
+.home {
+}
+
+.footer {
+	padding: 20px 50px;
+	background-color: #000;
+	font-size: 0.8em;
+	color: #fff;
+
+	ul {
+		list-style-type: none;
+    padding: 0;
+	}
+
+  a {
+		color: #fff;
+	}
+
+  #toplink {
+		text-align: center;
+	}
+}
+form.followUp {
+	margin-top: 1em;
+}
