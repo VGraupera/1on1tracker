@@ -6,6 +6,12 @@ import {
 } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import isMobilePhone from 'validator/lib/isMobilePhone';
+
+const isValidPhone = (phone) => {
+  return isMobilePhone(phone.replace(/-/g, ''), 'en-US');
+}
+
 export const validate = (values) => {
   const errors = {};
   const requiredFields = ['name'];
@@ -14,6 +20,10 @@ export const validate = (values) => {
       errors[field] = 'Required';
     }
   });
+  const { phone } = values;
+  if (phone && !isValidPhone(phone)) {
+    errors.phone = 'Invalid phone number.';
+  }
   return errors;
 };
 
@@ -21,7 +31,6 @@ export default class DirectForm extends Component {
   constructor() {
     super();
     this.onSubmit = this.onSubmit.bind(this);
-    this.onCancel = this.onCancel.bind(this);
   }
 
   componentDidMount() {
@@ -33,10 +42,6 @@ export default class DirectForm extends Component {
 
   onSubmit(direct) {
     this.props.onSubmit(direct);
-  }
-
-  onCancel() {
-    this.context.router.goBack();
   }
 
   formatDate(date) {
@@ -100,10 +105,6 @@ export default class DirectForm extends Component {
     );
   }
 }
-
-DirectForm.contextTypes = {
-  router: React.PropTypes.object,
-};
 
 DirectForm.propTypes = {
   formType: PropTypes.oneOf(['create', 'edit']),

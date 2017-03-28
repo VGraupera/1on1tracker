@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
 import * as headerActions from '../../actions/header';
@@ -10,10 +12,7 @@ class DirectNew extends Component {
   constructor() {
     super();
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.reset();
+    this.onCancelClick = this.onCancelClick.bind(this);
   }
 
   componentDidMount() {
@@ -26,10 +25,20 @@ class DirectNew extends Component {
     });
   }
 
+  onCancelClick(event) {
+    event.preventDefault(); // Fix double touchtap bug
+    browserHistory.goBack();
+  }
+
   render() {
     return (
       <div className="container">
         <DirectForm {...this.props} onSubmit={this.onSubmit} />
+        <RaisedButton
+          label="Cancel"
+          style={{ marginTop: 20 }}
+          onTouchTap={this.onCancelClick}
+          />
       </div>
     );
   }
@@ -47,8 +56,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps,
-  { create: directActions.create,
-    reset: directActions.resetActive,
-    setText: headerActions.setText,
-  })(reduxForm({ form: 'direct', validate })(DirectNew));
+const mapDispatchToProps = {
+  create: directActions.create,
+  setText: headerActions.setText,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(reduxForm({ form: 'direct', validate })(DirectNew));
