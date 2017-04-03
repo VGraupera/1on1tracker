@@ -138,7 +138,9 @@ const mapDispatchToProps = (dispatch) => {
     findMeeting: (id) => {
       dispatch(meetingActions.find(id));
     },
-    setText: headerActions.setText,
+    setText: (s) => {
+      dispatch(headerActions.setText(s));
+    },
   };
 };
 
