@@ -44,7 +44,7 @@ class MeetingForm extends Component {
           name="directKey"
           component={SelectField}
           hintText="Direct"
-          floatingLabelText="Direct"
+          floatingLabelText="Direct*"
           style={{ width: '100%' }}
         >
           {this.renderDirects()}

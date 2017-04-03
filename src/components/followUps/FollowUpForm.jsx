@@ -50,7 +50,7 @@ class FollowUpForm extends Component {
           name="directKey"
           component={SelectField}
           hintText="Direct"
-          floatingLabelText="Direct"
+          floatingLabelText="Direct*"
           style={{ width: '100%' }}
         >
           {this.renderDirects()}
@@ -61,7 +61,7 @@ class FollowUpForm extends Component {
           formatDate={FollowUpForm.formatDate}
           autoOk={true}
           hintText="Due Date"
-          floatingLabelText="Due Date"
+          floatingLabelText="Due Date*"
         />
         <Field
           name="description"

@@ -39,6 +39,7 @@ class DirectNew extends Component {
           style={{ marginTop: 20 }}
           onTouchTap={this.onCancelClick}
           />
+          <div>* Indicates required field</div>
       </div>
     );
   }

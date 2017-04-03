@@ -10,7 +10,7 @@ import isMobilePhone from 'validator/lib/isMobilePhone';
 
 const isValidPhone = (phone) => {
   return isMobilePhone(phone.replace(/-/g, ''), 'en-US');
-}
+};
 
 export const validate = (values) => {
   const errors = {};
@@ -58,7 +58,7 @@ export default class DirectForm extends Component {
           name="name"
           component={TextField}
           hintText="Name"
-          floatingLabelText="Name"
+          floatingLabelText="Name*"
           ref="name" withRef
           style={{ width: '100%' }}
         />

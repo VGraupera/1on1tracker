@@ -44,6 +44,7 @@ class FollowUpNew extends Component {
           {...this.props}
           onSubmit={this.onSubmit}
         />
+        <div>* Indicates required field</div>
       </div>
     );
   }
