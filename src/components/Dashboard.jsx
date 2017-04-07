@@ -43,30 +43,31 @@ export class Dashboard extends Component {
     return rows.slice(0,5);
   }
 
-    renderFollowUps() {
-      const rows = [];
-      if (this.props.followUps && this.props.followUps.size > 0) {
-        this.props.followUps.forEach((followUp, key) => {
-          if (followUp.completed) {
-            return;
-          }
-          rows.push(
-            <FollowUpItem
-              key={key}
-              followUp={followUp}
-              id={key}
-            />,
-          );
-        });
-      } else {
+  renderFollowUps() {
+    const rows = [];
+    if (this.props.followUps && this.props.followUps.size > 0) {
+      this.props.followUps.forEach((followUp, key) => {
+        if (followUp.completed) {
+          return;
+        }
         rows.push(
-          <ListItem
-            primaryText="No items"
-          />
+          <FollowUpItem
+            key={key}
+            followUp={followUp}
+            id={key}
+          />,
         );
-      }
-      return rows.slice(0,5);
+      });
     }
+    if (rows.length === 0) {
+      rows.push(
+        <ListItem
+          primaryText="No items"
+        />
+      );
+    }
+    return rows.slice(0,5);
+  }
 
   render() {
     const meetingButtonStyle = {
