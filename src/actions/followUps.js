@@ -7,4 +7,5 @@ export default new FirebaseApi('followUps', {
   SET_ACTIVE: types.SET_ACTIVE_FOLLOW_UP,
   RESET_ACTIVE: types.RESET_ACTIVE_FOLLOW_UP,
   CREATE: types.CREATE_FOLLOW_UP,
+  SET_MATCHING: types.SET_MATCHING_FOLLOW_UPS,
 });

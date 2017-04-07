@@ -38,7 +38,6 @@ export class FirebaseApi {
       });
     });
 
-
     this._unsubscribe = () => ref.off();
   }
 
@@ -53,17 +52,35 @@ export class FirebaseApi {
     return (dispatch, getState) => {
       this._baseRef(getState)
       .child(key)
-      .once('value', (snapshot) => {
-        dispatch({
-          type: this._constants.SET_ACTIVE,
-          payload: snapshot.val(),
-          key,
+      .on('value', (snapshot) => {
+        if (snapshot) {
+          dispatch({
+            type: this._constants.SET_ACTIVE,
+            payload: snapshot.val(),
+            key,
+          });
+        } else {
+          dispatch({
+            type: types.FLASH_ERROR,
+            error: 'Record not found!',
+          });
+        }
+      });
+    };
+  }
+
+  equalTo = (key, value) => {
+    return (dispatch, getState) => {
+      this._baseRef(getState)
+      .orderByChild(key).equalTo(value)
+      .on('value', (snapshot) => {
+        const itemsMap = new Map();
+        snapshot.forEach((child) => {
+          itemsMap.set(child.key, child.val());
         });
-      })
-      .catch(() => {
         dispatch({
-          type: types.FLASH_ERROR,
-          error: 'Record not found!',
+          type: this._constants.SET_MATCHING,
+          payload: itemsMap,
         });
       });
     };

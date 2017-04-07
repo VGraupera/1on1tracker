@@ -4,6 +4,8 @@ import { ListItem } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import { browserHistory } from 'react-router';
 
+import followUpActions from '../../actions/followUps';
+
 class FollowUpItem extends Component {
   static summary(followUp) {
     const dateString = new Date(followUp.followUpDate).toLocaleDateString();
@@ -20,6 +22,12 @@ class FollowUpItem extends Component {
     browserHistory.push(`/followUps/${this.props.id}`);
   }
 
+  handleCheck = (event, isInputChecked) => {
+    const { id, followUp } = this.props;
+    followUp.completed = !followUp.completed;
+    this.props.update(id, followUp);
+  }
+
   render() {
     const { directs, followUp } = this.props;
 
@@ -30,8 +38,9 @@ class FollowUpItem extends Component {
         leftCheckbox={
           <Checkbox
             checked={followUp.completed}
-            onClick={(e) => {
-              e.stopPropagation();
+            onClick={(event, isInputChecked) => {
+              event.stopPropagation();
+              this.handleCheck(event, isInputChecked);
             }}
           />
         }
@@ -64,4 +73,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(FollowUpItem);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    update: (key, value) => {
+      dispatch(followUpActions.update(key, value));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FollowUpItem);

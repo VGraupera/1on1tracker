@@ -17,39 +17,30 @@ import { Link } from 'react-router';
 import FollowUpItem from '../followUps/FollowUpItem';
 
 import meetingActions from '../../actions/meetings';
+import followUpActions from '../../actions/followUps';
+
 import * as headerActions from '../../actions/header';
 
 class MeetingShow extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedItems: [],
-    };
-  }
-
   componentDidMount() {
-    this.props.find(this.props.params.id);
     this.props.setText('Meeting');
-    this.onMount();
+
+    this.props.find(this.props.params.id);
+    this.selectFollowUps();
   }
 
-  onMount() {
-    const selectedItems = new Map([...this.props.followUps]
-                              .filter(([key, value]) =>
-                                value.meetingKey === this.props.params.id));
-    this.setState({ selectedItems });
+  selectFollowUps() {
+    this.props.followUpsEqualTo('meetingKey', this.props.params.id);
   }
 
   renderFollowUps() {
     const rows = [];
-    if (this.props.followUps &&
-      this.state.selectedItems &&
-      this.state.selectedItems.size > 0) {
-        rows.push(
+    if (this.props.followUps) {
+      rows.push(
           <Subheader>Followups from this Meeting</Subheader>
         );
 
-      this.state.selectedItems.forEach((item, key) => {
+      this.props.followUps.forEach((item, key) => {
         rows.push(
           <FollowUpItem
             key={key}
@@ -75,6 +66,7 @@ class MeetingShow extends Component {
     }
 
     const direct = this.props.directs.get(meeting.directKey);
+    // TODO: this.props.directs can be []
     return (
       <div className="container">
         <Card>
@@ -131,13 +123,17 @@ const mapStateToProps = (state) => {
   return {
     meeting: state.meetings.activeMeeting,
     directs: state.directs.list,
-    followUps: state.followUps.list,
+    followUps: state.followUps.matchingList,
     loading: state.meetings.loading,
     error: state.meetings.error,
   };
 };
 
-export default connect(mapStateToProps,
-  { find: meetingActions.find,
+export default connect(
+  mapStateToProps,
+  {
+    find: meetingActions.find,
+    followUpsEqualTo: followUpActions.equalTo,
     setText: headerActions.setText,
-  })(MeetingShow);
+  },
+)(MeetingShow);

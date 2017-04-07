@@ -7,6 +7,6 @@ export default new FirebaseApi('directs', {
   SET_ACTIVE: types.SET_ACTIVE_DIRECT,
   RESET_ACTIVE: types.RESET_ACTIVE_DIRECT,
   CREATE: types.CREATE_DIRECT,
+  SET_MATCHING: types.SET_MATCHING_DIRECTS,
 },
 'name');
-

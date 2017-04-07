@@ -41,18 +41,24 @@ class FollowUpShow extends Component {
     const rows = [];
     const meeting = this.props.activeMeeting;
     if (meeting) {
-        rows.push(
-          <Subheader>Re: this Meeting</Subheader>
-        );
-        rows.push(
-          <ListItem
-            key={this.props.followUp.meetingKey}
-            primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
-            secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
-            containerElement={<Link to={`/meetings/${this.props.followUp.meetingKey}`} />}
-          />);
+      rows.push(
+        <Subheader>Re: this Meeting</Subheader>
+      );
+      rows.push(
+        <ListItem
+          key={this.props.followUp.meetingKey}
+          primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
+          secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
+          containerElement={<Link to={`/meetings/${this.props.followUp.meetingKey}`} />}
+        />);
     }
     return rows;
+  }
+
+  handleCheck = (event, isInputChecked) => {
+    const { followUp } = this.props;
+    followUp.completed = !followUp.completed;
+    this.props.update(this.props.params.id, followUp);
   }
 
   render() {
@@ -76,6 +82,7 @@ class FollowUpShow extends Component {
                 leftCheckbox={
                   <Checkbox
                     checked={followUp.completed}
+                    onCheck={this.handleCheck}
                   />
                 }
                 primaryText="Completed"
@@ -140,6 +147,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setText: (s) => {
       dispatch(headerActions.setText(s));
+    },
+    update: (key, value) => {
+      dispatch(followUpActions.update(key, value));
     },
   };
 };

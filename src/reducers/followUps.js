@@ -13,6 +13,9 @@ export default function (state = INITIAL_STATE, action) {
     case types.LOAD_FOLLOW_UPS_SUCCESS:
       return { ...state,
         list: action.payload };
+    case types.SET_MATCHING_FOLLOW_UPS:
+      return { ...state,
+        matchingList: action.payload };
     case types.UNLOAD_FOLLOW_UPS_SUCCESS:
       return INITIAL_STATE;
     case types.SET_ACTIVE_FOLLOW_UP:

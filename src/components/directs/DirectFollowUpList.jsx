@@ -5,31 +5,21 @@ import {
   ListItem,
 } from 'material-ui/List';
 import FollowUpItem from '../followUps/FollowUpItem';
+import followUpActions from '../../actions/followUps';
 
 class DirectFollowUpList extends Component {
-
-  constructor() {
-    super();
-    this.state = { selectedItems: null };
-  }
-
   componentDidMount() {
-    this.onMount();
+    this.selectFollowUps();
   }
 
-  onMount() {
-    const selectedItems = new Map([...this.props.followUps]
-                              .filter(([key, value]) =>
-                                value.directKey === this.props.directId));
-    this.setState({ selectedItems });
+  selectFollowUps() {
+    this.props.followUpsEqualTo("directKey", this.props.directId);
   }
 
   renderItems() {
     const rows = [];
-    if (this.props.followUps &&
-      this.state.selectedItems &&
-      this.state.selectedItems.size > 0) {
-      this.state.selectedItems.forEach((item, key) => {
+    if (this.props.followUps && this.props.followUps.size > 0) {
+      this.props.followUps.forEach((item, key) => {
         rows.push(
           <FollowUpItem
             key={key}
@@ -66,8 +56,13 @@ DirectFollowUpList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    followUps: state.followUps.list,
+    followUps: state.followUps.matchingList,
   };
 };
 
-export default connect(mapStateToProps)(DirectFollowUpList);
+export default connect(
+  mapStateToProps,
+  {
+    followUpsEqualTo: followUpActions.equalTo,
+  },
+)(DirectFollowUpList);
