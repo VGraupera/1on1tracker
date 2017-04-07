@@ -59,6 +59,7 @@ export const openAuth = () => {
     firebaseAuth.getRedirectResult().catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      alert(errorMessage);
       dispatch({
         type: types.AUTH_ERROR,
         error: `Login failed! ${errorMessage}`,
