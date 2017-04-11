@@ -19,6 +19,7 @@ import FollowUpEdit from './components/followUps/FollowUpEdit';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
+import Account from './components/Account';
 import Terms from './components/Terms';
 import Privacy from './components/Privacy';
 
@@ -33,6 +34,7 @@ export default function Routes(store) {
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
+      <Route path="account" component={Account} />
       <Route path="dashboard" component={Dashboard} />
       <Route path="terms" component={Terms} />
       <Route path="privacy" component={Privacy} />
