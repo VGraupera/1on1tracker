@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { List } from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
@@ -25,6 +25,13 @@ class MeetingList extends Component {
           />
         );
       });
+    }
+    if (rows.length === 0) {
+      rows.push(
+        <ListItem
+          primaryText="No meetings"
+        />
+      );
     }
     return rows;
   }

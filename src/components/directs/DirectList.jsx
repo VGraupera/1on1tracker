@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { List } from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import * as headerActions from '../../actions/header';
@@ -20,6 +20,13 @@ class DirectList extends Component {
       this.props.directs.forEach((direct, key) => {
         rows.push(<DirectItem key={key} direct={direct} id={key} />);
       });
+    }
+    if (rows.length === 0) {
+      rows.push(
+        <ListItem
+          primaryText="No direct reports"
+        />
+      );
     }
     return rows;
   }
