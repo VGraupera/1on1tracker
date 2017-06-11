@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -51,9 +52,9 @@ class FollowUpNew extends Component {
 }
 
 FollowUpNew.propTypes = {
-  create: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

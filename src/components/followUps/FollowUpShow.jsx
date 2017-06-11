@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 
@@ -117,13 +118,13 @@ class FollowUpShow extends Component {
 }
 
 FollowUpShow.propTypes = {
-  setText: React.PropTypes.func.isRequired,
-  find: React.PropTypes.func.isRequired,
-  findMeeting: React.PropTypes.func.isRequired,
-  directs: React.PropTypes.object.isRequired,
-  followUp: React.PropTypes.object,
-  params: React.PropTypes.shape({
-    id: React.PropTypes.string,
+  setText: PropTypes.func.isRequired,
+  find: PropTypes.func.isRequired,
+  findMeeting: PropTypes.func.isRequired,
+  directs: PropTypes.object.isRequired,
+  followUp: PropTypes.object,
+  params: PropTypes.shape({
+    id: PropTypes.string,
   }).isRequired,
 };
 

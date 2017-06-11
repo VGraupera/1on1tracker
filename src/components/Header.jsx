@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 
@@ -22,12 +23,12 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  onLeftIconButtonTouchTap: React.PropTypes.func.isRequired,
-  header: React.PropTypes.object,
+  onLeftIconButtonTouchTap: PropTypes.func.isRequired,
+  header: PropTypes.object,
 };
 
 Header.contextTypes = {
-  router: React.PropTypes.object,
+  router: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

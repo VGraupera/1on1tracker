@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import {
@@ -59,8 +60,8 @@ class DirectMeetingList extends Component {
 }
 
 DirectMeetingList.propTypes = {
-  directId: React.PropTypes.string.isRequired,
-  meetings: React.PropTypes.object.isRequired,
+  directId: PropTypes.string.isRequired,
+  meetings: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

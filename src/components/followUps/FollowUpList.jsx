@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import {
@@ -92,8 +93,8 @@ class FollowUpList extends Component {
 }
 
 FollowUpList.propTypes = {
-  setText: React.PropTypes.func.isRequired,
-  followUps: React.PropTypes.object.isRequired,
+  setText: PropTypes.func.isRequired,
+  followUps: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

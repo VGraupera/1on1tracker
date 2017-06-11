@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Card,
@@ -37,8 +38,8 @@ class MeetingShow extends Component {
     const rows = [];
     if (this.props.followUps) {
       rows.push(
-          <Subheader>Followups from this Meeting</Subheader>
-        );
+        <Subheader>Followups from this Meeting</Subheader>
+      );
 
       this.props.followUps.forEach((item, key) => {
         rows.push(
@@ -110,12 +111,12 @@ class MeetingShow extends Component {
 }
 
 MeetingShow.propTypes = {
-  setText: React.PropTypes.func.isRequired,
-  find: React.PropTypes.func.isRequired,
-  directs: React.PropTypes.object.isRequired,
-  meeting: React.PropTypes.object,
-  params: React.PropTypes.shape({
-    id: React.PropTypes.string,
+  setText: PropTypes.func.isRequired,
+  find: PropTypes.func.isRequired,
+  directs: PropTypes.object.isRequired,
+  meeting: PropTypes.object,
+  params: PropTypes.shape({
+    id: PropTypes.string,
   }).isRequired,
 };
 

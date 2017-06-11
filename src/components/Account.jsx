@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as headerActions from '../actions/header';
 
@@ -12,14 +13,14 @@ class Account extends Component {
       <div className="container account">
         <h1>{this.props.displayName}</h1>
         <p>{this.props.email}</p>
-        <img src={this.props.photoURL} />
+        <img src={this.props.photoURL} alt="avatar"/>
       </div>
     );
   }
 }
 
 Account.propTypes = {
-  setText: React.PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

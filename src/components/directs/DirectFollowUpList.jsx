@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   List,
@@ -13,7 +14,7 @@ class DirectFollowUpList extends Component {
   }
 
   selectFollowUps() {
-    this.props.followUpsEqualTo("directKey", this.props.directId);
+    this.props.followUpsEqualTo('directKey', this.props.directId);
   }
 
   renderItems() {
@@ -50,8 +51,8 @@ class DirectFollowUpList extends Component {
 }
 
 DirectFollowUpList.propTypes = {
-  directId: React.PropTypes.string.isRequired,
-  followUps: React.PropTypes.object.isRequired,
+  directId: PropTypes.string.isRequired,
+  followUps: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

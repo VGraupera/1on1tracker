@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -127,8 +128,8 @@ export class Home extends Component {
 }
 
 Home.propTypes = {
-  setText: React.PropTypes.func.isRequired,
-  openAuth: React.PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  openAuth: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {

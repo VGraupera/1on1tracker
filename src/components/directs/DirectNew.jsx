@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -46,8 +47,8 @@ class DirectNew extends Component {
 }
 
 DirectNew.propTypes = {
-  create: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

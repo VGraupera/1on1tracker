@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -58,8 +59,8 @@ class LeftDrawer extends Component {
 }
 
 LeftDrawer.propTypes = {
-  handleNavigate: React.PropTypes.func.isRequired,
-  open: React.PropTypes.bool,
+  handleNavigate: PropTypes.func.isRequired,
+  open: PropTypes.bool,
 };
 
 LeftDrawer.defaultProps = {

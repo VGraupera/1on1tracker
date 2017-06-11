@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as headerActions from '../actions/header';
 
@@ -34,7 +35,7 @@ class About extends Component {
 }
 
 About.propTypes = {
-  setText: React.PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
 };
 
 export default connect(null, { setText: headerActions.setText })(About);

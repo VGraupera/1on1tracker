@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Subheader from 'material-ui/Subheader';
@@ -129,7 +130,7 @@ export class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  setText: React.PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

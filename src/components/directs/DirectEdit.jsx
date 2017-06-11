@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -50,10 +51,10 @@ class DirectEdit extends Component {
 }
 
 DirectEdit.propTypes = {
-  update: React.PropTypes.func.isRequired,
-  remove: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
-  params: React.PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

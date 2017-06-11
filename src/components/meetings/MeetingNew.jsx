@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import MeetingForm from './MeetingForm';
@@ -46,9 +47,9 @@ class MeetingNew extends Component {
 }
 
 MeetingNew.propTypes = {
-  create: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

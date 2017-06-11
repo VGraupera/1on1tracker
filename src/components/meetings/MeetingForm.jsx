@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import {
   DatePicker,
@@ -88,12 +89,12 @@ class MeetingForm extends Component {
 }
 
 MeetingForm.propTypes = {
-  formType: React.PropTypes.oneOf(['create', 'edit']),
-  handleSubmit: React.PropTypes.func,
-  onSubmit: React.PropTypes.func,
-  directs: React.PropTypes.object.isRequired,
-  pristine: React.PropTypes.bool,
-  submitting: React.PropTypes.bool,
+  formType: PropTypes.oneOf(['create', 'edit']),
+  handleSubmit: PropTypes.func,
+  onSubmit: PropTypes.func,
+  directs: PropTypes.object.isRequired,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
 };
 
 export default reduxForm({ form: 'meeting', validate })(MeetingForm);

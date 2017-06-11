@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { isDirty, hasSubmitSucceeded } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -76,15 +77,15 @@ class MeetingEdit extends Component {
 }
 
 MeetingEdit.propTypes = {
-  update: React.PropTypes.func.isRequired,
-  remove: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
-  params: React.PropTypes.object.isRequired,
-  route: React.PropTypes.object.isRequired,
-  dirty: React.PropTypes.bool.isRequired,
-  submitted: React.PropTypes.bool.isRequired,
-  router: React.PropTypes.shape({
-    setRouteLeaveHook: React.PropTypes.func,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+  dirty: PropTypes.bool.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  router: PropTypes.shape({
+    setRouteLeaveHook: PropTypes.func,
   }).isRequired,
 };
 

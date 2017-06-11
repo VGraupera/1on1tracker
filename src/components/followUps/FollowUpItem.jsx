@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ListItem } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
@@ -56,15 +57,15 @@ class FollowUpItem extends Component {
 }
 
 FollowUpItem.contextTypes = {
-  router: React.PropTypes.object,
+  router: PropTypes.object,
 };
 
 FollowUpItem.propTypes = {
-  directs: React.PropTypes.object.isRequired,
-  followUp: React.PropTypes.object.isRequired,
-  id: React.PropTypes.string.isRequired,
-  primaryText: React.PropTypes.string,
-  secondaryText: React.PropTypes.string,
+  directs: PropTypes.object.isRequired,
+  followUp: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  primaryText: PropTypes.string,
+  secondaryText: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {

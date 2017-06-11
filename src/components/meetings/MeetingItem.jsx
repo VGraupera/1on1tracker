@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { ListItem } from 'material-ui/List';
@@ -29,9 +30,9 @@ class MeetingItem extends Component {
 }
 
 MeetingItem.propTypes = {
-  directs: React.PropTypes.object.isRequired,
-  meeting: React.PropTypes.object.isRequired,
-  id: React.PropTypes.string.isRequired,
+  directs: PropTypes.object.isRequired,
+  meeting: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {
@@ -92,11 +93,11 @@ class DirectShow extends Component {
 }
 
 DirectShow.propTypes = {
-  direct: React.PropTypes.object,
-  find: React.PropTypes.func.isRequired,
-  setText: React.PropTypes.func.isRequired,
-  params: React.PropTypes.shape({
-    id: React.PropTypes.string,
+  direct: PropTypes.object,
+  find: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  params: PropTypes.shape({
+    id: PropTypes.string,
   }).isRequired,
 };
 
