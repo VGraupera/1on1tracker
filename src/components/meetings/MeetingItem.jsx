@@ -18,7 +18,7 @@ class MeetingItem extends Component {
       const direct = directs.get(meeting.directKey);
 
       return (<ListItem
-        primaryText={direct.name}
+        primaryText={direct ? direct.name : '???'}
         secondaryText={MeetingItem.summary(meeting)}
         containerElement={<Link to={`/meetings/${id}`} />}
       />

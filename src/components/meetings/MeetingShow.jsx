@@ -72,7 +72,7 @@ class MeetingShow extends Component {
       <div className="container">
         <Card>
           <CardTitle
-            title={direct.name}
+            title={direct ? direct.name : '???'}
             subtitle={new Date(meeting.meetingDate).toLocaleDateString()}
           />
           <CardText>
