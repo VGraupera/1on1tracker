@@ -21,9 +21,11 @@ class DirectEdit extends Component {
 
   onDelete(event) {
     event.preventDefault(); // Fix double touchtap bug
-    this.props.remove(this.props.params.id).then(() => {
+    if(window.confirm('Delete the direct?')) {
       browserHistory.push('/directs');
-    });
+      this.props.remove(this.props.params.id).then(() => {
+      });
+    }
   }
 
   onSubmit(direct) {
