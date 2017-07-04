@@ -91,7 +91,7 @@ class FollowUpShow extends Component {
             </List>
           </CardActions>
           <CardTitle
-            title={direct.name}
+            title={direct ? direct.name : '???'}
             subtitle={new Date(followUp.followUpDate).toLocaleDateString()}
             onClick={this.handleNavigateToDirect}
           />

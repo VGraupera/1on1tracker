@@ -37,8 +37,8 @@ class MeetingEdit extends Component {
 
   onDelete(event) {
     event.preventDefault(); // Fix double touchtap bug
+    browserHistory.push('/meetings');
     this.props.remove(this.props.params.id).then(() => {
-      browserHistory.push('/meetings');
     });
   }
 

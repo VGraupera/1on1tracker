@@ -37,8 +37,8 @@ class FollowUpEdit extends Component {
 
   onDelete(event) {
     event.preventDefault(); // Fix double touchtap bug
+    browserHistory.push('/followUps');
     this.props.remove(this.props.params.id).then(() => {
-      browserHistory.push('/followUps');
     });
   }
 

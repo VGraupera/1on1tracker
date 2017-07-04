@@ -45,7 +45,7 @@ class FollowUpItem extends Component {
             }}
           />
         }
-        primaryText={this.props.primaryText || direct.name}
+        primaryText={this.props.primaryText || direct ? direct.name : '???'}
         secondaryText={this.props.secondaryText || FollowUpItem.summary(followUp)}
         onClick={this.onClick}
       />
