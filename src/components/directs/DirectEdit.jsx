@@ -6,6 +6,8 @@ import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
+import followUpActions from '../../actions/followUps';
+import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 
 class DirectEdit extends Component {
@@ -24,6 +26,8 @@ class DirectEdit extends Component {
     if(window.confirm('Delete the direct?')) {
       browserHistory.push('/directs');
       this.props.remove(this.props.params.id).then(() => {
+        this.props.followUpsRemoveEqualTo('directKey', this.props.params.id);
+        this.props.meetingsRemoveEqualTo('directKey', this.props.params.id);
       });
     }
   }
@@ -75,6 +79,8 @@ const mapDispatchToProps = {
   update: directActions.update,
   remove: directActions.remove,
   setText: headerActions.setText,
+  followUpsRemoveEqualTo: followUpActions.removeEqualTo,
+  meetingsRemoveEqualTo: meetingActions.removeEqualTo,
 };
 
 export default connect(

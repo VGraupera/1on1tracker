@@ -72,7 +72,8 @@ export class FirebaseApi {
   equalTo = (key, value) => {
     return (dispatch, getState) => {
       this._baseRef(getState)
-      .orderByChild(key).equalTo(value)
+        .orderByChild(key)
+        .equalTo(value)
       .on('value', (snapshot) => {
         const itemsMap = new Map();
         snapshot.forEach((child) => {
@@ -103,6 +104,18 @@ export class FirebaseApi {
             type: types.FLASH_ERROR,
             error: `Delete failed! ${error.message}`,
           });
+        });
+    };
+  }
+
+  removeEqualTo = (key, value) => {
+    console.log(`key ${key} val ${value}`);
+    return (dispatch, getState) => {
+      this._baseRef(getState)
+        .orderByChild(key)
+        .equalTo(value)
+        .on('child_added', (snapshot) => {
+          snapshot.ref.remove()
         });
     };
   }
