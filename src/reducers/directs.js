@@ -5,12 +5,14 @@ const INITIAL_STATE = {
   list: [],
   loading: false,
   error: null,
+  sortBy: 'name',
 };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.LOAD_DIRECTS_SUCCESS:
-      return { ...state,
+      return {
+        ...state,
         list: action.payload,
       };
     case types.UNLOAD_DIRECTS_SUCCESS:
@@ -25,6 +27,8 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         activeDirect: null,
       };
+    case types.SET_DIRECTS_SORT_BY:
+      return { ...state, ...{ sortBy: action.payload } };
     default:
       return state;
   }

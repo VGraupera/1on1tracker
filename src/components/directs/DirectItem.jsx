@@ -19,7 +19,7 @@ const DirectItem = (props) => {
   return (
     <ListItem
       primaryText={props.direct.name}
-      secondaryText={props.direct.phone}
+      secondaryText={<span><p>{props.direct.phone}</p><p>{props.direct.teamName}</p></span>}
       containerElement={<Link to={`/directs/${props.id}`} />}
       leftAvatar={<Avatar>{initials(props.direct.name)}</Avatar>}
       rightIconButton={<IconButton

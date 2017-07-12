@@ -42,6 +42,7 @@ class DirectMeetingList extends Component {
     } else {
       rows.push(
         <ListItem
+          key="no_meetings"
           primaryText="No meetings"
         />);
     }

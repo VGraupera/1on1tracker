@@ -33,6 +33,7 @@ class DirectFollowUpList extends Component {
     } else {
       rows.push(
         <ListItem
+          key="no_items"
           primaryText="No items"
         />);
     }
@@ -52,7 +53,7 @@ class DirectFollowUpList extends Component {
 
 DirectFollowUpList.propTypes = {
   directId: PropTypes.string.isRequired,
-  followUps: PropTypes.object.isRequired,
+  followUps: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

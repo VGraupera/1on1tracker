@@ -34,11 +34,12 @@ class FollowUpList extends Component {
     const rows = [];
     rows.push(
       <ListItem
+        key="show_completed"
         primaryText={this.state.showCompleted ? 'Hide Completed' : 'Show Completed'}
         onTouchTap={this.toggleCompleted}
         style={{ textAlign: 'center', color: 'green' }}
       />,
-      <Divider />,
+      <Divider key="show_completed_divider" />,
     );
 
     if (this.props.followUps && this.props.followUps.size > 0) {
@@ -59,6 +60,7 @@ class FollowUpList extends Component {
     if (rows.length === 2) {
       rows.push(
         <ListItem
+          key="no_foolows_up"
           primaryText="No items"
         />
       );
@@ -94,7 +96,7 @@ class FollowUpList extends Component {
 
 FollowUpList.propTypes = {
   setText: PropTypes.func.isRequired,
-  followUps: PropTypes.object.isRequired,
+  followUps: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

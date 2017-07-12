@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
 import directActions from '../../actions/directs';
 import * as headerActions from '../../actions/header';
+import { getTeamsArray } from '../../selectors/teams';
 
 class DirectNew extends Component {
   constructor() {
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => {
   return {
     formType: 'create',
     error: state.directs.error,
+    teams: getTeamsArray(state),
   };
 };
 
