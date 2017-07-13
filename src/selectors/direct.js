@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import objNaturalSort from 'object-property-natural-sort';
 
 import { getTeamsArray } from './teams';
 
@@ -6,7 +7,12 @@ import { getTeamsArray } from './teams';
  * @description Return directs from state
  * @param {Object} state app state
  */
-const getDirect = state => state.directs.list;
+const getDirect = (state) => {
+  if (!(state.directs.list instanceof Map)) {
+    return [];
+  }
+  return state.directs.list;
+};
 const getTeams = state => getTeamsArray(state);
 const sortBy = state => state.directs.sortBy;
 
@@ -34,11 +40,21 @@ export const getDirectsArrayWithTeam = createSelector(
       let teamName = '';
       if (direct.team) {
         const teamDirect = teams.find(team => team.id === direct.team);
-        teamName = teamDirect.name;
+        if (typeof teamDirect !== 'undefined') {
+          teamName = teamDirect.name;
+        }
       }
       return { ...direct, ...{ teamName } };
     });
 
+    /**
+     * @description natural sort for array
+     */
+    arr.sort(objNaturalSort(sortByValue));
+
+    /**
+     * @description put empty value to end
+     */
     return arr.sort((a, b) => {
       if (a[sortByValue] === '') {
         return 1;
@@ -46,14 +62,6 @@ export const getDirectsArrayWithTeam = createSelector(
       if (b[sortByValue] === '') {
         return -1;
       }
-      if (a[sortByValue] < b[sortByValue]) {
-        return -1;
-      }
-
-      if (a[sortByValue] > b[sortByValue]) {
-        return 1;
-      }
-
       return 0;
     });
   });

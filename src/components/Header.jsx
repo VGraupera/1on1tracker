@@ -5,6 +5,8 @@ import AppBar from 'material-ui/AppBar';
 
 import { isAuthenticated, rootPath } from '../actions/auth';
 
+import DirectSortContainer from '../components/directs/DirectSortContainer';
+
 class Header extends Component {
   returnHome = () => {
     this.context.router.push(rootPath(isAuthenticated(this.props)));
@@ -17,6 +19,7 @@ class Header extends Component {
         title={this.props.header.text}
         onTitleTouchTap={this.returnHome}
         onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
+        iconElementRight={<DirectSortContainer location={this.context.router.location} />}
       />
     );
   }

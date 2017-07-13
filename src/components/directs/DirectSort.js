@@ -3,6 +3,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
+import { white } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
 /**
@@ -12,6 +13,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   handleChange: PropTypes.func.isRequired,
   selected: PropTypes.string.isRequired,
+  shouldShow: PropTypes.bool.isRequired,
 };
 
 /**
@@ -35,9 +37,12 @@ class DirectSort extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
+    if (!this.props.shouldShow) {
+      return false;
+    }
     const icon = (
       <IconButton>
-        <FontIcon className="material-icons">sort</FontIcon>
+        <FontIcon color={white} className="material-icons">sort</FontIcon>
       </IconButton>
     );
     return (

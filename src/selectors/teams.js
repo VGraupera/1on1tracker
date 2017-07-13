@@ -4,7 +4,12 @@ import { createSelector } from 'reselect';
  * @description Return team list from state
  * @param {Object} state app state
  */
-const getTeams = state => state.teams.list;
+const getTeams = (state) => {
+  if (!(state.teams.list instanceof Map)) {
+    return [];
+  }
+  return state.teams.list;
+};
 
 /**
  * @description selector for team array
