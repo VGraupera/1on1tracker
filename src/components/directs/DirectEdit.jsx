@@ -35,7 +35,7 @@ class DirectEdit extends Component {
 
   onSubmit(direct) {
     this.props.update(this.props.params.id, direct).then(() => {
-      browserHistory.goBack();
+      browserHistory.push('/directs');
     });
   }
 

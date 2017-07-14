@@ -23,13 +23,13 @@ class DirectNew extends Component {
 
   onSubmit(direct) {
     this.props.create(direct).then(() => {
-      browserHistory.goBack();
+      browserHistory.push('/directs');
     });
   }
 
   onCancelClick(event) {
     event.preventDefault(); // Fix double touchtap bug
-    browserHistory.goBack();
+    browserHistory.push('/directs');
   }
 
   render() {

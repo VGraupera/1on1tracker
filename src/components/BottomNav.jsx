@@ -11,9 +11,8 @@ class BottomNav extends Component {
     const meetingsIcon = <FontIcon className="material-icons">chat</FontIcon>;
     const directsIcon = <FontIcon className="material-icons">people</FontIcon>;
     const followUpsIcon = <FontIcon className="material-icons">assignment</FontIcon>;
-    const teamsIcon = <FontIcon className="material-icons">assignment_ind</FontIcon>;
 
-    const paths = [/^\/dashboard/i, /^\/directs/i, /^\/meetings/i, /^\/followUps/i,/^\/teams/i];
+    const paths = [/^\/dashboard/i, /^\/directs/i, /^\/meetings/i, /^\/followUps/i];
     let selectedIndex = -1;
     for (let i = 0; i < paths.length; i += 1) {
       if (paths[i].test(window.location.pathname)) {
@@ -45,11 +44,6 @@ class BottomNav extends Component {
               label="Follow Ups"
               icon={followUpsIcon}
               onTouchTap={() => this.props.handleNavigate('/followUps')}
-            />
-            <BottomNavigationItem
-              label="Teams"
-              icon={teamsIcon}
-              onTouchTap={() => this.props.handleNavigate('/teams')}
             />
           </BottomNavigation>
         </Paper>

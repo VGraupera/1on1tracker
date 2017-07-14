@@ -5,10 +5,12 @@ import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import PropTypes from 'prop-types';
+
 import * as headerActions from '../../actions/header';
 import { getDirectsArrayWithTeam } from '../../selectors/direct';
-
 import DirectItem from './DirectItem';
+import DirectItemDivider from './DirectItemDivider';
+import { SORT_BY_NAME } from '../../constants/sort';
 
 class DirectList extends Component {
 
@@ -17,15 +19,24 @@ class DirectList extends Component {
   }
 
   renderDirects() {
-    const { directs } = this.props;
+    const { directs, sortBy } = this.props;
     const noItems = <ListItem primaryText="No direct reports" />;
-    const directList = directs.map(direct => (
-      <DirectItem
-        key={direct.id}
-        direct={direct}
-        id={direct.id}
-      />
-    ));
+    let directList;
+    if (sortBy === SORT_BY_NAME) {
+      directList = directs.map(direct => (
+        <DirectItem
+          key={direct.id}
+          direct={direct}
+          id={direct.id}
+        />
+      ));
+    } else {
+      directList = Object.keys(directs).map((team) => {
+        return (
+          <DirectItemDivider key={team} team={team} directs={directs[team]} />
+        );
+      });
+    }
     return directList.length ? directList : noItems;
   }
 
@@ -59,7 +70,8 @@ class DirectList extends Component {
 
 DirectList.propTypes = {
   setText: PropTypes.func.isRequired,
-  directs: PropTypes.array.isRequired,
+  directs: PropTypes.any.isRequired,
+  sortBy: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -70,6 +82,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = (state) => {
   return {
     directs: getDirectsArrayWithTeam(state),
+    sortBy: state.directs.sortBy,
   };
 };
 

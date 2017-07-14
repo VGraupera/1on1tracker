@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
 
 import { setSortBy } from '../../actions/directs';
-import DirectSort from './DirectSort';
+import DirectSort from './DirectSortBtn';
 
 /**
  * @description Map state to props for DirectSort component
  * @param {Object} state app store
- * @param {Object} ownProps own props
  */
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   selected: state.directs.sortBy,
-  shouldShow: ownProps.location.pathname === '/directs',
 });
 
 /**

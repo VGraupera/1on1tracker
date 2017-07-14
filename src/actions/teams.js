@@ -8,4 +8,4 @@ export default new FirebaseApi('teams', {
   RESET_ACTIVE: types.RESET_ACTIVE_TEAM,
   CREATE: types.CREATE_TEAM,
   SET_MATCHING: types.SET_MATCHING_TEAMS,
-});
+},'name');

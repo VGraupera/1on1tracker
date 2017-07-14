@@ -1,12 +1,16 @@
 import { connect } from 'react-redux';
 import * as headerActions from '../../actions/header';
-import { getTeamsArray } from '../../selectors/teams';
+import teamAction from '../../actions/teams';
+import { getTeamsArrayWithDeleteFlag } from '../../selectors/teams';
 
 import TeamList from './TeamList';
 
 const mapDispatchToProps = dispatch => ({
   setText: (text) => {
     dispatch(headerActions.setText(text));
+  },
+  handleOnClickDelete: (id) => {
+    dispatch(teamAction.remove(id));
   },
 });
 
@@ -15,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
  * @param {Object} state state data
  */
 const mapStateToProps = state => ({
-  teams: getTeamsArray(state),
+  teams: getTeamsArrayWithDeleteFlag(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamList);

@@ -3,7 +3,11 @@ import { Link, browserHistory } from 'react-router';
 import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 import PropTypes from 'prop-types';
+
+import TeamItem from './TeamItem';
 
 /**
  * @description propTypes for TeamList
@@ -17,6 +21,7 @@ const propTypes = {
     updatedAt: PropTypes.string,
   })).isRequired,
   setText: PropTypes.func.isRequired,
+  handleOnClickDelete: PropTypes.func.isRequired,
 };
 
 /**
@@ -25,6 +30,15 @@ const propTypes = {
  * @description Render component
  */
 class TeamList extends Component {
+
+  /**
+   * @description TeamList state.
+   * @type {{dialogOpen: boolean, teamForDelete: null}}
+   */
+  state = {
+    dialogOpen: false,
+    teamForDelete: null,
+  };
 
   /**
    * @description componentDidMount for TeamList. Sets header text
@@ -39,9 +53,30 @@ class TeamList extends Component {
    * @return {Function} new route
    */
   handleOnClickItem = (id) => {
-    return () => {
-      browserHistory.push(`teams/edit/${id}`);
-    };
+    browserHistory.push(`teams/edit/${id}`);
+  };
+
+  /**
+   * @description handle delete action
+   */
+  handleOnClickDelete = () => {
+    this.props.handleOnClickDelete(this.state.teamForDelete);
+    this.handleCloseDialog();
+  };
+
+  /**
+   * @description open delete confirm dialog
+   * @param {String} id team id
+   */
+  handleOpenDialog = (id) => {
+    this.setState({ dialogOpen: true, teamForDelete: id });
+  };
+
+  /**
+   * @description close delete confirm dialog
+   */
+  handleCloseDialog = () => {
+    this.setState({ dialogOpen: false, teamForDelete: null });
   };
 
   /**
@@ -59,14 +94,30 @@ class TeamList extends Component {
     };
     const { teams } = this.props;
     const teamList = teams.map(team => (
-      <ListItem
+      <TeamItem
         key={team.id}
-        onTouchTap={this.handleOnClickItem(team.id)}
-        primaryText={team.name}
+        id={team.id}
+        name={team.name}
+        allowedDelete={team.allowedDelete}
+        handleOnClickItem={this.handleOnClickItem}
+        handleOnClickDelete={this.handleOpenDialog}
       />
     ));
     const noItems = <ListItem primaryText="No Teams" />;
     const content = teamList.length ? teamList : noItems;
+
+    const dialogActions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={this.handleCloseDialog}
+      />,
+      <FlatButton
+        label="Delete"
+        primary={true}
+        onTouchTap={this.handleOnClickDelete}
+      />,
+    ];
 
     return (
       <div className="container meetings">
@@ -79,7 +130,14 @@ class TeamList extends Component {
             <ContentAdd />
           </FloatingActionButton>
         </List>
-
+        <Dialog
+          actions={dialogActions}
+          modal={false}
+          open={this.state.dialogOpen}
+          onRequestClose={this.handleCloseDialog}
+        >
+          Delete the team?
+        </Dialog>
       </div>);
   }
 }

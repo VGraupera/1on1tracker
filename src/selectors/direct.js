@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect';
 import objNaturalSort from 'object-property-natural-sort';
+import groupArray from 'group-array';
 
+import { SORT_BY_TEAM_NAME, SORT_WITHOUT_TEAM_NAME } from '../constants/sort';
 import { getTeamsArray } from './teams';
 
 /**
@@ -30,6 +32,31 @@ export const getDirectsArray = createSelector(getDirect, (directs) => {
 });
 
 /**
+ * @description natural sort of array
+ * @param {Array} arr
+ * @param {String} sortByValue name of property
+ * @return {Array.<T>}
+ */
+const arraySort = (arr, sortByValue) => {
+  /**
+   * @description natural sort for array
+   */
+  arr.sort(objNaturalSort(sortByValue));
+  /**
+   * @description put empty value to end
+   */
+  return arr.sort((a, b) => {
+    if (a[sortByValue] === SORT_WITHOUT_TEAM_NAME) {
+      return 1;
+    }
+    if (b[sortByValue] === SORT_WITHOUT_TEAM_NAME) {
+      return -1;
+    }
+    return 0;
+  });
+};
+
+/**
  * @description return sorted array of directs with teamName
  * @return {Array}
  */
@@ -37,7 +64,7 @@ export const getDirectsArrayWithTeam = createSelector(
   [getDirectsArray, getTeams, sortBy],
   (directs, teams, sortByValue) => {
     const arr = directs.map((direct) => {
-      let teamName = '';
+      let teamName = SORT_WITHOUT_TEAM_NAME;
       if (direct.team) {
         const teamDirect = teams.find(team => team.id === direct.team);
         if (typeof teamDirect !== 'undefined') {
@@ -47,21 +74,10 @@ export const getDirectsArrayWithTeam = createSelector(
       return { ...direct, ...{ teamName } };
     });
 
-    /**
-     * @description natural sort for array
-     */
-    arr.sort(objNaturalSort(sortByValue));
+    const directsArray = arraySort(arr, sortByValue);
+    if (sortByValue === SORT_BY_TEAM_NAME) {
+      return groupArray(directsArray, sortByValue);
+    }
 
-    /**
-     * @description put empty value to end
-     */
-    return arr.sort((a, b) => {
-      if (a[sortByValue] === '') {
-        return 1;
-      }
-      if (b[sortByValue] === '') {
-        return -1;
-      }
-      return 0;
-    });
+    return directsArray;
   });

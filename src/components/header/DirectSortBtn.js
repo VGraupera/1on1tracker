@@ -6,6 +6,8 @@ import FontIcon from 'material-ui/FontIcon';
 import { white } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
+import {SORT_BY_NAME, SORT_BY_TEAM_NAME} from '../../constants/sort';
+
 /**
  * @description PropTypes for DirectSort
  * @type {{handleChange: (*)}}
@@ -13,7 +15,6 @@ import PropTypes from 'prop-types';
 const propTypes = {
   handleChange: PropTypes.func.isRequired,
   selected: PropTypes.string.isRequired,
-  shouldShow: PropTypes.bool.isRequired,
 };
 
 /**
@@ -37,9 +38,6 @@ class DirectSort extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    if (!this.props.shouldShow) {
-      return false;
-    }
     const icon = (
       <IconButton>
         <FontIcon color={white} className="material-icons">sort</FontIcon>
@@ -52,8 +50,8 @@ class DirectSort extends Component {
           onChange={this.handleOnChange}
           value={this.props.selected}
         >
-          <MenuItem value="name" primaryText="Sort By Direct Name" />
-          <MenuItem value="teamName" primaryText="Sort By Team Name" />
+          <MenuItem value={SORT_BY_NAME} primaryText="Sort By Direct Name" />
+          <MenuItem value={SORT_BY_TEAM_NAME} primaryText="Sort By Team Name" />
         </IconMenu>
       </div>
     );

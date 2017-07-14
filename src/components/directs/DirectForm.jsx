@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Field} from 'redux-form';
+import { Field } from 'redux-form';
 import {
   DatePicker,
-  SelectField,
   TextField,
 } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
+
 import isMobilePhone from 'validator/lib/isMobilePhone';
+
+import TeamsDropDownField from '../teams/TeamsDropDownField';
 
 const isValidPhone = (phone) => {
   return isMobilePhone(phone.replace(/-/g, ''), 'en-US');
@@ -70,28 +71,7 @@ export default class DirectForm extends Component {
           floatingLabelText="Job Title"
           style={{width: '100%'}}
         />
-        <Field
-          name="team"
-          component={SelectField}
-          hintText="Team"
-          floatingLabelText="Team"
-          value={false}
-          style={{width: '100%'}}
-        >
-          <MenuItem
-            value={false}
-            key={'no_team'}
-            primaryText="No Team"
-          />
-          {teams.map(team => (
-            <MenuItem
-              key={team.id}
-              value={team.id}
-              primaryText={team.name}
-            />
-          ))}
-
-        </Field>
+        <TeamsDropDownField location={this.props.location} teams={teams} />
         <Field
           name="phone"
           component={TextField}

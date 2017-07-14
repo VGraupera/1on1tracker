@@ -1,11 +1,12 @@
 import * as types from '../actions/types';
+import { SORT_BY_NAME } from '../constants/sort';
 
 const INITIAL_STATE = {
   activeDirect: null,
   list: [],
   loading: false,
   error: null,
-  sortBy: 'name',
+  sortBy: SORT_BY_NAME,
 };
 
 export default function (state = INITIAL_STATE, action) {
