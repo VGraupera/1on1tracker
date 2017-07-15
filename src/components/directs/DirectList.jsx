@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import * as headerActions from '../../actions/header';
+import PropTypes from 'prop-types';
 
+import * as headerActions from '../../actions/header';
+import { getDirectsArrayWithTeam } from '../../selectors/direct';
 import DirectItem from './DirectItem';
+import DirectItemDivider from './DirectItemDivider';
+import { SORT_BY_NAME } from '../../constants/sort';
 
 class DirectList extends Component {
 
@@ -15,20 +19,25 @@ class DirectList extends Component {
   }
 
   renderDirects() {
-    const rows = [];
-    if (this.props.directs) {
-      this.props.directs.forEach((direct, key) => {
-        rows.push(<DirectItem key={key} direct={direct} id={key} />);
+    const { directs, sortBy } = this.props;
+    const noItems = <ListItem primaryText="No direct reports" />;
+    let directList;
+    if (sortBy === SORT_BY_NAME) {
+      directList = directs.map(direct => (
+        <DirectItem
+          key={direct.id}
+          direct={direct}
+          id={direct.id}
+        />
+      ));
+    } else {
+      directList = Object.keys(directs).map((team) => {
+        return (
+          <DirectItemDivider key={team} team={team} directs={directs[team]} />
+        );
       });
     }
-    if (rows.length === 0) {
-      rows.push(
-        <ListItem
-          primaryText="No direct reports"
-        />
-      );
-    }
-    return rows;
+    return directList.length ? directList : noItems;
   }
 
   render() {
@@ -41,10 +50,12 @@ class DirectList extends Component {
       position: 'fixed',
     };
 
+    const directList = this.renderDirects();
+
     return (
       <div className="container directs">
         <List>
-          {this.renderDirects()}
+          {directList}
           <FloatingActionButton
             style={buttonStyle}
             containerElement={<Link to="/directs/new" />}
@@ -58,12 +69,21 @@ class DirectList extends Component {
 }
 
 DirectList.propTypes = {
+  setText: PropTypes.func.isRequired,
+  directs: PropTypes.any.isRequired,
+  sortBy: PropTypes.string.isRequired,
 };
 
+const mapDispatchToProps = dispatch => ({
+  setText: (text) => {
+    dispatch(headerActions.setText(text));
+  },
+});
 const mapStateToProps = (state) => {
   return {
-    directs: state.directs.list,
+    directs: getDirectsArrayWithTeam(state),
+    sortBy: state.directs.sortBy,
   };
 };
 
-export default connect(mapStateToProps, { setText: headerActions.setText })(DirectList);
+export default connect(mapStateToProps, mapDispatchToProps)(DirectList);

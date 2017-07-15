@@ -9,6 +9,7 @@ import directActions from '../../actions/directs';
 import followUpActions from '../../actions/followUps';
 import meetingActions from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
+import { getTeamsArray } from '../../selectors/teams';
 
 class DirectEdit extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class DirectEdit extends Component {
 
   onSubmit(direct) {
     this.props.update(this.props.params.id, direct).then(() => {
-      browserHistory.goBack();
+      browserHistory.push('/directs');
     });
   }
 
@@ -72,6 +73,7 @@ const mapStateToProps = (state) => {
     initialValues,
     formType: 'edit',
     error: state.directs.error,
+    teams: getTeamsArray(state),
   };
 };
 

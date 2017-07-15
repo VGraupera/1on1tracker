@@ -4,7 +4,9 @@ import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import MeetingIcon from 'material-ui/svg-icons/communication/chat';
-import {grey400} from 'material-ui/styles/colors';
+import { grey400 } from 'material-ui/styles/colors';
+
+import { SORT_WITHOUT_TEAM_NAME } from '../../constants/sort';
 
 
 const initials = (name) => {
@@ -16,10 +18,15 @@ const DirectItem = (props) => {
     e.preventDefault();
     browserHistory.push(`/directs/${props.id}/meetings/new`);
   };
+
+  let teamName = props.direct.teamName;
+  if (SORT_WITHOUT_TEAM_NAME === teamName) {
+    teamName = '';
+  }
   return (
     <ListItem
       primaryText={props.direct.name}
-      secondaryText={props.direct.phone}
+      secondaryText={<span><p>{props.direct.phone}</p><p>{teamName}</p></span>}
       containerElement={<Link to={`/directs/${props.id}`} />}
       leftAvatar={<Avatar>{initials(props.direct.name)}</Avatar>}
       rightIconButton={<IconButton

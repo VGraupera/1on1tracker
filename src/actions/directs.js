@@ -1,6 +1,13 @@
 import * as types from './types';
 import { FirebaseApi } from '../firebase/firebase';
 
+export const setSortBy = (value) => {
+  return {
+    type: types.SET_DIRECTS_SORT_BY,
+    payload: value,
+  };
+};
+
 export default new FirebaseApi('directs', {
   LOAD_SUCCESS: types.LOAD_DIRECTS_SUCCESS,
   UNLOAD_SUCCESS: types.UNLOAD_DIRECTS_SUCCESS,
@@ -9,4 +16,4 @@ export default new FirebaseApi('directs', {
   CREATE: types.CREATE_DIRECT,
   SET_MATCHING: types.SET_MATCHING_DIRECTS,
 },
-'name');
+  'name');

@@ -16,6 +16,10 @@ import FollowUpShow from './components/followUps/FollowUpShow';
 import FollowUpList from './components/followUps/FollowUpList';
 import FollowUpNew from './components/followUps/FollowUpNew';
 import FollowUpEdit from './components/followUps/FollowUpEdit';
+
+import TeamContainer from './components/teams/TeamContainer';
+import TeamFormContainer from './components/teams/TeamFormContainer';
+
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
@@ -58,6 +62,11 @@ export default function Routes(store) {
         <Route path="new" component={FollowUpNew} />
         <Route path=":id/edit" component={FollowUpEdit} />
         <Route path=":id" component={FollowUpShow} />
+      </Route>
+      <Route path="teams" onEnter={checkAuth}>
+        <IndexRoute components={TeamContainer} />
+        <Route path="new" component={TeamFormContainer} />
+        <Route path="edit/:id" component={TeamFormContainer} />
       </Route>
       <Route path="*" component={NotFound} />
     </Route>

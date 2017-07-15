@@ -30,6 +30,7 @@ class MeetingList extends Component {
     if (rows.length === 0) {
       rows.push(
         <ListItem
+          key="no_meetings"
           primaryText="No meetings"
         />
       );

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 
 import { isAuthenticated, rootPath } from '../actions/auth';
+import HeaderRightIcon from './header/HeaderRightIcon';
+
 
 class Header extends Component {
   returnHome = () => {
@@ -17,6 +19,7 @@ class Header extends Component {
         title={this.props.header.text}
         onTitleTouchTap={this.returnHome}
         onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
+        iconElementRight={<HeaderRightIcon location={this.context.router.location} />}
       />
     );
   }

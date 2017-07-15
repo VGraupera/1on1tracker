@@ -8,6 +8,7 @@ import * as types from './types';
 import directActions from './directs';
 import meetingActions from './meetings';
 import followUpActions from './followUps';
+import teamsActions from './teams';
 
 const recordLogin = (accountData) => {
   firebaseDb.ref('accounts').child(accountData.uid).set(accountData)
@@ -37,6 +38,7 @@ export const listenToAuth = () => {
         directActions.subscribe(dispatch, getState);
         meetingActions.subscribe(dispatch, getState);
         followUpActions.subscribe(dispatch, getState);
+        teamsActions.subscribe(dispatch, getState);
         browserHistory.push(rootPath(true));
 
         recordLogin({

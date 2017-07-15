@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "firebase": "^4.1.2",
+    "group-array": "^0.3.3",
     "material-ui": "^0.18.3",
+    "object-property-natural-sort": "^0.0.4",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -30,6 +32,7 @@
     "redux-form": "^6.4.1",
     "redux-form-material-ui": "^4.1.2",
     "redux-thunk": "^2.1.0",
+    "reselect": "^3.0.1",
     "validator": "^7.0.0"
   },
   "scripts": {

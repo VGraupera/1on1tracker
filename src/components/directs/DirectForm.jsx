@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import {
@@ -8,6 +8,8 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 
 import isMobilePhone from 'validator/lib/isMobilePhone';
+
+import TeamsDropDownField from '../teams/TeamsDropDownField';
 
 const isValidPhone = (phone) => {
   return isMobilePhone(phone.replace(/-/g, ''), 'en-US');
@@ -21,7 +23,7 @@ export const validate = (values) => {
       errors[field] = 'Required';
     }
   });
-  const { phone } = values;
+  const {phone} = values;
   if (phone && !isValidPhone(phone)) {
     errors.phone = 'Invalid phone number.';
   }
@@ -50,9 +52,8 @@ export default class DirectForm extends Component {
   }
 
   render() {
-    const { formType, handleSubmit, pristine, submitting } = this.props;
+    const {formType, handleSubmit, pristine, submitting, teams} = this.props;
     const submitText = formType === 'edit' ? 'Update' : 'Create';
-
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Field
@@ -61,22 +62,23 @@ export default class DirectForm extends Component {
           hintText="Name"
           floatingLabelText="Name*"
           ref="name" withRef
-          style={{ width: '100%' }}
+          style={{width: '100%'}}
         />
         <Field
           name="title"
           component={TextField}
           hintText="Job Title"
           floatingLabelText="Job Title"
-          style={{ width: '100%' }}
+          style={{width: '100%'}}
         />
+        <TeamsDropDownField location={this.props.location} teams={teams} />
         <Field
           name="phone"
           component={TextField}
           type="tel"
           hintText="Phone number"
           floatingLabelText="Phone number"
-          style={{ width: '100%' }}
+          style={{width: '100%'}}
         />
         <Field
           name="startDate"
@@ -92,7 +94,7 @@ export default class DirectForm extends Component {
           floatingLabelText="Notes"
           multiLine={true}
           rows={4}
-          style={{ width: '100%' }}
+          style={{width: '100%'}}
         />
         <div>
           <RaisedButton

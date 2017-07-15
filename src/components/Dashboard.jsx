@@ -37,6 +37,7 @@ export class Dashboard extends Component {
     } else {
       rows.push(
         <ListItem
+          key="no_meetings"
           primaryText="No meetings"
         />
       );
@@ -63,6 +64,7 @@ export class Dashboard extends Component {
     if (rows.length === 0) {
       rows.push(
         <ListItem
+          key="no_follows_up"
           primaryText="No items"
         />
       );
