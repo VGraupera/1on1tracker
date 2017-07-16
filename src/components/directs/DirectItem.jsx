@@ -4,7 +4,8 @@ import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import MeetingIcon from 'material-ui/svg-icons/communication/chat';
-import { grey400 } from 'material-ui/styles/colors';
+import { grey400, grey900 } from 'material-ui/styles/colors';
+import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
 
 import { SORT_WITHOUT_TEAM_NAME } from '../../constants/sort';
@@ -35,18 +36,12 @@ const DirectItem = (props) => {
   if (SORT_WITHOUT_TEAM_NAME === teamName) {
     teamName = '';
   }
-  let category = null;
+
+  let avatarColor = '#ffffff';
+  let avatarBgColor = grey400;
   if (props.direct.category) {
-    category = (
-      <div style={{
-        width: '12px',
-        height: '12px',
-        backgroundColor: props.direct.category,
-        marginLeft: '30%',
-        marginTop: '16%',
-      }}
-      />
-    );
+    avatarBgColor = props.direct.category;
+    avatarColor = tinycolor.mostReadable(props.direct.category, [grey900, '#ffffff']).toHexString();
   }
   return (
     <ListItem
@@ -55,10 +50,12 @@ const DirectItem = (props) => {
       containerElement={<Link to={`/directs/${props.id}`} />}
       leftAvatar={
         <div>
-          <Avatar>
+          <Avatar
+            color={avatarColor}
+            backgroundColor={avatarBgColor}
+          >
             {initials(props.direct.name)}
           </Avatar>
-          {category}
         </div>
       }
       rightIconButton={<IconButton

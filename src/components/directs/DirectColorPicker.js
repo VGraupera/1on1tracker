@@ -70,6 +70,7 @@ class DirectColorPicker extends Component {
    */
   handleClear = () => {
     this.setState({ color: '' });
+    this.props.input.onChange('');
   };
 
   /**
