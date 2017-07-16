@@ -30,6 +30,13 @@ class MeetingShow extends Component {
     this.selectFollowUps();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.props.find(nextProps.params.id);
+      this.props.followUpsEqualTo('meetingKey', nextProps.params.id);
+    }
+  }
+
   selectFollowUps() {
     this.props.followUpsEqualTo('meetingKey', this.props.params.id);
   }
@@ -38,7 +45,7 @@ class MeetingShow extends Component {
     const rows = [];
     if (this.props.followUps) {
       rows.push(
-        <Subheader>Followups from this Meeting</Subheader>
+        <Subheader key="followups_header" >Followups from this Meeting</Subheader>,
       );
 
       this.props.followUps.forEach((item, key) => {
