@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import {
@@ -6,10 +6,10 @@ import {
   TextField,
 } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import isMobilePhone from 'validator/lib/isMobilePhone';
 
 import TeamsDropDownField from '../teams/TeamsDropDownField';
+import DirectColorPicker from './DirectColorPicker';
 
 const isValidPhone = (phone) => {
   return isMobilePhone(phone.replace(/-/g, ''), 'en-US');
@@ -72,6 +72,12 @@ export default class DirectForm extends Component {
           style={{width: '100%'}}
         />
         <TeamsDropDownField location={this.props.location} teams={teams} />
+        <Field
+          name="category"
+          floatingLabelText="Category"
+          component={DirectColorPicker}
+          hintText="Category"
+        />
         <Field
           name="phone"
           component={TextField}
