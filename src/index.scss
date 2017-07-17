@@ -62,3 +62,41 @@ a {
 form.followUp {
 	margin-top: 1em;
 }
+
+/* Meeting slider right to left */
+.meetingSlideRightToLeft-enter {
+	transform: translate(100%);
+}
+
+.meetingSlideRightToLeft-enter.meetingSlideRightToLeft-enter-active {
+	transform: translate(0%);
+	transition: transform 300ms ease-in-out;
+}
+
+.meetingSlideRightToLeft-leave {
+	transform: translate(0%);
+}
+
+.meetingSlideRightToLeft-leave.meetingSlideRightToLeft-leave-active {
+	transform: translate(-100%);
+	transition: transform 300ms ease-in-out;
+}
+
+/* Meeting slider left to right*/
+.meetingSlideLeftToRight-enter {
+	transform: translate(0%);
+}
+
+.meetingSlideLeftToRight-enter.meetingSlideLeftToRight-enter-active {
+	transform: translate(100%);
+	transition: transform 300ms ease-in-out;
+}
+
+.meetingSlideLeftToRight-leave {
+	transform: translate(100%);
+}
+
+.meetingSlideRightToLeft-leave.meetingSlideRightToLeft-leave-active {
+	transform: translate(0%);
+	transition: transform 300ms ease-in-out;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
+import NavigationChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import { Link } from 'react-router';
 import { white } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
@@ -18,46 +19,56 @@ const propTypes = {
  */
 function MeetingNavigationIcons(props) {
   const { indexOfActive, meetings } = props;
-  if (meetings.length === 1) return null;
 
-  let prevIcon = null;
-  let nextIcon = null;
+  if (meetings.length === 1) {
+    return null;
+  }
+
+  const iconStyle = {
+    width: 36,
+    height: 36,
+    color: white,
+    opacity: 0.5,
+  };
+
+  let prevLink = { iconStyle };
+  let nextLink = { iconStyle };
 
   const prevIndex = indexOfActive - 1;
   const nextIndex = indexOfActive + 1;
 
   if (meetings[prevIndex]) {
-    prevIcon = (
-      <IconButton
-        containerElement={<Link to={`/meetings/${meetings[prevIndex].id}`} />}
-      >
-        <FontIcon
-          color={white}
-          className="material-icons"
-        >
-          chevron_left
-        </FontIcon>
-      </IconButton>
-    );
+    prevLink = {
+      ...prevLink,
+      ...{
+        containerElement: <Link to={`/meetings/${meetings[prevIndex].id}`} />,
+        iconStyle: { ...prevLink.iconStyle, ...{ opacity: 1 } },
+      },
+    };
   }
   if (meetings[nextIndex]) {
-    nextIcon = (
-      <IconButton
-        containerElement={<Link to={`/meetings/${meetings[nextIndex].id}`} />}
-      >
-        <FontIcon
-          color={white}
-          className="material-icons"
-        >
-          chevron_right
-        </FontIcon>
-      </IconButton>
-    );
+    nextLink = {
+      ...nextLink,
+      ...{
+        containerElement: <Link to={`/meetings/${meetings[nextIndex].id}`} />,
+        iconStyle: { ...prevLink.iconStyle, ...{ opacity: 1 } },
+      },
+    };
   }
   return (
     <div>
-      {prevIcon}
-      {nextIcon}
+      <IconButton
+        {...nextLink}
+        disableTouchRipple={true}
+      >
+        <NavigationChevronLeft />
+      </IconButton>
+      <IconButton
+        {...prevLink}
+        disableTouchRipple={true}
+      >
+        <NavigationChevronRight />
+      </IconButton>
     </div>
   );
 }
