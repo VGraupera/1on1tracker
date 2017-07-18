@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <Header onLeftIconButtonTouchTap={this.handleMenuTap} />
+          <Header key={this.props.location.pathname} onLeftIconButtonTouchTap={this.handleMenuTap} />
           <LeftDrawer
             open={this.state.open}
             onRequestChange={open => this.setState({ open })}

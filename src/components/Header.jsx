@@ -19,7 +19,7 @@ class Header extends Component {
         title={this.props.header.text}
         onTitleTouchTap={this.returnHome}
         onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
-        iconElementRight={<HeaderRightIcon location={this.context.router.location} />}
+        iconElementRight={<HeaderRightIcon pathname={this.context.router.location.pathname} router={this.context.router} />}
       />
     );
   }

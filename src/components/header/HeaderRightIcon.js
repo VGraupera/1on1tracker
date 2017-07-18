@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import DirectSortContainer from './DirectSortBtnContainer';
 import TeamBackBtn from './TeamBackBtn';
+import MeetingNavigationIconsContainers from './MeetingNavigationIconsContainers';
 
 /**
  * @description PropTypes for HeaderRightIcon
  * @type {{location: (*)}}
  */
 const propType = {
-  location: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
 /**
@@ -24,18 +25,26 @@ class HeaderRightIcon extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    const { pathname } = this.props.location;
+    const { location } = this.props.router;
+    const { pathname } = location;
     let icon;
+
     switch (pathname) {
       case '/directs':
         icon = <DirectSortContainer />;
         break;
       case '/teams':
-        icon = <TeamBackBtn location={this.props.location} />;
+        icon = <TeamBackBtn location={location} />;
+        break;
+      case (((route) => {
+        return `/meetings/${route.params.id}`;
+      })(this.props.router)):
+        icon = <MeetingNavigationIconsContainers id={this.props.router.params.id} />;
         break;
       default:
         icon = null;
     }
+
     return icon;
   }
 }
