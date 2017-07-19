@@ -10,7 +10,7 @@ import * as headerActions from '../../actions/header';
 import { getDirectsArrayWithTeam } from '../../selectors/direct';
 import DirectItem from './DirectItem';
 import DirectItemDivider from './DirectItemDivider';
-import { SORT_BY_NAME } from '../../constants/sort';
+import { SORT_BY_NAME } from '../../constants/general';
 
 class DirectList extends Component {
 
@@ -56,13 +56,13 @@ class DirectList extends Component {
       <div className="container directs">
         <List>
           {directList}
-          <FloatingActionButton
-            style={buttonStyle}
-            containerElement={<Link to="/directs/new" />}
-          >
-            <ContentAdd />
-          </FloatingActionButton>
         </List>
+        <FloatingActionButton
+          style={buttonStyle}
+          containerElement={<Link to="/directs/new" />}
+        >
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }

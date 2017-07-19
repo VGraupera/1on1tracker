@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
-import directActions from '../../actions/directs';
-import followUpActions from '../../actions/followUps';
-import meetingActions from '../../actions/meetings';
+import directActions,{ archivedDirects } from '../../actions/directs';
+import followUpActions,{ archivedFollowUps } from '../../actions/followUps';
+import meetingActions,{ archivedMeetings } from '../../actions/meetings';
 import * as headerActions from '../../actions/header';
 import { getTeamsArray } from '../../selectors/teams';
 
@@ -39,6 +39,15 @@ class DirectEdit extends Component {
     });
   }
 
+  onArchived = ()=>{
+    this.props.onMoveTo(this.props.params.id,archivedDirects)
+      .then(()=>{
+        this.props.meetingsMoveEqualTo('directKey',this.props.params.id,archivedMeetings);
+        this.props.followUpsMoveEqualTo('directKey', this.props.params.id,archivedFollowUps);
+      });
+    browserHistory.push('/directs');
+  }
+
   render() {
     return (
       <div className="container">
@@ -51,6 +60,12 @@ class DirectEdit extends Component {
           secondary={true}
           style={{ marginTop: 20 }}
           onTouchTap={this.onDelete}
+        />
+        <RaisedButton
+          label="Archive"
+          secondary={true}
+          style={{ marginTop: 20 }}
+          onTouchTap={this.onArchived}
         />
       </div>
     );
@@ -83,6 +98,9 @@ const mapDispatchToProps = {
   setText: headerActions.setText,
   followUpsRemoveEqualTo: followUpActions.removeEqualTo,
   meetingsRemoveEqualTo: meetingActions.removeEqualTo,
+  onMoveTo: directActions.moveTo,
+  followUpsMoveEqualTo: followUpActions.moveEqualTo,
+  meetingsMoveEqualTo: meetingActions.moveEqualTo,
 };
 
 export default connect(
