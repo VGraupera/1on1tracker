@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 
 import * as headerActions from '../actions/header';
 
+/**
+ * @description High Order Component for set Header
+ * @param {XML} WrappedComponent
+ * @param text
+ * @return {XML} return react component
+ * @constructor
+ */
 const SetTextHOC = (WrappedComponent, text) => {
   /**
    * @description propTypes for SetText component

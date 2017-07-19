@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+/**
+ * @description PropTypes for Account component
+ * @type {{displayName: (*), email: (*), photoURL: (*)}}
+ */
+const propTypes = {
+  displayName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  photoURL: PropTypes.string.isRequired,
+};
+
 class Account extends Component {
-
-
   render() {
     return (
       <div className="container account">
@@ -16,6 +24,7 @@ class Account extends Component {
   }
 }
 
+Account.propTypes = propTypes;
 
 const mapStateToProps = (state) => {
   return {

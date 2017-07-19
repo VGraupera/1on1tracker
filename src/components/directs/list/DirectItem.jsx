@@ -8,7 +8,7 @@ import { grey400, grey900 } from 'material-ui/styles/colors';
 import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
 
-import { SORT_WITHOUT_TEAM_NAME } from '../../constants/general';
+import { SORT_WITHOUT_TEAM_NAME } from '../../../constants/general';
 
 
 const initials = (name) => {

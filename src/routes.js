@@ -9,7 +9,7 @@ import MeetingList from './components/meetings/MeetingList';
 import MeetingNew from './components/meetings/MeetingNew';
 import MeetingEdit from './components/meetings/MeetingEdit';
 import DirectShow from './components/directs/DirectShow';
-import DirectList from './components/directs/DirectList';
+import DirectHome from './components/directs/DirectHome';
 import DirectNew from './components/directs/DirectNew';
 import DirectEdit from './components/directs/DirectEdit';
 import FollowUpShow from './components/followUps/FollowUpShow';
@@ -45,7 +45,8 @@ export default function Routes(store) {
       <Route path="terms" component={Terms} />
       <Route path="privacy" component={Privacy} />
       <Route path="directs" onEnter={checkAuth}>
-        <IndexRoute component={SetTextHOC(DirectList, 'Directs')} />
+        <IndexRoute component={SetTextHOC(DirectHome, 'Directs')} />
+        <Route path="archived" component={SetTextHOC(DirectHome, 'Archived Directs')} />
         <Route path="new" component={SetTextHOC(DirectNew, 'New Direct')} />
         <Route path=":id/edit" component={SetTextHOC(DirectEdit, 'Edit Direct')} />
         <Route path=":id/meetings/new" component={SetTextHOC(MeetingNew, 'New Meeting')} />
