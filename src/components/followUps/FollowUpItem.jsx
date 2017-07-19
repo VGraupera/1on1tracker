@@ -6,6 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import { browserHistory } from 'react-router';
 
 import followUpActions from '../../actions/followUps';
+import {getDirectsArray} from '../../selectors/direct';
 
 class FollowUpItem extends Component {
   static summary(followUp) {
@@ -33,7 +34,7 @@ class FollowUpItem extends Component {
     const { directs, followUp } = this.props;
 
     if (directs && followUp) {
-      const direct = directs.get(followUp.directKey);
+      const direct = directs.find((direct)=>direct.id === followUp.directKey);
 
       return (<ListItem
         leftCheckbox={
@@ -61,7 +62,7 @@ FollowUpItem.contextTypes = {
 };
 
 FollowUpItem.propTypes = {
-  directs: PropTypes.object.isRequired,
+  directs: PropTypes.array.isRequired,
   followUp: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   primaryText: PropTypes.string,
@@ -70,7 +71,7 @@ FollowUpItem.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    directs: state.directs.list,
+    directs: getDirectsArray(state),
   };
 };
 
