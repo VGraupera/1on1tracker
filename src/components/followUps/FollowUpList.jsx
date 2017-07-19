@@ -11,7 +11,6 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import FollowUpItem from './FollowUpItem';
-import * as HeaderActions from '../../actions/header';
 
 class FollowUpList extends Component {
   constructor() {
@@ -20,10 +19,6 @@ class FollowUpList extends Component {
     this.state = {
       showCompleted: false,
     };
-  }
-
-  componentDidMount() {
-    this.props.setText('Follow Ups');
   }
 
   toggleCompleted() {
@@ -95,7 +90,6 @@ class FollowUpList extends Component {
 }
 
 FollowUpList.propTypes = {
-  setText: PropTypes.func.isRequired,
   followUps: PropTypes.object,
 };
 
@@ -105,4 +99,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setText: HeaderActions.setText })(FollowUpList);
+export default connect(mapStateToProps)(FollowUpList);

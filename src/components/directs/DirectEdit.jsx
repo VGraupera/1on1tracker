@@ -8,7 +8,6 @@ import DirectForm, { validate } from './DirectForm';
 import directActions,{ archivedDirects } from '../../actions/directs';
 import followUpActions,{ archivedFollowUps } from '../../actions/followUps';
 import meetingActions,{ archivedMeetings } from '../../actions/meetings';
-import * as headerActions from '../../actions/header';
 import { getTeamsArray } from '../../selectors/teams';
 
 class DirectEdit extends Component {
@@ -16,10 +15,6 @@ class DirectEdit extends Component {
     super();
     this.onDelete = this.onDelete.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.setText('Edit Direct');
   }
 
   onDelete(event) {
@@ -75,7 +70,6 @@ class DirectEdit extends Component {
 DirectEdit.propTypes = {
   update: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
 };
 
@@ -95,7 +89,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   update: directActions.update,
   remove: directActions.remove,
-  setText: headerActions.setText,
   followUpsRemoveEqualTo: followUpActions.removeEqualTo,
   meetingsRemoveEqualTo: meetingActions.removeEqualTo,
   onMoveTo: directActions.moveTo,

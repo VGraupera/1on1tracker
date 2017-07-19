@@ -5,7 +5,6 @@ import { browserHistory } from 'react-router';
 
 import FollowUpForm from './FollowUpForm';
 import followUpActions from '../../actions/followUps';
-import * as headerActions from '../../actions/header';
 
 class FollowUpNew extends Component {
   constructor() {
@@ -21,10 +20,6 @@ class FollowUpNew extends Component {
       this.props.initialValues.meetingKey = this.props.params.meetingId;
     }
     this.props.reset();
-  }
-
-  componentDidMount() {
-    this.props.setText('New Follow Up');
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -53,7 +48,6 @@ class FollowUpNew extends Component {
 
 FollowUpNew.propTypes = {
   create: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
 };
 
@@ -73,5 +67,4 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps,
   { create: followUpActions.create,
     reset: followUpActions.resetActive,
-    setText: headerActions.setText,
   })(FollowUpNew);

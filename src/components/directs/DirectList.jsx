@@ -6,17 +6,12 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import PropTypes from 'prop-types';
 
-import * as headerActions from '../../actions/header';
 import { getDirectsArrayWithTeam } from '../../selectors/direct';
 import DirectItem from './DirectItem';
 import DirectItemDivider from './DirectItemDivider';
 import { SORT_BY_NAME } from '../../constants/general';
 
 class DirectList extends Component {
-
-  componentDidMount() {
-    this.props.setText('Directs');
-  }
 
   renderDirects() {
     const { directs, sortBy } = this.props;
@@ -69,16 +64,10 @@ class DirectList extends Component {
 }
 
 DirectList.propTypes = {
-  setText: PropTypes.func.isRequired,
   directs: PropTypes.any.isRequired,
   sortBy: PropTypes.string.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  setText: (text) => {
-    dispatch(headerActions.setText(text));
-  },
-});
 const mapStateToProps = (state) => {
   return {
     directs: getDirectsArrayWithTeam(state),
@@ -86,4 +75,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DirectList);
+export default connect(mapStateToProps)(DirectList);

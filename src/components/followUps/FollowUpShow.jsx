@@ -19,12 +19,10 @@ import Checkbox from 'material-ui/Checkbox';
 
 import followUpActions from '../../actions/followUps';
 import meetingActions from '../../actions/meetings';
-import * as headerActions from '../../actions/header';
 
 class FollowUpShow extends Component {
   componentDidMount() {
     this.props.find(this.props.params.id);
-    this.props.setText('Follow Up');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -118,7 +116,6 @@ class FollowUpShow extends Component {
 }
 
 FollowUpShow.propTypes = {
-  setText: PropTypes.func.isRequired,
   find: PropTypes.func.isRequired,
   findMeeting: PropTypes.func.isRequired,
   directs: PropTypes.object.isRequired,
@@ -145,9 +142,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     findMeeting: (id) => {
       dispatch(meetingActions.find(id));
-    },
-    setText: (s) => {
-      dispatch(headerActions.setText(s));
     },
     update: (key, value) => {
       dispatch(followUpActions.update(key, value));

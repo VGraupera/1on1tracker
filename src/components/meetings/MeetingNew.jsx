@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import MeetingForm from './MeetingForm';
 import meetingActions from '../../actions/meetings';
-import * as headerActions from '../../actions/header';
 
 class MeetingNew extends Component {
   constructor() {
@@ -17,10 +16,6 @@ class MeetingNew extends Component {
       this.props.initialValues.directKey = this.props.params.id;
     }
     this.props.reset();
-  }
-
-  componentDidMount() {
-    this.props.setText('New Meeting');
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -48,7 +43,6 @@ class MeetingNew extends Component {
 
 MeetingNew.propTypes = {
   create: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
 };
 
@@ -68,5 +62,4 @@ export default connect(
   mapStateToProps,
   { create: meetingActions.create,
     reset: meetingActions.resetActive,
-    setText: headerActions.setText,
   })(MeetingNew);

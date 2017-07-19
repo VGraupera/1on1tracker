@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as headerActions from '../actions/header';
 
 class Account extends Component {
-  componentDidMount() {
-    this.props.setText('My Account');
-  }
+
 
   render() {
     return (
@@ -19,9 +16,6 @@ class Account extends Component {
   }
 }
 
-Account.propTypes = {
-  setText: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => {
   return {
@@ -31,4 +25,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setText: headerActions.setText })(Account);
+export default connect(mapStateToProps)(Account);

@@ -24,12 +24,9 @@ import directActions from '../../actions/directs';
 import DirectMeetingList from './DirectMeetingList';
 import DirectFollowUpList from './DirectFollowUpList';
 
-import * as headerActions from '../../actions/header';
-
 class DirectShow extends Component {
   componentDidMount() {
     this.props.find(this.props.params.id);
-    this.props.setText('Direct');
   }
 
   render() {
@@ -95,7 +92,6 @@ class DirectShow extends Component {
 DirectShow.propTypes = {
   direct: PropTypes.object,
   find: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
   params: PropTypes.shape({
     id: PropTypes.string,
   }).isRequired,
@@ -111,6 +107,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { find: directActions.find,
-    setText: headerActions.setText,
-  })(DirectShow);
+  { find: directActions.find })(DirectShow);

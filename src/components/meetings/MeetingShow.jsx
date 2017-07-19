@@ -21,7 +21,6 @@ import FollowUpItem from '../followUps/FollowUpItem';
 import meetingActions from '../../actions/meetings';
 import followUpActions from '../../actions/followUps';
 
-import * as headerActions from '../../actions/header';
 import { getMeetingsInSameDirectAsActive } from '../../selectors/meetings';
 
 
@@ -36,8 +35,6 @@ class MeetingShow extends Component {
   };
 
   componentDidMount() {
-    this.props.setText('Meeting');
-
     this.props.find(this.props.params.id);
     this.selectFollowUps();
   }
@@ -146,7 +143,6 @@ class MeetingShow extends Component {
 }
 
 MeetingShow.propTypes = {
-  setText: PropTypes.func.isRequired,
   find: PropTypes.func.isRequired,
   directs: PropTypes.object.isRequired,
   meeting: PropTypes.object,
@@ -176,6 +172,5 @@ export default connect(
   {
     find: meetingActions.find,
     followUpsEqualTo: followUpActions.equalTo,
-    setText: headerActions.setText,
   },
 )(MeetingShow);

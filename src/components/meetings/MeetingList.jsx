@@ -7,12 +7,8 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import MeetingItem from './MeetingItem';
-import * as HeaderActions from '../../actions/header';
 
 class MeetingList extends Component {
-  componentDidMount() {
-    this.props.setText('Meetings');
-  }
 
   renderMeetings() {
     const rows = [];
@@ -65,7 +61,6 @@ class MeetingList extends Component {
 }
 
 MeetingList.propTypes = {
-  setText: PropTypes.func.isRequired,
   meetings: PropTypes.object.isRequired,
 };
 
@@ -75,4 +70,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setText: HeaderActions.setText })(MeetingList);
+export default connect(mapStateToProps)(MeetingList);
