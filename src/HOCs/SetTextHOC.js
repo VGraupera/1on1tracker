@@ -35,7 +35,7 @@ const SetTextHOC = (WrappedComponent, text) => {
      * @return {Object} JSX HTML Content
      */
     render() {
-      const { setText, ...props } = this.props;
+      const { setText,dispatch, ...props } = this.props;
       return <WrappedComponent {...props} />;
     }
   }

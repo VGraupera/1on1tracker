@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
+import OnArchivedHOC from '../../HOCs/OnArchivedHOC';
+
 /**
  * @description Button Style
  * @type {Object}
@@ -32,4 +34,4 @@ function AddNewDirectBtn() {
   );
 }
 
-export default AddNewDirectBtn;
+export default OnArchivedHOC()(AddNewDirectBtn);

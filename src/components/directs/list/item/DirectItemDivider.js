@@ -3,7 +3,7 @@ import { ListItem } from 'material-ui/List';
 import PropTypes from 'prop-types';
 
 import DirectItem from './DirectItem';
-import { SORT_WITHOUT_TEAM_NAME } from '../../../constants/general';
+import { SORT_WITHOUT_TEAM_NAME } from '../../../../constants/general';
 
 /**
  * @description PropTypes for DirectItemDivider

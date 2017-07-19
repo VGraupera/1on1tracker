@@ -2,6 +2,7 @@ import React from 'react';
 
 import AddNewDirectBtn from './AddNewDirectBtn';
 import DirectListContainer from './list/DirectListContainer';
+import DirectArchivedListContainer from './list/DirectArchivedListContainer';
 import ArchivedDirectCount from './list/ArchivedDirectCount';
 
 /**
@@ -13,6 +14,7 @@ function DirectHome() {
   return (
     <div className="container directs">
       <DirectListContainer />
+      <DirectArchivedListContainer />
       <ArchivedDirectCount />
       <AddNewDirectBtn />
     </div>

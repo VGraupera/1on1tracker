@@ -4,6 +4,7 @@ import { List, ListItem } from 'material-ui/List';
 import { Link } from 'react-router';
 
 import { getArchivedArrayCount } from '../../../selectors/archivedDirects';
+import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
 
 /**
  * @function ArchivedDirectCount
@@ -16,7 +17,7 @@ function ArchivedDirectCount({ count }) {
     <List>
       <ListItem
         primaryText={`Archived ${count}`}
-        containerElement={<Link to="/directs/archived" />}
+        containerElement={<Link to={{pathname:'/directs/archived',state:{isArchived:true}}} />}
       />
     </List>
   );
@@ -26,6 +27,6 @@ const mapStateToProps = (state) => ({
   count: getArchivedArrayCount(state),
 });
 
-export default connect(mapStateToProps)(ArchivedDirectCount);
+export default OnArchivedHOC()(connect(mapStateToProps)(ArchivedDirectCount));
 
 

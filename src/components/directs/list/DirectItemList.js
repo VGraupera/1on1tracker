@@ -2,7 +2,7 @@ import React from 'react';
 import { List } from 'material-ui/List';
 import PropTypes from 'prop-types';
 
-import DirectItem from './DirectItem';
+import DirectItem from './item/DirectItem';
 
 const propTypes = {
   directs: PropTypes.array.isRequired,

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import { getDirectsArrayWithTeam } from '../../../selectors/direct';
 import DirectList from './DirectList';
+import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,4 +11,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(DirectList);
+export default OnArchivedHOC()(connect(mapStateToProps)(DirectList));

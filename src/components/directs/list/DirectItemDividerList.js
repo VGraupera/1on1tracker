@@ -2,7 +2,7 @@ import React from 'react';
 import { List } from 'material-ui/List';
 import PropTypes from 'prop-types';
 
-import DirectItemDivider from './DirectItemDivider';
+import DirectItemDivider from './item/DirectItemDivider';
 
 const propTypes = {
   directs: PropTypes.object.isRequired,
