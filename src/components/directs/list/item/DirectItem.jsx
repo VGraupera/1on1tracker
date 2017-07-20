@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 import { SORT_WITHOUT_TEAM_NAME } from '../../../../constants/general';
 import DirectItemNewMeetingIcon from './DirectItemNewMeetingIcon';
+import ArchivedLinkGenerator from '../../ArchivedLinkGenerator';
 
 
 const initials = (name) => {
@@ -43,7 +44,7 @@ const DirectItem = (props) => {
     <ListItem
       primaryText={props.direct.name}
       secondaryText={<span><p>{props.direct.phone}</p><p>{teamName}</p></span>}
-      containerElement={<Link to={`/directs/${props.id}`} />}
+      containerElement={<ArchivedLinkGenerator to={`/directs/${props.id}`} />}
       leftAvatar={
         <div>
           <Avatar

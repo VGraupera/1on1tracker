@@ -32,3 +32,10 @@ export const ARCHIVED_ACTION_PREFIX = 'ARCHIVED_';
  * @default
  */
 export const ARCHIVED_PATH_PREFIX = 'archived/';
+
+/**
+ * @description Archived url suffix
+ * @const {string}
+ * @default
+ */
+export const ARCHIVED_URL_SUFFIX = 'archived';

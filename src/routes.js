@@ -30,6 +30,7 @@ import Privacy from './components/Privacy';
 import NotFound from './components/404';
 
 import SetTextHOC from './HOCs/SetTextHOC';
+import { ARCHIVED_URL_SUFFIX } from './constants/general';
 
 export default function Routes(store) {
   const checkAuth = (nextState, replace) => {
@@ -46,7 +47,7 @@ export default function Routes(store) {
       <Route path="privacy" component={Privacy} />
       <Route path="directs" onEnter={checkAuth}>
         <IndexRoute component={SetTextHOC(DirectHome, 'Directs')} />
-        <Route path="archived" component={SetTextHOC(DirectHome, 'Archived Directs')} />
+        <Route path={ARCHIVED_URL_SUFFIX} component={SetTextHOC(DirectHome, 'Archived Directs')} />
         <Route path="new" component={SetTextHOC(DirectNew, 'New Direct')} />
         <Route path=":id/edit" component={SetTextHOC(DirectEdit, 'Edit Direct')} />
         <Route path=":id/meetings/new" component={SetTextHOC(MeetingNew, 'New Meeting')} />
