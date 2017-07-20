@@ -1,11 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { getIsArchived } from '../selectors/routing';
 
 /**
+ * @description proptypes for ShowHideOnArchived
+ * @type {{isArchived: (*)}}
+ */
+const propTypes = {
+  isArchived: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+};
+
+/**
+ * @description Default props for ShowHideOnArchived
+ * @type {{isArchived: boolean}}
+ */
+const defaultProps = {
+  isArchived: false,
+};
+
+/**
  * @description Show/Hide Wrapped component
- * @param {Boolean} hide is true it will hide Wrapped Component when isArchived true
+ * @param {Boolean} hide if true it will hide Wrapped Component when isArchived true
  */
 const OnArchivedHOC = (hide = true) => (WrappedComponent) => {
   /**
@@ -25,6 +43,9 @@ const OnArchivedHOC = (hide = true) => (WrappedComponent) => {
 
     return <WrappedComponent {...restProps} />;
   }
+
+  ShowHideOnArchived.propTypes = propTypes;
+  ShowHideOnArchived.defaultProps = defaultProps;
 
   const mapStateToProps = state => ({
     isArchived: getIsArchived(state),

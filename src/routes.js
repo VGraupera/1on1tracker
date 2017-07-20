@@ -54,6 +54,7 @@ export default function Routes(store) {
         <Route path=":id/meetings/:meetingId/followUps/new" component={SetTextHOC(FollowUpNew, 'New Follow Up')} />
         <Route path=":id/followUps/new" component={SetTextHOC(FollowUpNew, 'New Follow Up')} />
         <Route path=":id" component={SetTextHOC(DirectShow, 'Direct')} />
+        <Route path={`:id/${ARCHIVED_URL_SUFFIX}`} component={SetTextHOC(DirectShow, 'Archived Direct')} />
       </Route>
       <Route path="meetings" onEnter={checkAuth}>
         <IndexRoute component={SetTextHOC(MeetingList, 'Meetings')} />

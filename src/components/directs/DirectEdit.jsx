@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
-import directActions,{ archivedDirects } from '../../actions/directs';
-import followUpActions,{ archivedFollowUps } from '../../actions/followUps';
-import meetingActions,{ archivedMeetings } from '../../actions/meetings';
+import directActions, { archivedDirects } from '../../actions/directs';
+import followUpActions, { archivedFollowUps } from '../../actions/followUps';
+import meetingActions, { archivedMeetings } from '../../actions/meetings';
 import { getTeamsArray } from '../../selectors/teams';
 
 class DirectEdit extends Component {
@@ -19,7 +19,7 @@ class DirectEdit extends Component {
 
   onDelete(event) {
     event.preventDefault(); // Fix double touchtap bug
-    if(window.confirm('Delete the direct?')) {
+    if (window.confirm('Delete the direct?')) {
       browserHistory.push('/directs');
       this.props.remove(this.props.params.id).then(() => {
         this.props.followUpsRemoveEqualTo('directKey', this.props.params.id);
@@ -34,13 +34,15 @@ class DirectEdit extends Component {
     });
   }
 
-  onArchived = ()=>{
-    this.props.onMoveTo(this.props.params.id,archivedDirects)
-      .then(()=>{
-        this.props.meetingsMoveEqualTo('directKey',this.props.params.id,archivedMeetings);
-        this.props.followUpsMoveEqualTo('directKey', this.props.params.id,archivedFollowUps);
-      });
-    browserHistory.push('/directs');
+  onArchived = () => {
+    if (window.confirm('Archive the direct?')) {
+      this.props.onMoveTo(this.props.params.id, archivedDirects)
+        .then(() => {
+          this.props.meetingsMoveEqualTo('directKey', this.props.params.id, archivedMeetings);
+          this.props.followUpsMoveEqualTo('directKey', this.props.params.id, archivedFollowUps);
+        });
+      browserHistory.push('/directs');
+    }
   }
 
   render() {

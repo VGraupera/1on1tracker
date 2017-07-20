@@ -109,7 +109,6 @@ export class FirebaseApi {
   }
 
   removeEqualTo = (key, value) => {
-    console.log(`key ${key} val ${value}`);
     return (dispatch, getState) => {
       this._baseRef(getState)
         .orderByChild(key)
@@ -168,14 +167,16 @@ export class FirebaseApi {
   moveTo = (key, newRef) => {
     return (dispatch, getState) => {
       return this._baseRef(getState)
-        .child(key)
-        .once('value', (snapshot) => {
-          return newRef._baseRef(getState)
+          .child(key)
+          .once('value', (snapshot) => {
+            newRef._baseRef(getState)
               .child(key)
-              .set(snapshot.val()).then(() => {
-                dispatch(this.remove(key));
+              .update(snapshot.val()).then((err) => {
+                if (!err) {
+                  dispatch(this.remove(key));
+                }
               });
-        });
+          });
     };
   }
   moveEqualTo = (key, value, newRef) => {
@@ -185,9 +186,11 @@ export class FirebaseApi {
         .equalTo(value)
         .once('value', (snapshots) => {
           newRef._baseRef(getState)
-            .set(snapshots.val())
+            .update(snapshots.val())
             .then(() => {
-              dispatch(this.removeEqualTo(key, value));
+              snapshots.forEach((itemSnapshot) => {
+                itemSnapshot.ref.remove();
+              });
             });
         });
     };

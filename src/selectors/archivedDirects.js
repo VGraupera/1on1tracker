@@ -39,7 +39,7 @@ export const getArchivedArrayCount = createSelector(
   );
 
 /**
- * @description return sorted array of directs with teamName
+ * @description return array of archived directs with teamName
  * @return {Array}
  */
 export const getArchivedDirectsArrayWithTeam = createSelector(
