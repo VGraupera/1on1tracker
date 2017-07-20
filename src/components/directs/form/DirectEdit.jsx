@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import DirectForm, { validate } from './DirectForm';
-import directActions, { archivedDirects } from '../../actions/directs';
-import followUpActions, { archivedFollowUps } from '../../actions/followUps';
-import meetingActions, { archivedMeetings } from '../../actions/meetings';
-import { getTeamsArray } from '../../selectors/teams';
+import directActions, { archivedDirects } from '../../../actions/directs';
+import followUpActions, { archivedFollowUps } from '../../../actions/followUps';
+import meetingActions, { archivedMeetings } from '../../../actions/meetings';
+import { getTeamsArray } from '../../../selectors/teams';
 
 class DirectEdit extends Component {
   constructor() {

@@ -5,8 +5,8 @@ import {
   List,
   ListItem,
 } from 'material-ui/List';
-import FollowUpItem from '../followUps/FollowUpItem';
-import followUpActions from '../../actions/followUps';
+import FollowUpItem from '../../../followUps/FollowUpItem';
+import followUpActions from '../../../../actions/followUps';
 
 class DirectFollowUpList extends Component {
   componentDidMount() {

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { getIsArchived } from '../../selectors/routing';
-import { ARCHIVED_URL_SUFFIX } from '../../constants/general';
+import { getIsArchived } from '../../../../selectors/routing';
+import { ARCHIVED_URL_SUFFIX } from '../../../../constants/general';
 
 /**
  * @function ArchivedLinkGenerator

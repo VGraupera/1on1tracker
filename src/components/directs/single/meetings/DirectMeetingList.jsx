@@ -7,6 +7,7 @@ import {
   ListItem,
 } from 'material-ui/List';
 
+import { getIsArchived } from '../../../../selectors/routing';
 class DirectMeetingList extends Component {
 
   constructor() {
@@ -36,7 +37,7 @@ class DirectMeetingList extends Component {
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
-            containerElement={<Link to={`/meetings/${key}`} />}
+            containerElement={!this.props.isArchived?<Link to={`/meetings/${key}`} />:<div />}
           />);
       });
     } else {
@@ -63,11 +64,18 @@ class DirectMeetingList extends Component {
 DirectMeetingList.propTypes = {
   directId: PropTypes.string.isRequired,
   meetings: PropTypes.object.isRequired,
+  isArchived: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
+  let meetings = 'meetings';
+  const isArchived = getIsArchived(state);
+  if (isArchived) {
+    meetings = 'archivedMeetings';
+  }
   return {
-    meetings: state.meetings.list,
+    meetings: state[meetings].list,
+    isArchived,
   };
 };
 

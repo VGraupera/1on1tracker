@@ -6,8 +6,8 @@ import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import DirectForm, { validate } from './DirectForm';
-import directActions from '../../actions/directs';
-import { getTeamsArray } from '../../selectors/teams';
+import directActions from '../../../actions/directs';
+import { getTeamsArray } from '../../../selectors/teams';
 
 class DirectNew extends Component {
   constructor() {

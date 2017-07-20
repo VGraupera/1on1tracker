@@ -41,7 +41,7 @@ const OnArchivedHOC = (hide = true) => (WrappedComponent) => {
       return null;
     }
 
-    return <WrappedComponent {...restProps} />;
+    return <WrappedComponent {...restProps} {...isArchived } />;
   }
 
   ShowHideOnArchived.propTypes = propTypes;

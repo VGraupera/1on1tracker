@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddNewDirectBtn from './AddNewDirectBtn';
+import AddNewDirectBtn from './list/AddNewDirectBtn';
 import DirectListContainer from './list/DirectListContainer';
 import DirectArchivedListContainer from './list/DirectArchivedListContainer';
 import ArchivedDirectCount from './list/ArchivedDirectCount';

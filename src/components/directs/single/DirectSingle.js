@@ -13,8 +13,8 @@ import {
 
 import DirectSingleActions from './DirectSingleActions';
 import UnarchiveBtn from './UnarchiveBtn';
-import DirectMeetingList from '../DirectMeetingList';
-import DirectFollowUpList from '../DirectFollowUpList';
+import DirectMeetingList from './meetings/DirectMeetingList';
+import DirectFollowUpList from './follow-up/DirectFollowUpList';
 
 class DirectSingle extends Component {
   componentDidMount() {

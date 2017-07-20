@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import DirectSingleContainer from './single/DirectSingleContainer';
-import DirectArchivedSingleContainer from './single/DirectArchivedSingleContainer';
+import DirectSingleContainer from './DirectSingleContainer';
+import DirectArchivedSingleContainer from './DirectArchivedSingleContainer';
 
 /**
  * @description propTypes for DirectShow

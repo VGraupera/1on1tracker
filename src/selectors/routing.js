@@ -11,5 +11,5 @@ const getRouting = state => state.routing.locationBeforeTransitions;
  */
 export const getIsArchived = createSelector(getRouting, (routing) => {
   const { state } = routing;
-  return state && state.isArchived;
+  return (state && state.isArchived) || false;
 });
