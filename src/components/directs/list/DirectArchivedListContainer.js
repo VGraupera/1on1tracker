@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
-import { getArchivedArray } from '../../../selectors/archivedDirects';
+import { getArchivedDirectsArrayWithTeam } from '../../../selectors/archivedDirects';
 import DirectList from './DirectList';
 
 const mapStateToProps = state => ({
-  directs: getArchivedArray(state),
+  directs: getArchivedDirectsArrayWithTeam(state),
   sortBy: state.archivedDirects.sortBy,
 });
 

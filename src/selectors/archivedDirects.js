@@ -1,5 +1,8 @@
 import { createSelector } from 'reselect';
 
+import { getTeamsArray } from './teams';
+import { SORT_WITHOUT_TEAM_NAME } from '../constants/general';
+
 /**
  * @description Return directs from state
  * @param {Object} state app state
@@ -10,6 +13,8 @@ const getArchivedDirect = (state) => {
   }
   return state.archivedDirects.list;
 };
+
+const getTeams = state => getTeamsArray(state);
 
 /**
  * @description selector for directs array
@@ -33,3 +38,22 @@ export const getArchivedArrayCount = createSelector(
   arr => arr.length,
   );
 
+/**
+ * @description return sorted array of directs with teamName
+ * @return {Array}
+ */
+export const getArchivedDirectsArrayWithTeam = createSelector(
+  [getArchivedArray, getTeams],
+  (directs, teams) => {
+    return directs.map((direct) => {
+      let teamName = SORT_WITHOUT_TEAM_NAME;
+      if (direct.team) {
+        const teamDirect = teams.find(team => team.id === direct.team);
+        if (typeof teamDirect !== 'undefined') {
+          teamName = teamDirect.name;
+        }
+      }
+      return { ...direct, ...{ teamName } };
+    });
+
+  });
