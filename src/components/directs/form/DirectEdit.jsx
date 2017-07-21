@@ -4,6 +4,8 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
+import { teal400, white } from 'material-ui/styles/colors';
+
 import DirectForm, { validate } from './DirectForm';
 import directActions, { archivedDirects } from '../../../actions/directs';
 import followUpActions, { archivedFollowUps } from '../../../actions/followUps';
@@ -55,14 +57,15 @@ class DirectEdit extends Component {
         <RaisedButton
           label="Delete"
           secondary={true}
-          style={{ marginTop: 20 }}
+          style={{marginTop: 20}}
           onTouchTap={this.onDelete}
         />
         <RaisedButton
           label="Archive"
-          secondary={true}
-          style={{ marginTop: 20 }}
+          style={{marginTop: 20,marginLeft:10}}
           onTouchTap={this.onArchived}
+          backgroundColor={teal400}
+          labelColor={white}
         />
       </div>
     );

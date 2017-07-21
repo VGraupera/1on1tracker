@@ -185,13 +185,15 @@ export class FirebaseApi {
         .orderByChild(key)
         .equalTo(value)
         .once('value', (snapshots) => {
-          newRef._baseRef(getState)
-            .update(snapshots.val())
-            .then(() => {
-              snapshots.forEach((itemSnapshot) => {
-                itemSnapshot.ref.remove();
+          if (snapshots.val()) {
+            newRef._baseRef(getState)
+              .update(snapshots.val())
+              .then(() => {
+                snapshots.forEach((itemSnapshot) => {
+                  itemSnapshot.ref.remove();
+                });
               });
-            });
+          }
         });
     };
   }

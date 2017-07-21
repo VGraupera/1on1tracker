@@ -37,7 +37,8 @@ class DirectMeetingList extends Component {
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
-            containerElement={!this.props.isArchived?<Link to={`/meetings/${key}`} />:<div />}
+            containerElement={<Link to={`/meetings/${key}`} />}
+            disabled={this.props.isArchived}
           />);
       });
     } else {

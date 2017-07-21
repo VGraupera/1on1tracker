@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+import { white , teal400 } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
 import directAction, { archivedDirects as archivedDirectsAction } from '../../../actions/directs';
@@ -54,8 +55,9 @@ class UnarchiveBtn extends Component {
       <CardActions>
         <RaisedButton
           label="Unarchive"
-          secondary={true}
           onTouchTap={this.onUnArchived}
+          backgroundColor={teal400}
+          labelColor={white}
         />
       </CardActions>
     );
