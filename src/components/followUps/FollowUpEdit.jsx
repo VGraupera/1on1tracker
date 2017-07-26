@@ -7,7 +7,6 @@ import { withRouter, browserHistory } from 'react-router';
 import FollowUpForm from './FollowUpForm';
 
 import followUpActions from '../../actions/followUps';
-import * as headerActions from '../../actions/header';
 
 class FollowUpEdit extends Component {
   constructor() {
@@ -18,7 +17,6 @@ class FollowUpEdit extends Component {
   }
 
   componentDidMount() {
-    this.props.setText('Edit Follow Up');
     this.props.router.setRouteLeaveHook(
       this.props.route,
       this.warnIfUnsavedChanges,
@@ -80,7 +78,6 @@ class FollowUpEdit extends Component {
 FollowUpEdit.propTypes = {
   update: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   route: PropTypes.object.isRequired,
   dirty: PropTypes.bool.isRequired,
@@ -109,7 +106,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   update: followUpActions.update,
   remove: followUpActions.remove,
-  setText: headerActions.setText,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FollowUpEdit));

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import objNaturalSort from 'object-property-natural-sort';
 import groupArray from 'group-array';
 
-import { SORT_BY_TEAM_NAME, SORT_WITHOUT_TEAM_NAME } from '../constants/sort';
+import { SORT_BY_TEAM_NAME, SORT_WITHOUT_TEAM_NAME } from '../constants/general';
 import { getTeamsArray } from './teams';
 
 /**

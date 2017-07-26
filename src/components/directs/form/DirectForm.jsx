@@ -8,7 +8,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 
-import TeamsDropDownField from '../teams/TeamsDropDownField';
+import TeamsDropDownField from '../../teams/TeamsDropDownField';
 import DirectColorPicker from './DirectColorPicker';
 
 const isValidPhone = (phone) => {

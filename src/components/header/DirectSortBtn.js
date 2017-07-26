@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 import { white } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
-import {SORT_BY_NAME, SORT_BY_TEAM_NAME} from '../../constants/sort';
+import {SORT_BY_NAME, SORT_BY_TEAM_NAME} from '../../constants/general';
 
 /**
  * @description PropTypes for DirectSort

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as headerActions from '../actions/header';
+
+/**
+ * @description PropTypes for Account component
+ * @type {{displayName: (*), email: (*), photoURL: (*)}}
+ */
+const propTypes = {
+  displayName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  photoURL: PropTypes.string.isRequired,
+};
 
 class Account extends Component {
-  componentDidMount() {
-    this.props.setText('My Account');
-  }
-
   render() {
     return (
       <div className="container account">
@@ -19,9 +24,7 @@ class Account extends Component {
   }
 }
 
-Account.propTypes = {
-  setText: PropTypes.func.isRequired,
-};
+Account.propTypes = propTypes;
 
 const mapStateToProps = (state) => {
   return {
@@ -31,4 +34,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setText: headerActions.setText })(Account);
+export default connect(mapStateToProps)(Account);

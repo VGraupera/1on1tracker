@@ -8,10 +8,10 @@ import MeetingShow from './components/meetings/MeetingShow';
 import MeetingList from './components/meetings/MeetingList';
 import MeetingNew from './components/meetings/MeetingNew';
 import MeetingEdit from './components/meetings/MeetingEdit';
-import DirectShow from './components/directs/DirectShow';
-import DirectList from './components/directs/DirectList';
-import DirectNew from './components/directs/DirectNew';
-import DirectEdit from './components/directs/DirectEdit';
+import DirectShow from './components/directs/single/DirectShow';
+import DirectHome from './components/directs/DirectHome';
+import DirectNew from './components/directs/form/DirectNew';
+import DirectEdit from './components/directs/form/DirectEdit';
 import FollowUpShow from './components/followUps/FollowUpShow';
 import FollowUpList from './components/followUps/FollowUpList';
 import FollowUpNew from './components/followUps/FollowUpNew';
@@ -29,6 +29,9 @@ import Privacy from './components/Privacy';
 
 import NotFound from './components/404';
 
+import SetTextHOC from './HOCs/SetTextHOC';
+import { ARCHIVED_URL_SUFFIX } from './constants/general';
+
 export default function Routes(store) {
   const checkAuth = (nextState, replace) => {
     store.dispatch(requireAuth(nextState, replace));
@@ -36,37 +39,39 @@ export default function Routes(store) {
 
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="about" component={About} />
-      <Route path="account" component={Account} />
-      <Route path="dashboard" component={Dashboard} />
+      <IndexRoute component={SetTextHOC(Home, '1on1 Tracker')} />
+      <Route path="about" component={SetTextHOC(About, 'About')} />
+      <Route path="account" component={SetTextHOC(Account, 'My Account')} />
+      <Route path="dashboard" component={SetTextHOC(Dashboard, '1on1 Tracker')} />
       <Route path="terms" component={Terms} />
       <Route path="privacy" component={Privacy} />
       <Route path="directs" onEnter={checkAuth}>
-        <IndexRoute component={DirectList} />
-        <Route path="new" component={DirectNew} />
-        <Route path=":id/edit" component={DirectEdit} />
-        <Route path=":id/meetings/new" component={MeetingNew} />
-        <Route path=":id/meetings/:meetingId/followUps/new" component={FollowUpNew} />
-        <Route path=":id/followUps/new" component={FollowUpNew} />
-        <Route path=":id" component={DirectShow} />
+        <IndexRoute component={SetTextHOC(DirectHome, 'Directs')} />
+        <Route path={ARCHIVED_URL_SUFFIX} component={SetTextHOC(DirectHome, 'Archived Directs')} />
+        <Route path="new" component={SetTextHOC(DirectNew, 'New Direct')} />
+        <Route path=":id/edit" component={SetTextHOC(DirectEdit, 'Edit Direct')} />
+        <Route path=":id/meetings/new" component={SetTextHOC(MeetingNew, 'New Meeting')} />
+        <Route path=":id/meetings/:meetingId/followUps/new" component={SetTextHOC(FollowUpNew, 'New Follow Up')} />
+        <Route path=":id/followUps/new" component={SetTextHOC(FollowUpNew, 'New Follow Up')} />
+        <Route path=":id" component={SetTextHOC(DirectShow, 'Direct')} />
+        <Route path={`:id/${ARCHIVED_URL_SUFFIX}`} component={SetTextHOC(DirectShow, 'Archived Direct')} />
       </Route>
       <Route path="meetings" onEnter={checkAuth}>
-        <IndexRoute component={MeetingList} />
+        <IndexRoute component={SetTextHOC(MeetingList, 'Meetings')} />
         <Route path="new" component={MeetingNew} />
-        <Route path=":id/edit" component={MeetingEdit} />
-        <Route path=":id" component={MeetingShow} />
+        <Route path=":id/edit" component={SetTextHOC(MeetingEdit, 'Edit Meeting')} />
+        <Route path=":id" component={SetTextHOC(MeetingShow, 'Meeting')} />
       </Route>
       <Route path="followUps" onEnter={checkAuth}>
-        <IndexRoute component={FollowUpList} />
-        <Route path="new" component={FollowUpNew} />
-        <Route path=":id/edit" component={FollowUpEdit} />
-        <Route path=":id" component={FollowUpShow} />
+        <IndexRoute component={SetTextHOC(FollowUpList, 'Follow Ups')} />
+        <Route path="new" component={SetTextHOC(FollowUpNew, 'New Follow Up')} />
+        <Route path=":id/edit" component={SetTextHOC(FollowUpEdit, 'Edit Follow Up')} />
+        <Route path=":id" component={SetTextHOC(FollowUpShow, 'Follow Up')} />
       </Route>
       <Route path="teams" onEnter={checkAuth}>
-        <IndexRoute components={TeamContainer} />
-        <Route path="new" component={TeamFormContainer} />
-        <Route path="edit/:id" component={TeamFormContainer} />
+        <IndexRoute components={SetTextHOC(TeamContainer, 'Teams')} />
+        <Route path="new" component={SetTextHOC(TeamFormContainer, 'New Team')} />
+        <Route path="edit/:id" component={SetTextHOC(TeamFormContainer, 'Edit Team')} />
       </Route>
       <Route path="*" component={NotFound} />
     </Route>
