@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import Footer from './Footer';
 
-import * as headerActions from '../actions/header';
 import { openAuth } from '../actions/auth';
 
 import heroImage from '../images/Cover.jpg';
@@ -66,9 +65,6 @@ const style = {
 };
 
 export class Home extends Component {
-  componentDidMount() {
-    this.props.setText('1on1 Tracker');
-  }
 
   render() {
     return (
@@ -128,13 +124,11 @@ export class Home extends Component {
 }
 
 Home.propTypes = {
-  setText: PropTypes.func.isRequired,
   openAuth: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
-  openAuth,
-  setText: headerActions.setText,
+  openAuth
 };
 
 export default connect(null, mapDispatchToProps)(Home);

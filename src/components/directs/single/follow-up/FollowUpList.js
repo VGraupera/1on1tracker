@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import {
   List,
   ListItem,
 } from 'material-ui/List';
-import FollowUpItem from '../followUps/FollowUpItem';
-import followUpActions from '../../actions/followUps';
+import FollowUpItem from '../../../followUps/FollowUpItem';
 
-class DirectFollowUpList extends Component {
+class FollowUpList extends Component {
   componentDidMount() {
     this.selectFollowUps();
   }
@@ -51,20 +49,10 @@ class DirectFollowUpList extends Component {
   }
 }
 
-DirectFollowUpList.propTypes = {
+
+FollowUpList.propTypes = {
   directId: PropTypes.string.isRequired,
   followUps: PropTypes.object,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    followUps: state.followUps.matchingList,
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {
-    followUpsEqualTo: followUpActions.equalTo,
-  },
-)(DirectFollowUpList);
+export default FollowUpList;

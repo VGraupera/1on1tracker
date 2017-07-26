@@ -20,7 +20,6 @@ const propTypes = {
     createdAt: PropTypes.string,
     updatedAt: PropTypes.string,
   })).isRequired,
-  setText: PropTypes.func.isRequired,
   handleOnClickDelete: PropTypes.func.isRequired,
 };
 
@@ -39,13 +38,6 @@ class TeamList extends Component {
     dialogOpen: false,
     teamForDelete: null,
   };
-
-  /**
-   * @description componentDidMount for TeamList. Sets header text
-   */
-  componentDidMount() {
-    this.props.setText('Teams');
-  }
 
   /**
    * @description Handle onClick team item

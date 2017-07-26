@@ -109,13 +109,12 @@ export class FirebaseApi {
   }
 
   removeEqualTo = (key, value) => {
-    console.log(`key ${key} val ${value}`);
     return (dispatch, getState) => {
       this._baseRef(getState)
         .orderByChild(key)
         .equalTo(value)
         .on('child_added', (snapshot) => {
-          snapshot.ref.remove()
+          snapshot.ref.remove();
         });
     };
   }
@@ -162,6 +161,40 @@ export class FirebaseApi {
   resetActive = () => {
     return {
       type: this._constants.RESET_ACTIVE,
+    };
+  }
+
+  moveTo = (key, newRef) => {
+    return (dispatch, getState) => {
+      return this._baseRef(getState)
+          .child(key)
+          .once('value', (snapshot) => {
+            newRef._baseRef(getState)
+              .child(key)
+              .update(snapshot.val()).then((err) => {
+                if (!err) {
+                  dispatch(this.remove(key));
+                }
+              });
+          });
+    };
+  }
+  moveEqualTo = (key, value, newRef) => {
+    return (dispatch, getState) => {
+      this._baseRef(getState)
+        .orderByChild(key)
+        .equalTo(value)
+        .once('value', (snapshots) => {
+          if (snapshots.val()) {
+            newRef._baseRef(getState)
+              .update(snapshots.val())
+              .then(() => {
+                snapshots.forEach((itemSnapshot) => {
+                  itemSnapshot.ref.remove();
+                });
+              });
+          }
+        });
     };
   }
 }

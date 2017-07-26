@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { ListItem } from 'material-ui/List';
 
+import { getDirectsArray } from '../../selectors/direct';
+
 class MeetingItem extends Component {
   static summary(meeting) {
     const dateString = new Date(meeting.meetingDate).toLocaleDateString();
@@ -15,7 +17,7 @@ class MeetingItem extends Component {
     const { directs, meeting, id } = this.props;
 
     if (directs && meeting) {
-      const direct = directs.get(meeting.directKey);
+      const direct = directs.find(direct=>direct.id === meeting.directKey );
 
       return (<ListItem
         primaryText={direct ? direct.name : '???'}
@@ -30,14 +32,14 @@ class MeetingItem extends Component {
 }
 
 MeetingItem.propTypes = {
-  directs: PropTypes.object.isRequired,
+  directs: PropTypes.array.isRequired,
   meeting: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    directs: state.directs.list,
+    directs: getDirectsArray(state),
   };
 };
 

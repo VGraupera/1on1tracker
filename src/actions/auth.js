@@ -5,9 +5,9 @@ import { browserHistory } from 'react-router';
 import { firebaseAuth, firebaseDb } from '../firebase/firebase';
 import * as types from './types';
 
-import directActions from './directs';
-import meetingActions from './meetings';
-import followUpActions from './followUps';
+import directActions, { archivedDirects as archivedDirectsAction  } from './directs';
+import meetingActions, { archivedMeetings as archivedMeetingsAction } from './meetings';
+import followUpActions, { archivedFollowUps as archivedFollowUpsAction  } from './followUps';
 import teamsActions from './teams';
 
 const recordLogin = (accountData) => {
@@ -36,8 +36,11 @@ export const listenToAuth = () => {
 
         // reload on auth update.
         directActions.subscribe(dispatch, getState);
+        archivedDirectsAction.subscribe(dispatch,getState);
         meetingActions.subscribe(dispatch, getState);
+        archivedMeetingsAction.subscribe(dispatch, getState);
         followUpActions.subscribe(dispatch, getState);
+        archivedFollowUpsAction.subscribe(dispatch, getState);
         teamsActions.subscribe(dispatch, getState);
         browserHistory.push(rootPath(true));
 

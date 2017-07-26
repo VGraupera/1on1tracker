@@ -7,7 +7,6 @@ import { withRouter, browserHistory } from 'react-router';
 import MeetingForm from './MeetingForm';
 
 import meetingActions from '../../actions/meetings';
-import * as headerActions from '../../actions/header';
 
 class MeetingEdit extends Component {
   constructor() {
@@ -18,7 +17,6 @@ class MeetingEdit extends Component {
   }
 
   componentDidMount() {
-    this.props.setText('Edit Meeting');
     this.props.router.setRouteLeaveHook(
       this.props.route,
       this.warnIfUnsavedChanges,
@@ -79,7 +77,6 @@ class MeetingEdit extends Component {
 MeetingEdit.propTypes = {
   update: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   route: PropTypes.object.isRequired,
   dirty: PropTypes.bool.isRequired,
@@ -108,7 +105,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   update: meetingActions.update,
   remove: meetingActions.remove,
-  setText: headerActions.setText,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MeetingEdit));

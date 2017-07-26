@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Subheader from 'material-ui/Subheader';
@@ -15,12 +14,7 @@ import DirectIcon from 'material-ui/svg-icons/social/person-add';
 import MeetingItem from './meetings/MeetingItem';
 import FollowUpItem from './followUps/FollowUpItem';
 
-import * as headerActions from '../actions/header';
-
 export class Dashboard extends Component {
-  componentDidMount() {
-    this.props.setText('1on1 Tracker');
-  }
 
   renderMeetings() {
     const rows = [];
@@ -39,10 +33,10 @@ export class Dashboard extends Component {
         <ListItem
           key="no_meetings"
           primaryText="No meetings"
-        />
+        />,
       );
     }
-    return rows.slice(0,5);
+    return rows.slice(0, 5);
   }
 
   renderFollowUps() {
@@ -66,10 +60,10 @@ export class Dashboard extends Component {
         <ListItem
           key="no_follows_up"
           primaryText="No items"
-        />
+        />,
       );
     }
-    return rows.slice(0,5);
+    return rows.slice(0, 5);
   }
 
   render() {
@@ -131,10 +125,6 @@ export class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  setText: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => {
   return {
     followUps: state.followUps.list,
@@ -142,8 +132,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {
-  setText: headerActions.setText,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

@@ -1,14 +1,10 @@
 import { connect } from 'react-redux';
-import * as headerActions from '../../actions/header';
 import teamAction from '../../actions/teams';
 import { getTeamsArrayWithDeleteFlag } from '../../selectors/teams';
 
 import TeamList from './TeamList';
 
 const mapDispatchToProps = dispatch => ({
-  setText: (text) => {
-    dispatch(headerActions.setText(text));
-  },
   handleOnClickDelete: (id) => {
     dispatch(teamAction.remove(id));
   },

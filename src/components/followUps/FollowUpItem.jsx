@@ -6,6 +6,8 @@ import Checkbox from 'material-ui/Checkbox';
 import { browserHistory } from 'react-router';
 
 import followUpActions from '../../actions/followUps';
+import { getDirectsArray } from '../../selectors/direct';
+import { getIsArchived } from '../../selectors/routing';
 
 class FollowUpItem extends Component {
   static summary(followUp) {
@@ -30,24 +32,25 @@ class FollowUpItem extends Component {
   }
 
   render() {
-    const { directs, followUp } = this.props;
+    const { directs, followUp, isArchived } = this.props;
 
     if (directs && followUp) {
-      const direct = directs.get(followUp.directKey);
-
+      const direct = directs.find(directSingle => directSingle.id === followUp.directKey);
       return (<ListItem
         leftCheckbox={
           <Checkbox
             checked={followUp.completed}
+            disabled={isArchived}
             onClick={(event, isInputChecked) => {
               event.stopPropagation();
               this.handleCheck(event, isInputChecked);
             }}
           />
         }
-        primaryText={this.props.primaryText || direct ? direct.name : '???'}
+        primaryText={this.props.primaryText || ((direct && typeof direct.name !== 'undefined') ? direct.name : '???')}
         secondaryText={this.props.secondaryText || FollowUpItem.summary(followUp)}
-        onClick={this.onClick}
+        onClick={isArchived ? null : this.onClick}
+        style={isArchived ? {cursor:'default'} : {}}
       />
       );
     }
@@ -61,16 +64,18 @@ FollowUpItem.contextTypes = {
 };
 
 FollowUpItem.propTypes = {
-  directs: PropTypes.object.isRequired,
+  directs: PropTypes.array.isRequired,
   followUp: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   primaryText: PropTypes.string,
   secondaryText: PropTypes.string,
+  isArchived: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    directs: state.directs.list,
+    directs: getDirectsArray(state),
+    isArchived: getIsArchived(state),
   };
 };
 
@@ -85,5 +90,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(FollowUpItem);

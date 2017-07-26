@@ -33,6 +33,29 @@
         ".read": "auth != null && auth.uid == $uid",
         ".write": "auth != null && auth.uid == $uid"
       }
+    },
+    "archived": {
+      "directs": {
+        ".indexOn": ["name"],
+        "$uid": {
+          ".read": "auth != null && auth.uid == $uid",
+          ".write": "auth != null && auth.uid == $uid"
+        }
+      },
+      "meetings": {
+        ".indexOn": ["meetingDateReverse", "directKey"],
+        "$uid": {
+          ".read": "auth != null && auth.uid == $uid",
+          ".write": "auth != null && auth.uid == $uid"
+        }
+      },
+      "followUps": {
+        ".indexOn": ["meetingKey", "directKey"],
+        "$uid": {
+          ".read": "auth != null && auth.uid == $uid",
+          ".write": "auth != null && auth.uid == $uid"
+        }
+      }
     }
   }
 }

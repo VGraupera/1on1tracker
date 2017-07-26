@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import * as headerActions from '../actions/header';
 
 import { brightGreen } from '../colors';
 
@@ -13,9 +10,6 @@ const style = {
 };
 
 class About extends Component {
-  componentDidMount() {
-    this.props.setText('About');
-  }
 
   render() {
     return (
@@ -34,8 +28,4 @@ class About extends Component {
   }
 }
 
-About.propTypes = {
-  setText: PropTypes.func.isRequired,
-};
-
-export default connect(null, { setText: headerActions.setText })(About);
+export default About;
