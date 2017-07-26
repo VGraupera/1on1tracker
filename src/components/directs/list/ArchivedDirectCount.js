@@ -28,6 +28,7 @@ function ArchivedDirectCount({ count }) {
   return (
     <List>
       <ListItem
+        style={{ zIndex: 0 }}
         primaryText={`Archived : ( ${count} )`}
         containerElement={<Link to={{ pathname: '/directs/archived', state: { isArchived: true } }} />}
       />
