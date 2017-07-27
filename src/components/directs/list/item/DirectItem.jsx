@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import { grey400, grey900 } from 'material-ui/styles/colors';
