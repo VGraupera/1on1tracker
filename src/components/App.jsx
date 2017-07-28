@@ -8,7 +8,7 @@ import { browserHistory } from 'react-router';
 import Header from './Header';
 import LeftDrawer from './LeftDrawer';
 import BottomNav from './BottomNav';
-import store from '../store';
+import store from '../store/store';
 import { listenToAuth } from '../actions/auth';
 
 const muiTheme = getMuiTheme({
