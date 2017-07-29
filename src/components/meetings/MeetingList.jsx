@@ -19,7 +19,7 @@ class MeetingList extends Component {
             key={key}
             meeting={meeting}
             id={key}
-          />
+          />,
         );
       });
     }
@@ -28,7 +28,7 @@ class MeetingList extends Component {
         <ListItem
           key="no_meetings"
           primaryText="No meetings"
-        />
+        />,
       );
     }
     return rows;
@@ -42,6 +42,7 @@ class MeetingList extends Component {
       bottom: 76,
       left: 'auto',
       position: 'fixed',
+      zIndex: 2,
     };
 
     return (

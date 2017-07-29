@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import {
   DatePicker,
-  TextField,
   SelectField,
 } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
+
+import ReachTextEditor from '../common/ReachTextEditor';
 
 export const validate = (values) => {
   const errors = {};
@@ -59,7 +60,7 @@ class MeetingForm extends Component {
         />
         <Field
           name="directsNotes"
-          component={TextField}
+          component={ReachTextEditor}
           hintText="Updates, questions, etc."
           floatingLabelText="Direct&apos;s Notes"
           multiLine={true}
@@ -68,7 +69,7 @@ class MeetingForm extends Component {
         />
         <Field
           name="managersNotes"
-          component={TextField}
+          component={ReachTextEditor}
           hintText="Items discussed"
           floatingLabelText="Manager&apos;s Notes"
           multiLine={true}
@@ -89,12 +90,12 @@ class MeetingForm extends Component {
 }
 
 MeetingForm.propTypes = {
-  formType: PropTypes.oneOf(['create', 'edit']),
-  handleSubmit: PropTypes.func,
-  onSubmit: PropTypes.func,
+  formType: PropTypes.oneOf(['create', 'edit']).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   directs: PropTypes.object.isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({ form: 'meeting', validate })(MeetingForm);
