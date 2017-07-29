@@ -1,4 +1,11 @@
 /**
+ * @description Sort by key name. Used for local storage
+ * @const {string}
+ * @default
+ */
+export const SORT_BY_KEY_NAME = 'directsSortBy';
+
+/**
  * @description Sort by name constant
  * @const {string}
  * @default

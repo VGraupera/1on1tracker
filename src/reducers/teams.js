@@ -1,12 +1,6 @@
 import * as types from '../actions/types';
 
-const INITIAL_STATE = {
-  list: {},
-  loading: false,
-  error: null,
-};
-
-export default function (state = INITIAL_STATE, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case types.LOAD_TEAMS_SUCCESS:
       return {
@@ -16,7 +10,7 @@ export default function (state = INITIAL_STATE, action) {
     case types.UNLOAD_TEAMS_SUCCESS:
       return {
         ...{},
-        ...INITIAL_STATE,
+        ...state,
       };
     default:
       return state;
