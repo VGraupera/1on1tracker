@@ -4,7 +4,7 @@ import { TextField } from 'redux-form-material-ui';
 import PropTypes from 'prop-types';
 
 /**
- * @description propTypes for ReachTextEditor
+ * @description propTypes for RichTextEditor
  * @type {{input}}
  */
 const propTypes = {
@@ -27,11 +27,11 @@ const style = {
 };
 
 /**
- * @class ReachTextEditor
+ * @class RichTextEditor
  * @extends React.Component
  * @description Render component
  */
-class ReachTextEditor extends Component {
+class RichTextEditor extends Component {
 
   state = {
     value: this.props.input.value ? ReactRTE.createValueFromString(this.props.input.value, 'html') : ReactRTE.createEmptyValue(),
@@ -70,6 +70,6 @@ class ReachTextEditor extends Component {
   }
 }
 
-ReachTextEditor.propTypes = propTypes;
+RichTextEditor.propTypes = propTypes;
 
-export default ReachTextEditor;
+export default RichTextEditor;

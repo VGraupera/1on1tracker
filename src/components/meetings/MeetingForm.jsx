@@ -8,7 +8,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 
-import ReachTextEditor from '../common/ReachTextEditor';
+import RichTextEditor from '../common/RichTextEditor';
 
 export const validate = (values) => {
   const errors = {};
@@ -60,7 +60,7 @@ class MeetingForm extends Component {
         />
         <Field
           name="directsNotes"
-          component={ReachTextEditor}
+          component={RichTextEditor}
           hintText="Updates, questions, etc."
           floatingLabelText="Direct&apos;s Notes"
           multiLine={true}
@@ -69,7 +69,7 @@ class MeetingForm extends Component {
         />
         <Field
           name="managersNotes"
-          component={ReachTextEditor}
+          component={RichTextEditor}
           hintText="Items discussed"
           floatingLabelText="Manager&apos;s Notes"
           multiLine={true}
