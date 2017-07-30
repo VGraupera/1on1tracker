@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
 
 import { getIsArchived } from '../../../../selectors/routing';
-import InnerHtml from '../../../common/InnerHtml';
+import InnerHtmlStripTags from '../../../common/InnerHtmlStripTags';
 
 
 class DirectMeetingList extends Component {
@@ -37,7 +37,7 @@ class DirectMeetingList extends Component {
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={
-              <InnerHtml html={
+              <InnerHtmlStripTags html={
                 (meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)
               }
               />
