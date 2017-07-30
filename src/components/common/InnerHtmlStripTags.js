@@ -29,14 +29,14 @@ const defaultProps = {
 function InnerHtmlStripTags({ html, truncateTo }) {
   const stripedHtml = String(html)
     .trim()
-    .replaceAll('&nbsp;',' ')
+    .replaceAll('&nbsp;', ' ')
     .stripTags()
     .s;
 
   const truncatedHtml = String(stripedHtml)
     .truncate(truncateTo).s;
 
-  return <span> {truncatedHtml}</span>;
+  return <span dangerouslySetInnerHTML={{ __html: truncatedHtml }} />;
 }
 
 InnerHtmlStripTags.propTypes = propTypes;
