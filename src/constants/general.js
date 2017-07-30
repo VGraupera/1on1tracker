@@ -46,3 +46,5 @@ export const ARCHIVED_PATH_PREFIX = 'archived/';
  * @default
  */
 export const ARCHIVED_URL_SUFFIX = 'archived';
+
+export const DEFAULT_TRUNCATED_LENGHT = 65;

@@ -16,13 +16,41 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
 import { Link } from 'react-router';
 import { CSSTransitionGroup } from 'react-transition-group';
-import FollowUpItem from '../followUps/FollowUpItem';
 
+import FollowUpItem from '../followUps/FollowUpItem';
+import InnerHtml from '../common/InnerHtml';
 import meetingActions from '../../actions/meetings';
 import followUpActions from '../../actions/followUps';
-
 import { getMeetingsInSameDirectAsActive } from '../../selectors/meetings';
 
+
+/**
+ * @description propTypes for MeetingShow
+ * @type {Object}
+ */
+const propTypes = {
+  find: PropTypes.func.isRequired,
+  directs: PropTypes.object.isRequired,
+  meeting: PropTypes.object,
+  meetingsArray: PropTypes.array.isRequired,
+  followUpsEqualTo: PropTypes.func.isRequired,
+  followUps: PropTypes.any,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  params: PropTypes.shape({
+    id: PropTypes.string,
+  }).isRequired,
+};
+
+/**
+ * @description default Props for MeetingShow
+ * @type {Object}
+ */
+const defaultProps = {
+  followUps: undefined,
+  meeting: null,
+  error: '',
+};
 
 class MeetingShow extends Component {
 
@@ -108,14 +136,14 @@ class MeetingShow extends Component {
             <CardText>
               <h2>Direct&apos;s Notes</h2>
               {meeting.directsNotes ? (
-                <pre>{meeting.directsNotes}</pre>
+                <InnerHtml html={meeting.directsNotes} />
             ) : 'None' }
             </CardText>
 
             <CardText>
               <h2>Manager&apos;s Notes</h2>
               {meeting.managersNotes ? (
-                <pre>{meeting.managersNotes}</pre>
+                <InnerHtml html={meeting.managersNotes} />
             ) : 'None' }
             </CardText>
             <CardActions>
@@ -142,19 +170,8 @@ class MeetingShow extends Component {
   }
 }
 
-MeetingShow.propTypes = {
-  find: PropTypes.func.isRequired,
-  directs: PropTypes.object.isRequired,
-  meeting: PropTypes.object,
-  meetingsArray: PropTypes.array.isRequired,
-  followUpsEqualTo: PropTypes.func.isRequired,
-  followUps: PropTypes.any.isRequired,
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string,
-  params: PropTypes.shape({
-    id: PropTypes.string,
-  }).isRequired,
-};
+MeetingShow.propTypes = propTypes;
+MeetingShow.defaultProps = defaultProps;
 
 const mapStateToProps = (state, ownProps) => {
   return {
