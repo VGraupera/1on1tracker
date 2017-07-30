@@ -5,7 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import ReactGA from 'react-ga';
 
-import store, { history } from './store';
+import store, { history } from './store/store';
 import './index.css';
 import routes from './routes';
 

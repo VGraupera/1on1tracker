@@ -1,14 +1,7 @@
 import * as types from '../actions/types';
 
-const INITIAL_STATE = {
-  list: {},
-  activeFollowUp: null,
-  activeFollowUpKey: null,
-  loading: false,
-  error: null,
-};
 export default function (name = '') {
-  return function (state = INITIAL_STATE, action) {
+  return function (state = {}, action) {
     switch (action.type) {
       case name + types.LOAD_FOLLOW_UPS_SUCCESS:
         return { ...state,
@@ -17,7 +10,7 @@ export default function (name = '') {
         return { ...state,
           matchingList: action.payload };
       case name + types.UNLOAD_FOLLOW_UPS_SUCCESS:
-        return INITIAL_STATE;
+        return state;
       case name + types.SET_ACTIVE_FOLLOW_UP:
         return { ...state,
           activeFollowUp: action.payload,
