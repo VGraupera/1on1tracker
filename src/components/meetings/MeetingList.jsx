@@ -42,7 +42,7 @@ class MeetingList extends Component {
       bottom: 76,
       left: 'auto',
       position: 'fixed',
-      zIndex: 2,
+      zIndex: 1,
     };
 
     return (
