@@ -75,6 +75,7 @@ export class Dashboard extends Component {
       bottom: 'auto',
       left: 'auto',
       position: 'fixed',
+      zIndex: 1,
     };
     const followupButtonStyle = {
       margin: 0,
@@ -83,6 +84,7 @@ export class Dashboard extends Component {
       bottom: 'auto',
       left: 'auto',
       position: 'fixed',
+      zIndex: 1,
     };
     const directButtonStyle = {
       margin: 0,
@@ -91,6 +93,7 @@ export class Dashboard extends Component {
       bottom: 'auto',
       left: 'auto',
       position: 'fixed',
+      zIndex: 1,
     };
 
     return (
