@@ -2,6 +2,7 @@ import * as types from './types';
 import { FirebaseApi } from '../firebase/firebase';
 
 export default new FirebaseApi('teams', {
+  LOAD_REQUEST: types.LOAD_TEAMS_REQUEST,
   LOAD_SUCCESS: types.LOAD_TEAMS_SUCCESS,
   UNLOAD_SUCCESS: types.UNLOAD_TEAMS_SUCCESS,
   SET_ACTIVE: types.SET_ACTIVE_TEAM,

@@ -1,5 +1,5 @@
 import locStore from 'store';
-import { SORT_BY_NAME, SORT_BY_KEY_NAME } from '../constants/general';
+import { SORT_BY_NAME, SORT_BY_KEY_NAME , LOCAL_STORAGE_AUTH_STATE_KEY} from '../constants/general';
 import { AUTH_ANONYMOUS } from '../actions/types';
 
 const initialState = {
@@ -50,7 +50,7 @@ const initialState = {
     uid: null,
     email: null,
     photoURL: null,
-    status: AUTH_ANONYMOUS,
+    status: locStore.get(LOCAL_STORAGE_AUTH_STATE_KEY) || AUTH_ANONYMOUS,
   },
   header: {
     text: '1on1 Tracker',

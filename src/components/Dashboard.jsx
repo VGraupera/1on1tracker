@@ -13,6 +13,7 @@ import DirectIcon from 'material-ui/svg-icons/social/person-add';
 
 import MeetingItem from './meetings/MeetingItem';
 import FollowUpItem from './followUps/FollowUpItem';
+import ShowLoaderHOC from '../HOCs/ShowLoaderHOC';
 
 export class Dashboard extends Component {
 
@@ -129,7 +130,10 @@ const mapStateToProps = (state) => {
   return {
     followUps: state.followUps.list,
     meetings: state.meetings.list,
+    loadingData: (state.meetings.loading || state.followUps.loading),
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(
+  ShowLoaderHOC('loadingData', true)(Dashboard),
+);

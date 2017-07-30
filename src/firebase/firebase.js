@@ -26,7 +26,9 @@ export class FirebaseApi {
     if (this._orderBy) {
       ref = ref.orderByChild(this._orderBy);
     }
-
+    dispatch({
+      type: this._constants.LOAD_REQUEST,
+    });
     ref.on('value', (snapshot) => {
       const itemsMap = new Map();
       snapshot.forEach((child) => {
