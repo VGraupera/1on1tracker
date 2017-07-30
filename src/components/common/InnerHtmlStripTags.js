@@ -27,8 +27,15 @@ const defaultProps = {
  * @returns {XML}
  */
 function InnerHtmlStripTags({ html, truncateTo }) {
-  const stripedHtml = String(html).stripTags().s;
-  const truncatedHtml = String(stripedHtml).truncate(truncateTo).s;
+  const stripedHtml = String(html)
+    .trim()
+    .replaceAll('&nbsp;',' ')
+    .stripTags()
+    .s;
+
+  const truncatedHtml = String(stripedHtml)
+    .truncate(truncateTo).s;
+
   return <span> {truncatedHtml}</span>;
 }
 
