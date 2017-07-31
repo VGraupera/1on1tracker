@@ -34,7 +34,7 @@ function BottomNav({ handleNavigate }) {
 
   if (selectedIndex !== -1) {
     return (
-      <Paper zDepth={1} style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 2 }}>
+      <Paper zDepth={1} style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 10 }}>
         <BottomNavigation selectedIndex={selectedIndex}>
           <BottomNavigationItem
             label="Dashboard"
