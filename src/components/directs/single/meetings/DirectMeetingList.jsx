@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import {
-  List,
-  ListItem,
-} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 
 import { getIsArchived } from '../../../../selectors/routing';
+import InnerHtmlStripTags from '../../../common/InnerHtmlStripTags';
+
+
 class DirectMeetingList extends Component {
 
   constructor() {
@@ -36,7 +36,12 @@ class DirectMeetingList extends Component {
           <ListItem
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
-            secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
+            secondaryText={
+              <InnerHtmlStripTags html={
+                (meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)
+              }
+              />
+            }
             containerElement={<Link to={`/meetings/${key}`} />}
             disabled={this.props.isArchived}
           />);

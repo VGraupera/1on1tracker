@@ -42,6 +42,11 @@ class LeftDrawer extends Component {
         {signedInItems}
         <Divider />
         <MenuItem
+          onTouchTap={() => this.props.handleNavigate('/teams')}
+          primaryText="Teams"
+        />
+        <Divider />
+        <MenuItem
           onTouchTap={() => this.props.handleNavigate('/terms')}
           primaryText="Terms and Conditions"
         />

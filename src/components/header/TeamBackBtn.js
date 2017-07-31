@@ -11,13 +11,16 @@ import { white } from 'material-ui/styles/colors';
  * @returns {XML}
  */
 function TeamBackBtn(props) {
-  return (
-    <IconButton
-      containerElement={<Link to={props.location.state.backTeamLink} />}
-    >
-      <FontIcon color={white} className="material-icons">arrow_back</FontIcon>
-    </IconButton>
-  );
+  if (props.location.state && props.location.state.backTeamLink) {
+    return (
+      <IconButton
+        containerElement={<Link to={props.location.state.backTeamLink} />}
+      >
+        <FontIcon color={white} className="material-icons">arrow_back</FontIcon>
+      </IconButton>
+    );
+  }
+  return null;
 }
 
 export default TeamBackBtn;

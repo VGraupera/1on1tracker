@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { ListItem } from 'material-ui/List';
 
 import { getDirectsArray } from '../../selectors/direct';
+import InnerHtmlStripTags from '../common/InnerHtmlStripTags';
 
 class MeetingItem extends Component {
   static summary(meeting) {
@@ -17,11 +18,13 @@ class MeetingItem extends Component {
     const { directs, meeting, id } = this.props;
 
     if (directs && meeting) {
-      const direct = directs.find(direct=>direct.id === meeting.directKey );
+      const direct = directs.find(singleDirect => singleDirect.id === meeting.directKey);
 
       return (<ListItem
         primaryText={direct ? direct.name : '???'}
-        secondaryText={MeetingItem.summary(meeting)}
+        secondaryText={
+          <InnerHtmlStripTags html={MeetingItem.summary(meeting)} />
+        }
         containerElement={<Link to={`/meetings/${id}`} />}
       />
       );
