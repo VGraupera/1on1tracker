@@ -12,6 +12,9 @@ import { brightGreen, brightGreen10 } from '../colors';
 import dashboardScreenshot from '../images/dashboard.png';
 import directsScreenshot from '../images/directs.png';
 
+import ShowLoaderHOC from '../HOCs/ShowLoaderHOC';
+import { AUTH_AWAITING_RESPONSE } from '../actions/types';
+
 const style = {
   hero: {
     backgroundImage: `url(${heroImage})`,
@@ -125,10 +128,17 @@ export class Home extends Component {
 
 Home.propTypes = {
   openAuth: PropTypes.func.isRequired,
+  authStatus: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = state => ({
+  authStatus: state.auth.status,
+});
 
 const mapDispatchToProps = {
-  openAuth
+  openAuth,
 };
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  ShowLoaderHOC('authStatus',AUTH_AWAITING_RESPONSE)(Home)
+);

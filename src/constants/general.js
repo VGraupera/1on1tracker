@@ -5,6 +5,8 @@
  */
 export const SORT_BY_KEY_NAME = 'directsSortBy';
 
+export const LOCAL_STORAGE_AUTH_STATE_KEY = 'authState';
+
 /**
  * @description Sort by name constant
  * @const {string}

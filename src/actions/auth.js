@@ -1,9 +1,11 @@
 import * as firebase from 'firebase';
 import { push } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import locStore from 'store';
 
 import { firebaseAuth, firebaseDb } from '../firebase/firebase';
 import * as types from './types';
+import { LOCAL_STORAGE_AUTH_STATE_KEY } from '../constants/general';
 
 import directActions, { archivedDirects as archivedDirectsAction  } from './directs';
 import meetingActions, { archivedMeetings as archivedMeetingsAction } from './meetings';
@@ -51,17 +53,19 @@ export const listenToAuth = () => {
       } else if (getState().auth.status !== types.AUTH_ANONYMOUS) {
         dispatch({ type: types.AUTH_LOGOUT });
       }
+      locStore.remove(LOCAL_STORAGE_AUTH_STATE_KEY);
     });
   };
 };
 
 export const openAuth = () => {
   return (dispatch) => {
-    dispatch({ type: types.AUTH_AWAITING_RESPONSE });
-
     const provider = new firebase.auth.GoogleAuthProvider();
     firebaseAuth.signInWithRedirect(provider);
-    firebaseAuth.getRedirectResult().catch((error) => {
+    firebaseAuth.getRedirectResult().then(()=>{
+      dispatch({ type: types.AUTH_OPEN });
+      locStore.set(LOCAL_STORAGE_AUTH_STATE_KEY,types.AUTH_AWAITING_RESPONSE);
+    }).catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
       alert(errorMessage);

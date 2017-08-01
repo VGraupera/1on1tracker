@@ -14,6 +14,7 @@ export const setSortBy = (value) => {
 };
 
 export const archivedDirects = new FirebaseApi(`${ARCHIVED_PATH_PREFIX}directs`, {
+  LOAD_REQUEST: types.ARCHIVED_LOAD_DIRECTS_REQUEST,
   LOAD_SUCCESS: types.ARCHIVED_LOAD_DIRECTS_SUCCESS,
   UNLOAD_SUCCESS: types.ARCHIVED_UNLOAD_DIRECTS_SUCCESS,
   SET_ACTIVE: types.ARCHIVED_SET_ACTIVE_DIRECT,
@@ -23,6 +24,7 @@ export const archivedDirects = new FirebaseApi(`${ARCHIVED_PATH_PREFIX}directs`,
 }, 'name');
 
 export default new FirebaseApi('directs', {
+  LOAD_REQUEST: types.LOAD_DIRECTS_REQUEST,
   LOAD_SUCCESS: types.LOAD_DIRECTS_SUCCESS,
   UNLOAD_SUCCESS: types.UNLOAD_DIRECTS_SUCCESS,
   SET_ACTIVE: types.SET_ACTIVE_DIRECT,

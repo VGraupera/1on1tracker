@@ -3,13 +3,29 @@ import * as types from '../actions/types';
 export default function (name = '') {
   return function (state = {}, action) {
     switch (action.type) {
+      case name + types.LOAD_DIRECTS_REQUEST:
+        return {
+          ...state,
+          ...{ loading: true },
+        };
       case name + types.LOAD_DIRECTS_SUCCESS:
         return {
           ...state,
-          list: action.payload,
+          ...{
+            list: action.payload,
+            loading: false,
+          },
         };
       case name + types.UNLOAD_DIRECTS_SUCCESS:
-        return state;
+        return {
+          ...state,
+          ...{
+            activeDirect: null,
+            list: [],
+            loading: false,
+            error: null,
+          },
+        };
       case name + types.SET_ACTIVE_DIRECT:
         return {
           ...state,
