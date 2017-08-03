@@ -32,6 +32,19 @@ class QuestionsDialogBox extends Component {
     clickedQuestion: null,
   };
 
+
+  setDialogPropsForQestionList = () => ({
+    title: 'Suggested Questions',
+    actions: <AddQuestionBtn handleAddQuestion={this.handleAddQuestion} />,
+    actionsContainerStyle: { padding: 20, textAlign: 'center' },
+  });
+
+  setDialogPropsForQuestionForm = () => ({
+    title: `${this.state.clickedQuestion ? 'Update' : 'Add'} Questions`,
+    actions: null,
+    actionsContainerStyle: {},
+  });
+
   /**
    * @description Handle click on Add Question btn
    */
@@ -91,17 +104,6 @@ class QuestionsDialogBox extends Component {
     }
   };
 
-  setDialogPropsForQestionList = () => ({
-    title: 'Suggested Questions',
-    actions: <AddQuestionBtn handleAddQuestion={this.handleAddQuestion} />,
-    actionsContainerStyle: { padding: 20, textAlign: 'center' },
-  });
-
-  setDialogPropsForQuestionForm = () => ({
-    title: `${this.state.clickedQuestion ? 'Update' : 'Add'} Questions`,
-    actions: null,
-    actionsContainerStyle: {},
-  });
 
   renderQuestionList = () => {
     const { questions } = this.props;
