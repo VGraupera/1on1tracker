@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
-
+import PropTypes from 'prop-types';
 
 import QuetionsList from './QuetionsList';
 import QuestionForm from './QuestionForm';
 import AddQuestionBtn from './AddQuestionBtn';
+
+const propTypes = {
+  handleCloseDialog: PropTypes.func.isRequired,
+  submitQuestionForm: PropTypes.func.isRequired,
+  onDeleteQuestion: PropTypes.func.isRequired,
+  openDialog: PropTypes.bool.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    question: PropTypes.string.isRequired,
+  })).isRequired,
+};
 
 /**
  * @class QuestionsDialogBox
@@ -14,6 +25,7 @@ import AddQuestionBtn from './AddQuestionBtn';
 class QuestionsDialogBox extends Component {
   state = {
     showForm: false,
+    clickedQuestion: null,
   };
 
   handleAddQuestion = () => {
@@ -26,7 +38,7 @@ class QuestionsDialogBox extends Component {
   };
 
   hideForm = () => {
-    this.setState({ showForm: false });
+    this.setState({ showForm: false, clickedQuestion: null });
   };
 
   handleFormSubmit = (data) => {
@@ -38,25 +50,45 @@ class QuestionsDialogBox extends Component {
     this.hideForm();
   };
 
+  handleClickOnItem = (data) => {
+    this.setState({
+      showForm: true,
+      clickedQuestion: data,
+    });
+  };
+
+  handleOnDeleteItem = (id) => {
+    this.props.onDeleteQuestion(id);
+  };
+
 
   /**
    * @description render
    * @return {Object} JSX HTML Content
    */
   render() {
-    const { showForm } = this.state;
+    const { showForm, clickedQuestion } = this.state;
     const { openDialog, questions } = this.props;
-    let content = <QuetionsList questions={questions} />;
+
+    let content = (
+      <QuetionsList
+        clickOnItem={this.handleClickOnItem}
+        onDelete={this.handleOnDeleteItem}
+        questions={questions}
+      />
+    );
     let dialogProps = {
       title: 'Suggested Questions',
       actions: <AddQuestionBtn handleAddQuestion={this.handleAddQuestion} />,
       actionsContainerStyle: { padding: 20, textAlign: 'center' },
     };
+
     if (showForm) {
       content = (
         <QuestionForm
           handleFormSubmit={this.handleFormSubmit}
           handleFormCancel={this.handleFormCancel}
+          initialValues={clickedQuestion}
         />
       );
       dialogProps = {
@@ -78,5 +110,7 @@ class QuestionsDialogBox extends Component {
     );
   }
 }
+
+QuestionsDialogBox.propTypes = propTypes;
 
 export default QuestionsDialogBox;

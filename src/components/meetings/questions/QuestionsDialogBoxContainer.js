@@ -10,7 +10,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submitQuestionForm: (data) => {
-    dispatch(questionAction.create(data));
+    if (data.id) {
+      dispatch(questionAction.update(data.id, { question: data.question }));
+    } else {
+      dispatch(questionAction.create(data));
+    }
+  },
+  onDeleteQuestion: (id) => {
+    dispatch(questionAction.remove(id));
   },
 });
 
