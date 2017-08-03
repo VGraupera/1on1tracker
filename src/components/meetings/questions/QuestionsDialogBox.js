@@ -91,42 +91,56 @@ class QuestionsDialogBox extends Component {
     }
   };
 
+  setDialogPropsForQestionList = () => ({
+    title: 'Suggested Questions',
+    actions: <AddQuestionBtn handleAddQuestion={this.handleAddQuestion} />,
+    actionsContainerStyle: { padding: 20, textAlign: 'center' },
+  });
 
-  /**
-   * @description render
-   * @return {Object} JSX HTML Content
-   */
-  render() {
-    const { showForm, clickedQuestion } = this.state;
-    const { openDialog, questions } = this.props;
+  setDialogPropsForQuestionForm = () => ({
+    title: `${this.state.clickedQuestion ? 'Update' : 'Add'} Questions`,
+    actions: null,
+    actionsContainerStyle: {},
+  });
 
-    let content = (
+  renderQuestionList = () => {
+    const { questions } = this.props;
+    return (
       <QuetionsList
         clickOnItem={this.handleClickOnItem}
         onDelete={this.handleOnDeleteItem}
         questions={questions}
       />
     );
-    let dialogProps = {
-      title: 'Suggested Questions',
-      actions: <AddQuestionBtn handleAddQuestion={this.handleAddQuestion} />,
-      actionsContainerStyle: { padding: 20, textAlign: 'center' },
-    };
+  };
+
+  renderQuestionForm = () => {
+    const { clickedQuestion } = this.state;
+    return (
+      <QuestionForm
+        handleFormSubmit={this.handleFormSubmit}
+        handleFormCancel={this.handleFormCancel}
+        initialValues={clickedQuestion}
+      />
+    );
+  };
+
+  /**
+   * @description render
+   * @return {Object} JSX HTML Content
+   */
+  render() {
+    const { showForm } = this.state;
+    const { openDialog } = this.props;
+
+    let content = this.renderQuestionList();
+    let dialogProps = this.setDialogPropsForQestionList();
 
     if (showForm) {
-      content = (
-        <QuestionForm
-          handleFormSubmit={this.handleFormSubmit}
-          handleFormCancel={this.handleFormCancel}
-          initialValues={clickedQuestion}
-        />
-      );
-      dialogProps = {
-        title: `${clickedQuestion ? 'Update' : 'Add'} Questions`,
-        actions: null,
-        actionsContainerStyle: {},
-      };
+      content = this.renderQuestionForm();
+      dialogProps = this.setDialogPropsForQuestionForm();
     }
+
     return (
       <Dialog
         modal={false}
