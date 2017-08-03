@@ -9,6 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 
 import RichTextEditor from '../common/RichTextEditor';
+import MeetingQuestions from './MeetingQuestions';
 
 export const validate = (values) => {
   const errors = {};
@@ -76,6 +77,7 @@ class MeetingForm extends Component {
           rows={4}
           style={{ width: '100%' }}
         />
+        <MeetingQuestions />
         <div>
           <RaisedButton
             type="submit"

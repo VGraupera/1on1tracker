@@ -9,4 +9,4 @@ export default new FirebaseApi('questions', {
   RESET_ACTIVE: types.RESET_ACTIVE_QUESTIONS,
   CREATE: types.CREATE_QUESTIONS,
   SET_MATCHING: types.SET_MATCHING_QUESTIONS,
-},'question');
+}, 'question');
