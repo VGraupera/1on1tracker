@@ -55,6 +55,13 @@
           ".read": "auth != null && auth.uid == $uid",
           ".write": "auth != null && auth.uid == $uid"
         }
+      },
+      "questions": {
+        ".indexOn": ["question"],
+        "$uid": {
+          ".read": "auth != null && auth.uid == $uid",
+          ".write": "auth != null && auth.uid == $uid"
+        }
       }
     }
   }
