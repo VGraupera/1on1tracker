@@ -60,6 +60,12 @@ const initialState = {
     loading: false,
     error: null,
   },
+  questions: {
+    activeQuestion: null,
+    list: [],
+    loading: false,
+    error: null,
+  },
 };
 
 export default initialState;
