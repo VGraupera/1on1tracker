@@ -6,6 +6,10 @@ import QuetionsList from './QuetionsList';
 import QuestionForm from './QuestionForm';
 import AddQuestionBtn from './AddQuestionBtn';
 
+/**
+ * @description propTypes for QuestionsDialogBox
+ * @type {Object}
+ */
 const propTypes = {
   handleCloseDialog: PropTypes.func.isRequired,
   submitQuestionForm: PropTypes.func.isRequired,
@@ -28,28 +32,48 @@ class QuestionsDialogBox extends Component {
     clickedQuestion: null,
   };
 
+  /**
+   * @description Handle click on Add Question btn
+   */
   handleAddQuestion = () => {
     this.setState({ showForm: true });
   };
 
+  /**
+   * @description handle on close dialog box
+   */
   handleClose = () => {
     this.hideForm();
     this.props.handleCloseDialog();
   };
 
+  /**
+   * @description set state on close form
+   */
   hideForm = () => {
     this.setState({ showForm: false, clickedQuestion: null });
   };
 
+  /**
+   * @description handle on submit question form
+   * @param data
+   */
   handleFormSubmit = (data) => {
     this.props.submitQuestionForm(data);
     this.hideForm();
   };
 
+  /**
+   * @description handle form cancel
+   */
   handleFormCancel = () => {
     this.hideForm();
   };
 
+  /**
+   * @description handle Question Item on click
+   * @param {Object} data question data
+   */
   handleClickOnItem = (data) => {
     this.setState({
       showForm: true,
@@ -57,6 +81,10 @@ class QuestionsDialogBox extends Component {
     });
   };
 
+  /**
+   * @description handle click on delete icon
+   * @param {String} id
+   */
   handleOnDeleteItem = (id) => {
     this.props.onDeleteQuestion(id);
   };
