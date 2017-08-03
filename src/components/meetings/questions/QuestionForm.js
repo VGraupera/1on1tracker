@@ -34,7 +34,7 @@ export const validate = (values) => {
  * @param {Function} handleFormCancel
  * @return {XML}
  */
-function QuestionForm({ handleSubmit, handleFormSubmit,handleFormCancel }) {
+function QuestionForm({ handleSubmit, handleFormSubmit, handleFormCancel }) {
   return (
     <div className="container">
       <form onSubmit={handleSubmit(handleFormSubmit)}>

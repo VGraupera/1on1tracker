@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from 'react';
 
-import QuestionsDialogBoxContainer from "./questions/QuestionsDialogBoxContainer";
+import QuestionsDialogBoxContainer from './questions/QuestionsDialogBoxContainer';
 
 /**
  * @class MeetingQuestions
@@ -15,11 +15,11 @@ class MeetingQuestions extends Component {
 
   openDialog = (e) => {
     e.preventDefault;
-    this.setState({openDialog: true});
+    this.setState({ openDialog: true });
   };
 
-  handleCloseDialog = ()=>{
-    this.setState({openDialog: false});
+  handleCloseDialog = () => {
+    this.setState({ openDialog: false });
   }
 
   /**

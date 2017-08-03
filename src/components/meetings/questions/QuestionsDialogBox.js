@@ -86,7 +86,9 @@ class QuestionsDialogBox extends Component {
    * @param {String} id
    */
   handleOnDeleteItem = (id) => {
-    this.props.onDeleteQuestion(id);
+    if (window.confirm('Delete Question?')) {
+      this.props.onDeleteQuestion(id);
+    }
   };
 
 
@@ -120,7 +122,7 @@ class QuestionsDialogBox extends Component {
         />
       );
       dialogProps = {
-        title: 'Add Questions',
+        title: `${clickedQuestion?'Update':'Add'} Questions`,
         actions: null,
         actionsContainerStyle: {},
       };
