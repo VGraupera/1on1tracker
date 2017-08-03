@@ -122,7 +122,7 @@ class QuestionsDialogBox extends Component {
         />
       );
       dialogProps = {
-        title: `${clickedQuestion?'Update':'Add'} Questions`,
+        title: `${clickedQuestion ? 'Update' : 'Add'} Questions`,
         actions: null,
         actionsContainerStyle: {},
       };
