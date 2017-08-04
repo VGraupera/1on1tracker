@@ -1,7 +1,6 @@
 import React from 'react';
 import String from 'string';
 import PropTypes from 'prop-types';
-import { DEFAULT_TRUNCATED_LENGHT } from '../../constants/general';
 
 /**
  * @description propTypes for InnerHtmlStripTags
