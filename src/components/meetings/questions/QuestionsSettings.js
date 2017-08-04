@@ -20,7 +20,7 @@ class QuestionsSettings extends Component {
 
   handleCloseDialog = () => {
     this.setState({ openDialog: false });
-  }
+  };
 
   /**
    * @description render

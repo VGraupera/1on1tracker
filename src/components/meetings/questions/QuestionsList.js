@@ -15,7 +15,7 @@ const propTypes = {
 
 /**
  * @function QuestionsList
- * @param props
+ * @param {Array} questions
  * @returns {XML}
  */
 function QuestionsList({ questions }) {
