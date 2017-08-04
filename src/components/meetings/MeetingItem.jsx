@@ -9,6 +9,7 @@ import InnerHtmlStripTags from '../common/InnerHtmlStripTags';
 
 class MeetingItem extends Component {
   static summary(meeting) {
+    console.log('meeting', meeting);
     const dateString = new Date(meeting.meetingDate).toLocaleDateString();
     const notesString = meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes;
     return `${dateString} : ${notesString || ''}`;
@@ -23,7 +24,7 @@ class MeetingItem extends Component {
       return (<ListItem
         primaryText={direct ? direct.name : '???'}
         secondaryText={
-            <InnerHtmlStripTags html={MeetingItem.summary(meeting)} />
+          <InnerHtmlStripTags html={MeetingItem.summary(meeting)} />
         }
         containerElement={<Link to={`/meetings/${id}`} />}
       />

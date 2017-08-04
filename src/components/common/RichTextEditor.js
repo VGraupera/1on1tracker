@@ -44,7 +44,7 @@ class RichTextEditor extends Component {
   handleChange = (value) => {
     this.setState({ value });
     let html = value.toString('html');
-    if (html.length === 2 && html.charCodeAt(0) === 8203 && html.charCodeAt(1) === 10) {
+    if (!value.getEditorState().getCurrentContent().hasText()) {
       html = '';
     }
     this.props.input.onChange(html);
