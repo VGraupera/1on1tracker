@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
+import QuestionAnswer from 'material-ui/svg-icons/action/question-answer';
 import PropTypes from 'prop-types';
 
 import uniqueRandomNumber from '../../../utility/uniqueRandomNumber';
@@ -50,6 +51,7 @@ class QuestionSingle extends Component {
           key={questions[currentItemIndex].id}
           primaryText={questions[currentItemIndex].question}
           onTouchTap={this.handleClickOnItem}
+          leftIcon={<QuestionAnswer />}
         />
       </List>
     );

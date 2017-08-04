@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, ListItem } from 'material-ui/List';
+import QuestionAnswer from 'material-ui/svg-icons/action/question-answer';
 import PropTypes from 'prop-types';
 
 /**
@@ -23,7 +24,12 @@ function QuestionsList({ questions }) {
     <List>
       {questions.map((singleQuestion) => {
         return (
-          <ListItem disabled={true} key={singleQuestion.id} primaryText={singleQuestion.question} />
+          <ListItem
+            key={singleQuestion.id}
+            leftIcon={<QuestionAnswer />}
+            primaryText={singleQuestion.question}
+            disabled={true}
+          />
         );
       })}
     </List>
