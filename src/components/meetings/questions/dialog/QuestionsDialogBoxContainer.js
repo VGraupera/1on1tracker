@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import questionAction from '../../../actions/questions';
+import questionAction from '../../../../actions/questions';
 import QuestionsDialogBox from './QuestionsDialogBox';
-import { getQuestionsArray } from '../../../selectors/questions';
+import { getQuestionsArray } from '../../../../selectors/questions';
 
 const mapStateToProps = state => ({
   questions: getQuestionsArray(state),

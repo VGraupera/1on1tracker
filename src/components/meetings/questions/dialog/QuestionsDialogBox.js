@@ -33,12 +33,18 @@ class QuestionsDialogBox extends Component {
   };
 
 
+  /**
+   * @description Dialog component properties when question list active
+   */
   setDialogPropsForQestionList = () => ({
     title: 'Suggested Questions',
     actions: <AddQuestionBtn handleAddQuestion={this.handleAddQuestion} />,
     actionsContainerStyle: { padding: 20, textAlign: 'center' },
   });
 
+  /**
+   * @description Dialog component properties when question form active
+   */
   setDialogPropsForQuestionForm = () => ({
     title: `${this.state.clickedQuestion ? 'Update' : 'Add'} Questions`,
     actions: null,

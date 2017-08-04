@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 
 import RichTextEditor from '../common/RichTextEditor';
-import MeetingQuestions from './MeetingQuestions';
+import MeetingQuestionsContainer from './questions/MeetingQuestionsContainer';
 
 export const validate = (values) => {
   const errors = {};
@@ -77,7 +77,7 @@ class MeetingForm extends Component {
           rows={4}
           style={{ width: '100%' }}
         />
-        <MeetingQuestions />
+        <MeetingQuestionsContainer />
         <div>
           <RaisedButton
             type="submit"

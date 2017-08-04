@@ -6,7 +6,7 @@ import { red500, red200 } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
 /**
- * @description PropTypes for QuestionList
+ * @description PropTypes for QuestionsList
  * @type {Object}
  */
 const propTypes = {

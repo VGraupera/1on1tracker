@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 
-import QuestionsDialogBoxContainer from './questions/QuestionsDialogBoxContainer';
+import QuestionsDialogBoxContainer from './dialog/QuestionsDialogBoxContainer';
 
 /**
- * @class MeetingQuestions
+ * @class QuestionsSettings
  * @extends React.Component
  * @description Render component
  */
-class MeetingQuestions extends Component {
+class QuestionsSettings extends Component {
 
   state = {
     openDialog: false,
   };
 
   openDialog = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     this.setState({ openDialog: true });
   };
 
@@ -28,8 +28,8 @@ class MeetingQuestions extends Component {
    */
   render() {
     return (
-      <div>
-        <a href="#" onClick={this.openDialog}>Click here to set questions…</a>
+      <div style={{ padding: '1%' }}>
+        <a href="" onClick={this.openDialog} role="button" >Click here to set questions…</a>
         <QuestionsDialogBoxContainer
           openDialog={this.state.openDialog}
           handleCloseDialog={this.handleCloseDialog}
@@ -39,4 +39,4 @@ class MeetingQuestions extends Component {
   }
 }
 
-export default MeetingQuestions;
+export default QuestionsSettings;
