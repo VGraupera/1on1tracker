@@ -23,7 +23,7 @@ class MeetingItem extends Component {
       return (<ListItem
         primaryText={direct ? direct.name : '???'}
         secondaryText={
-          <InnerHtmlStripTags html={MeetingItem.summary(meeting)} />
+            <InnerHtmlStripTags html={MeetingItem.summary(meeting)} />
         }
         containerElement={<Link to={`/meetings/${id}`} />}
       />

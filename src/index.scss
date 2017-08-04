@@ -102,3 +102,11 @@ form.followUp {
 }
 
 .public-DraftEditor-content { min-height: 150px; }
+
+.ellipsisListItem {
+	text-overflow: ellipsis;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 90%;
+}

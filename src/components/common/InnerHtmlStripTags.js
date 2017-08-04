@@ -9,37 +9,23 @@ import { DEFAULT_TRUNCATED_LENGHT } from '../../constants/general';
  */
 const propTypes = {
   html: PropTypes.string.isRequired,
-  truncateTo: PropTypes.number,
-};
-
-/**
- * @description default props for InnerHtmlStripTags
- * @type {Object}
- */
-const defaultProps = {
-  truncateTo: DEFAULT_TRUNCATED_LENGHT,
 };
 
 /**
  * @function InnerHtmlStripTags
  * @param {String} html html string
- * @param {Number} [truncateTo] truncate length
  * @returns {XML}
  */
-function InnerHtmlStripTags({ html, truncateTo }) {
+function InnerHtmlStripTags({ html }) {
   const stripedHtml = String(html)
     .trim()
     .replaceAll('&nbsp;', ' ')
     .stripTags()
     .s;
 
-  const truncatedHtml = String(stripedHtml)
-    .truncate(truncateTo).s;
-
-  return <span dangerouslySetInnerHTML={{ __html: truncatedHtml }} />;
+  return <span className="ellipsisListItem" dangerouslySetInnerHTML={{ __html: stripedHtml }} />;
 }
 
 InnerHtmlStripTags.propTypes = propTypes;
-InnerHtmlStripTags.defaultProps = defaultProps;
 
 export default InnerHtmlStripTags;
