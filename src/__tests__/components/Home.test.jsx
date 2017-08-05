@@ -4,5 +4,5 @@ import { shallow } from 'enzyme';
 import { Home } from '../../components/Home';
 
 it('renders without crashing', () => {
-  shallow(<Home />);
+  shallow(<Home openAuth={jest.fn} authStatus="true" />);
 });
