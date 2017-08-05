@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import objNaturalSort from 'object-property-natural-sort';
 import groupArray from 'group-array';
+import sort from 'mout/array/sort';
 
 import { SORT_BY_TEAM_NAME, SORT_WITHOUT_TEAM_NAME } from '../constants/general';
 import { getTeamsArray } from './teams';
@@ -38,14 +39,11 @@ export const getDirectsArray = createSelector(getDirect, (directs) => {
  * @return {Array.<T>}
  */
 const arraySort = (arr, sortByValue) => {
-  /**
-   * @description natural sort for array
-   */
-  arr.sort(objNaturalSort(sortByValue));
-  /**
-   * @description put empty value to end
-   */
-  return arr.sort((a, b) => {
+  return sort(arr, objNaturalSort(sortByValue));
+};
+
+function putEmptyTeamToEnd(arr, sortByValue) {
+  return sort(arr, (a, b) => {
     if (a[sortByValue] === SORT_WITHOUT_TEAM_NAME) {
       return 1;
     }
@@ -54,7 +52,11 @@ const arraySort = (arr, sortByValue) => {
     }
     return 0;
   });
-};
+}
+
+function groupByTeam(arr, sortByValue) {
+  return groupArray(arr, sortByValue);
+}
 
 /**
  * @description return sorted array of directs with teamName
@@ -74,9 +76,11 @@ export const getDirectsArrayWithTeam = createSelector(
       return { ...direct, ...{ teamName } };
     });
 
-    const directsArray = arraySort(arr, sortByValue);
+    let directsArray = arraySort(arr, sortByValue);
+
     if (sortByValue === SORT_BY_TEAM_NAME) {
-      return groupArray(directsArray, sortByValue);
+      directsArray = putEmptyTeamToEnd(directsArray, sortByValue);
+      return groupByTeam(directsArray, sortByValue);
     }
 
     return directsArray;
