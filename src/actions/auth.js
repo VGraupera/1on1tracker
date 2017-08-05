@@ -11,6 +11,7 @@ import directActions, { archivedDirects as archivedDirectsAction  } from './dire
 import meetingActions, { archivedMeetings as archivedMeetingsAction } from './meetings';
 import followUpActions, { archivedFollowUps as archivedFollowUpsAction  } from './followUps';
 import teamsActions from './teams';
+import questions from './questions';
 
 const recordLogin = (accountData) => {
   firebaseDb.ref('accounts').child(accountData.uid).set(accountData)
@@ -44,6 +45,7 @@ export const listenToAuth = () => {
         followUpActions.subscribe(dispatch, getState);
         archivedFollowUpsAction.subscribe(dispatch, getState);
         teamsActions.subscribe(dispatch, getState);
+        questions.subscribe(dispatch, getState);
         browserHistory.push(rootPath(true));
 
         recordLogin({

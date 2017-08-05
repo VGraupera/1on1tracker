@@ -1,5 +1,5 @@
 import locStore from 'store';
-import { SORT_BY_NAME, SORT_BY_KEY_NAME , LOCAL_STORAGE_AUTH_STATE_KEY} from '../constants/general';
+import { SORT_BY_NAME, SORT_BY_KEY_NAME, LOCAL_STORAGE_AUTH_STATE_KEY } from '../constants/general';
 import { AUTH_ANONYMOUS } from '../actions/types';
 
 const initialState = {
@@ -57,6 +57,12 @@ const initialState = {
   },
   teams: {
     list: {},
+    loading: false,
+    error: null,
+  },
+  questions: {
+    activeQuestion: null,
+    list: [],
     loading: false,
     error: null,
   },
