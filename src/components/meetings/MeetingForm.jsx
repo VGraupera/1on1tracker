@@ -68,6 +68,7 @@ class MeetingForm extends Component {
           rows={4}
           style={{ width: '100%' }}
         />
+        <MeetingQuestionsContainer />
         <Field
           name="managersNotes"
           component={RichTextEditor}
@@ -77,7 +78,6 @@ class MeetingForm extends Component {
           rows={4}
           style={{ width: '100%' }}
         />
-        <MeetingQuestionsContainer />
         <div>
           <RaisedButton
             type="submit"
