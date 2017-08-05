@@ -7,6 +7,7 @@ import directsReducerFactory from './directs';
 import meetingsReducerFactory from './meetings';
 import followUpsReducerFactory from './followUps';
 import teams from './teams';
+import questions from './questions';
 
 import auth from './auth';
 import header from './header';
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   auth,
   header,
   teams,
+  questions,
   form: formReducer,
   routing: routerReducer });
 
