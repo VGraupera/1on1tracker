@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
+
 import Auth from './Auth';
 import { isAuthenticated, rootPath } from '../actions/auth';
+import QuestionMenuItem from './drawer/QuestionMenuItem';
 
 class LeftDrawer extends Component {
   render() {
@@ -19,6 +21,7 @@ class LeftDrawer extends Component {
               this.props.handleNavigate('/account');
             }}
           />
+          <QuestionMenuItem closeDrawer={this.props.onRequestChange}/>
           <MenuItem>
             <Auth />
           </MenuItem>
