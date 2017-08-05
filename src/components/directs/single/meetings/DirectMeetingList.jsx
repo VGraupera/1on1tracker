@@ -37,10 +37,12 @@ class DirectMeetingList extends Component {
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={
-              <InnerHtmlStripTags html={
-                (meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)
-              }
-              />
+              <div style={{ width: '50%' }}>
+                <InnerHtmlStripTags html={
+                  (meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)
+                }
+                />
+              </div>
             }
             containerElement={<Link to={`/meetings/${key}`} />}
             disabled={this.props.isArchived}
