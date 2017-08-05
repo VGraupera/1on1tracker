@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import followUpActions from '../../../../actions/followUps';
 import FollowUpList from './FollowUpList';
-import OnArchivedHOC from '../../../../HOCs/OnArchivedHOC';
+import HideOnArchivedHOC from '../../../../HOCs/archive/HideOnArchivedHOC';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default OnArchivedHOC(true)(connect(
+export default HideOnArchivedHOC(connect(
   mapStateToProps,
   {
     followUpsEqualTo: followUpActions.equalTo,

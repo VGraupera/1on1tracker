@@ -5,7 +5,7 @@ import MeetingIcon from 'material-ui/svg-icons/communication/chat';
 import { grey400 } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
-import OnArchivedHOC from '../../../../HOCs/OnArchivedHOC';
+import HideOnArchivedHOC from '../../../../HOCs/archive/HideOnArchivedHOC';
 
 /**
  * @description PropTypes for DirectItemNewMeetingIcon
@@ -42,4 +42,4 @@ function DirectItemNewMeetingIcon(props) {
 
 DirectItemNewMeetingIcon.propTypes = propTypes;
 
-export default OnArchivedHOC()(DirectItemNewMeetingIcon);
+export default HideOnArchivedHOC(DirectItemNewMeetingIcon);
