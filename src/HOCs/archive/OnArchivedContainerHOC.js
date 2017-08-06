@@ -14,16 +14,11 @@ const defaultProps = {
   isArchived: false,
 };
 
-/**
- * @description OnArchivedContainer provide isArchived props
- * @param {Function} WrappedComponent wrapped react component
- */
-const OnArchivedContainerHOC = (WrappedComponent) => {
-  /**
-   * @function HideOnArchived
-   * @param {Object} props
-   * @returns {XML}
-   */
+export const mapStateToProps = state => ({
+  isArchived: getIsArchived(state),
+});
+
+export const componentFactory = (WrappedComponent) => {
   function OnArchivedContainer(props) {
     const { dispatch, ...restProps } = props;
     return <WrappedComponent {...restProps} />;
@@ -31,10 +26,17 @@ const OnArchivedContainerHOC = (WrappedComponent) => {
 
   OnArchivedContainer.propTypes = propTypes;
   OnArchivedContainer.defaultProps = defaultProps;
+  return OnArchivedContainer;
+};
 
-  const mapStateToProps = state => ({
-    isArchived: getIsArchived(state),
-  });
+/**
+ * @description HOC provide props over redux connect function
+ * @param WrappedComponent
+ * @return {XML}
+ uctor
+ */
+const OnArchivedContainerHOC = (WrappedComponent) => {
+  const OnArchivedContainer = componentFactory(WrappedComponent);
 
   return connect(mapStateToProps)(OnArchivedContainer);
 };
