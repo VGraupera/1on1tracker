@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
+
 import Auth from './Auth';
 import { isAuthenticated, rootPath } from '../actions/auth';
+import QuestionMenuItem from './drawer/QuestionMenuItem';
 
 class LeftDrawer extends Component {
   render() {
@@ -22,6 +24,12 @@ class LeftDrawer extends Component {
           <MenuItem>
             <Auth />
           </MenuItem>
+          <Divider />
+          <MenuItem
+            onTouchTap={() => this.props.handleNavigate('/teams')}
+            primaryText="Teams"
+          />
+          <QuestionMenuItem closeDrawer={this.props.onRequestChange}/>
         </div>
       );
     }
@@ -40,11 +48,6 @@ class LeftDrawer extends Component {
           <h2>1on1 Tracker</h2>
         </MenuItem>
         {signedInItems}
-        <Divider />
-        <MenuItem
-          onTouchTap={() => this.props.handleNavigate('/teams')}
-          primaryText="Teams"
-        />
         <Divider />
         <MenuItem
           onTouchTap={() => this.props.handleNavigate('/terms')}

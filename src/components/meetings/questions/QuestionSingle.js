@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
 import QuestionAnswer from 'material-ui/svg-icons/action/question-answer';
+import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 
 import uniqueRandomNumber from '../../../utility/uniqueRandomNumber';
@@ -46,14 +47,16 @@ class QuestionSingle extends Component {
     const { currentItemIndex } = this.state;
     const { questions } = this.props;
     return (
-      <List>
-        <ListItem
-          key={questions[currentItemIndex].id}
-          primaryText={questions[currentItemIndex].question}
-          onTouchTap={this.handleClickOnItem}
-          leftIcon={<QuestionAnswer />}
-        />
-      </List>
+      <Paper style={{ margin: 5 }}>
+        <List>
+          <ListItem
+            key={questions[currentItemIndex].id}
+            primaryText={questions[currentItemIndex].question}
+            onTouchTap={this.handleClickOnItem}
+            leftIcon={<QuestionAnswer />}
+          />
+        </List>
+      </Paper>
     );
   }
 }
