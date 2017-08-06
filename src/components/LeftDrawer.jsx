@@ -8,6 +8,7 @@ import Divider from 'material-ui/Divider';
 import Auth from './Auth';
 import { isAuthenticated, rootPath } from '../actions/auth';
 import QuestionMenuItem from './drawer/QuestionMenuItem';
+import TeamMenuItem from './drawer/TeamMenuItem';
 
 class LeftDrawer extends Component {
   render() {
@@ -30,6 +31,7 @@ class LeftDrawer extends Component {
             primaryText="Teams"
           />
           <QuestionMenuItem closeDrawer={this.props.onRequestChange}/>
+          <TeamMenuItem closeDrawer={this.props.onRequestChange} />
         </div>
       );
     }

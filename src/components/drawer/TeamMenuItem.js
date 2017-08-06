@@ -1,12 +1,12 @@
-import React, {Component} from "react";
-import MenuItem from "material-ui/MenuItem";
-import QuestionsDialogBoxContainer from "../meetings/questions/dialog/QuestionsDialogBoxContainer";
+import React, { Component } from 'react';
+import MenuItem from 'material-ui/MenuItem';
+import TeamCrudDialogBoxContainer from '../teams/dialog/TeamCrudDialogBoxContainer';
 /**
  * @class TeamMenuItem
  * @extends React.Component
  * @description Render component
  */
-class QuestionMenuItem extends Component {
+class TeamMenuItem extends Component {
 
   state = {
     openDialog: false,
@@ -26,10 +26,10 @@ class QuestionMenuItem extends Component {
     return (
       <div>
         <MenuItem
-          primaryText="Suggested Questions"
+          primaryText="Teams"
           onTouchTap={this.handleItemClick}
         />
-        <QuestionsDialogBoxContainer
+        <TeamCrudDialogBoxContainer
           openDialog={this.state.openDialog}
           handleCloseDialog={this.handleCloseDialog}
         />
@@ -38,4 +38,4 @@ class QuestionMenuItem extends Component {
   }
 }
 
-export default QuestionMenuItem;
+export default TeamMenuItem;

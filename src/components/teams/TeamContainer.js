@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import teamAction from '../../actions/teams';
 import { getTeamsArrayWithDeleteFlag } from '../../selectors/teams';
 
-import TeamList from './TeamList';
+import TeamList from './dialog/TeamList';
 
 const mapDispatchToProps = dispatch => ({
   handleOnClickDelete: (id) => {

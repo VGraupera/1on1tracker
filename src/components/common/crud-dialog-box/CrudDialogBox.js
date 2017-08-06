@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import PropTypes from 'prop-types';
 
+import AddItemBtn from './AddItemBtn';
+
 const propTypes = {
   title: PropTypes.string.isRequired,
   openDialog: PropTypes.bool.isRequired,
   handleCloseDialog: PropTypes.func.isRequired,
   list: PropTypes.array.isRequired,
-  ListComponent: PropTypes.element.isRequired,
+  ListComponent: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
-  FormComponent: PropTypes.element.isRequired,
+  FormComponent: PropTypes.func.isRequired,
   submitForm: PropTypes.func.isRequired,
-  AddItemBtn: PropTypes.element.isRequired,
 };
 
 /**
@@ -27,10 +28,9 @@ class CrudDialogBox extends Component {
   };
 
   setDialogPropsForList = () => {
-    const { AddItemBtn } = this.props;
     return {
-      title: this.props.title,
-      actions: <AddItemBtn handleAddItem={this.handleAddItem} />, // TODO injcet action btn
+      title: `${this.props.title}s`,
+      actions: <AddItemBtn handleAddItem={this.handleAddItem} />,
       actionsContainerStyle: { padding: 20, textAlign: 'center' },
     };
   };
