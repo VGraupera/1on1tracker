@@ -41,9 +41,11 @@ const DirectItem = (props) => {
 
   return (
     <ListItem
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 0, lineHeight: 0 }}
+      innerDivStyle={{ lineHeight: 1,paddingBottom:13,paddingTop:13 }}
       primaryText={props.direct.name}
-      secondaryText={<span><p>{props.direct.phone}</p><p>{teamName}</p></span>}
+      secondaryText={<div><div>{props.direct.phone}</div><div>{teamName}</div></div>}
+      secondaryTextLines={2}
       containerElement={<ArchivedLinkGenerator to={`/directs/${props.id}`} />}
       leftAvatar={
         <div>
