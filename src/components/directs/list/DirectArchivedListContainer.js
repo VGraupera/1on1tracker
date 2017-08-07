@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
+import ShowOnArchivedHOC from '../../../HOCs/archive/ShowOnArchivedHOC';
 import { getArchivedDirectsArrayWithTeam } from '../../../selectors/archivedDirects';
 import DirectList from './DirectList';
 
@@ -9,4 +9,4 @@ const mapStateToProps = state => ({
   sortBy: state.archivedDirects.sortBy,
 });
 
-export default OnArchivedHOC(false)(connect(mapStateToProps)(DirectList));
+export default ShowOnArchivedHOC(connect(mapStateToProps)(DirectList));

@@ -10,7 +10,7 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
 import PropTypes from 'prop-types';
 
-import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
+import HideOnArchivedHOC from '../../../HOCs/archive/HideOnArchivedHOC';
 
 /**
  * @description propTypes for DirectSingleActions
@@ -51,4 +51,4 @@ function DirectSingleActions({ id }) {
 
 DirectSingleActions.propTypes = propTypes;
 
-export default OnArchivedHOC(true)(DirectSingleActions);
+export default HideOnArchivedHOC(DirectSingleActions);

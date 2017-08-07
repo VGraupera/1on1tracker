@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import directActions from '../../../actions/directs';
 import DirectSingle from './DirectSingle';
-import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
+import HideOnArchivedHOC from '../../../HOCs/archive/HideOnArchivedHOC';
 
 const mapStateToProps = (state, ownProps) => ({
   direct: state.directs.activeDirect,
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
   id: ownProps.id,
 });
 
-export default OnArchivedHOC()(
+export default HideOnArchivedHOC(
   connect(
   mapStateToProps,
   { find: directActions.find })(DirectSingle),

@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 
 import { getArchivedArrayCount } from '../../../selectors/archivedDirects';
-import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
+import HideOnArchivedHOC from '../../../HOCs/archive/HideOnArchivedHOC';
 
 /**
  * @description PropTypes for ArchivedDirectCount
@@ -42,5 +42,5 @@ const mapStateToProps = state => ({
   count: getArchivedArrayCount(state),
 });
 
-export default OnArchivedHOC()(connect(mapStateToProps)(ArchivedDirectCount));
+export default HideOnArchivedHOC(connect(mapStateToProps)(ArchivedDirectCount));
 

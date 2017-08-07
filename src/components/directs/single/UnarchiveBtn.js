@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import directAction, { archivedDirects as archivedDirectsAction } from '../../../actions/directs';
 import followUpActions, { archivedFollowUps as archivedFollowUpsAction } from '../../../actions/followUps';
 import meetingActions, { archivedMeetings as archivedMeetingsAction } from '../../../actions/meetings';
-import OnArchivedHOC from '../../../HOCs/OnArchivedHOC';
+import ShowOnArchivedHOC from '../../../HOCs/archive/ShowOnArchivedHOC';
 import { ARCHIVED_URL_SUFFIX } from '../../../constants/general';
 
 /**
@@ -72,4 +72,4 @@ const mapDispatchToProps = {
   meetingsMoveEqualTo: archivedMeetingsAction.moveEqualTo,
 };
 
-export default OnArchivedHOC(false)(connect(null, mapDispatchToProps)(UnarchiveBtn));
+export default ShowOnArchivedHOC(connect(null, mapDispatchToProps)(UnarchiveBtn));
