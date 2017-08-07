@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Paper from 'material-ui/Paper';
 import {
   Card,
   CardTitle,
   CardText,
+  CardHeader,
 } from 'material-ui/Card';
+import Avatar from 'material-ui/Avatar';
 import {
   Tabs,
   Tab,
 } from 'material-ui/Tabs';
+import PropTypes from 'prop-types';
 
 import DirectSingleActions from './DirectSingleActions';
 import UnarchiveBtn from './UnarchiveBtn';
 import DirectMeetingList from './meetings/DirectMeetingList';
 import DirectFollowUpList from './follow-up/DirectFollowUpList';
+
+const style = {
+  paper: {
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  cardHeaderFlex: {
+    display: 'flex',
+    flexDirection:'column',
+    justifyContent:'center'
+  },
+};
 
 class DirectSingle extends Component {
   componentDidMount() {
@@ -32,11 +47,31 @@ class DirectSingle extends Component {
     }
 
     return (
+
       <div className="container">
+        <Paper style={style.paper}>
+          <Card>
+            <CardHeader
+              style={style.cardHeaderFlex}
+              title={<h1>{direct.name}</h1>}
+              avatar={<div>
+                <Avatar
+                  size={80}
+                >
+                  JB
+                </Avatar>
+              </div>}
+              subtitle={<div>
+                <p>Some Text </p>
+                <h3>Team Name</h3>
+              </div>}
+            />
+          </Card>
+        </Paper>
         <Card>
           <CardTitle title={direct.name} />
           {direct.phone && (<CardText>
-              <a href={`tel:${direct.phone}`}>{direct.phone}</a>
+            <a href={`tel:${direct.phone}`}>{direct.phone}</a>
             </CardText>
           )}
           {direct.title && (<CardText>
