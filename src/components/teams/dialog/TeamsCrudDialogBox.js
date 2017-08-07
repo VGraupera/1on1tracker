@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import CrudDialogBox from '../../common/crud-dialog-box/CrudDialogBox';
 import TeamList from './TeamList';
-import TeamForm from '../TeamForm';
+import TeamForm from './TeamForm';
 
 const propTypes = {
   openDialog: PropTypes.bool.isRequired,
@@ -27,16 +27,20 @@ function TeamsCrudDialogBox(props) {
     submitForm,
   } = props;
 
+  const dialogProps = {
+    title: 'Team',
+    openDialog,
+    handleCloseDialog,
+    list: teams,
+    ListComponent: TeamList,
+    onDeleteItem: onDelete,
+    FormComponent: TeamForm,
+    submitForm,
+  };
+
   return (
     <CrudDialogBox
-      title="Team"
-      openDialog={openDialog}
-      handleCloseDialog={handleCloseDialog}
-      list={teams}
-      ListComponent={TeamList}
-      onDeleteItem={onDelete}
-      FormComponent={TeamForm}
-      submitForm={submitForm}
+      {... dialogProps}
     />
   );
 }

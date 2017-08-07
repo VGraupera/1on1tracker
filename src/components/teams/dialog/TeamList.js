@@ -5,7 +5,6 @@ import ActionDelete from 'material-ui/svg-icons/action/delete';
 import { red500, red200 } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
-import TeamItem from '../TeamItem';
 
 /**
  * @description propTypes for TeamList
@@ -18,7 +17,8 @@ const propTypes = {
     createdAt: PropTypes.string,
     updatedAt: PropTypes.string,
   })).isRequired,
-  handleOnClickDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  clickOnItem: PropTypes.func.isRequired,
 };
 
 /**
@@ -61,7 +61,7 @@ class TeamList extends Component {
         })}
 
       </List>
-    )
+    );
   }
 }
 
