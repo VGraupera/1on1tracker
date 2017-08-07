@@ -10,23 +10,23 @@ import PropTypes from 'prop-types';
  * @type {Object}
  */
 const propTypes = {
-  questions: PropTypes.array.isRequired,
+  list: PropTypes.array.isRequired,
   clickOnItem: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
 /**
  * @function QuetionsList
- * @param {Array} questions array of questions
+ * @param {Array} list array of questions
  * @param {Function} clickOnItem
  * @param {Function} onDelete
  * @returns {XML}
  */
-function QuetionsList({ questions, clickOnItem, onDelete }) {
+function QuetionsList({ list, clickOnItem, onDelete }) {
   return (
     <List>
-      {questions.length === 0 && <ListItem key="no_item" primaryText="No items" /> }
-      { questions.length !== 0 && questions.map((singleQuestion) => {
+      {list.length === 0 && <ListItem key="no_item" primaryText="No items" /> }
+      { list.length !== 0 && list.map((singleQuestion) => {
         return (
           <ListItem
             key={singleQuestion.id}

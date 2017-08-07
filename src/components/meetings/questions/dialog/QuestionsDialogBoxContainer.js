@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import questionAction from '../../../../actions/questions';
-import QuestionsDialogBox from './QuestionsDialogBox';
+import QuestionsCrudDialogBox from './QuestionsCrudDialogBox';
 import { getQuestionsArray } from '../../../../selectors/questions';
 
 const mapStateToProps = state => ({
@@ -21,4 +21,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionsDialogBox);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionsCrudDialogBox);

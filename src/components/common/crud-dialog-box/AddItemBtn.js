@@ -4,22 +4,22 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  handleAddQuestion: PropTypes.func.isRequired,
+  handleAddItem: PropTypes.func.isRequired,
 };
 
 /**
- * @function AddQuestionBtn
- * @param {Function} handleAddQuestion
+ * @function AddItemBtn
+ * @param {Function} handleAddItem
  * @returns {XML}
  */
-function AddQuestionBtn({ handleAddQuestion }) {
+function AddItemBtn({ handleAddItem }) {
   return (
-    <FloatingActionButton onTouchTap={handleAddQuestion} >
+    <FloatingActionButton onTouchTap={handleAddItem} >
       <ContentAdd />
     </FloatingActionButton>
   );
 }
 
-AddQuestionBtn.propTypes = propTypes;
+AddItemBtn.propTypes = propTypes;
 
-export default AddQuestionBtn;
+export default AddItemBtn;

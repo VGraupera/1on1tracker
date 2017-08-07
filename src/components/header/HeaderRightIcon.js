@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import DirectSortContainer from './DirectSortBtnContainer';
-import TeamBackBtn from './TeamBackBtn';
 import MeetingNavigationIconsContainers from './MeetingNavigationIconsContainers';
 
 /**
@@ -32,9 +31,6 @@ class HeaderRightIcon extends Component {
     switch (pathname) {
       case '/directs':
         icon = <DirectSortContainer />;
-        break;
-      case '/teams':
-        icon = <TeamBackBtn location={location} />;
         break;
       case (((route) => {
         return `/meetings/${route.params.id}`;
