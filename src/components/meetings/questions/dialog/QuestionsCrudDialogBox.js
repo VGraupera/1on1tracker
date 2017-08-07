@@ -29,17 +29,19 @@ function QuestionsCrudDialogBox(props) {
     onDeleteQuestion,
     submitQuestionForm,
   } = props;
-  return (<CrudDialogBox
-    title="Question"
-    openDialog={openDialog}
-    handleCloseDialog={handleCloseDialog}
-    list={questions}
-    ListComponent={QuetionsList}
-    onDeleteItem={onDeleteQuestion}
-    FormComponent={QuestionForm}
-    submitForm={submitQuestionForm}
 
-  />);
+  const dialogProps = {
+    title: 'Question',
+    openDialog,
+    handleCloseDialog,
+    list: questions,
+    ListComponent: QuetionsList,
+    onDeleteItem: onDeleteQuestion,
+    FormComponent: QuestionForm,
+    submitForm: submitQuestionForm,
+  };
+
+  return (<CrudDialogBox {...dialogProps} />);
 }
 
 QuestionsCrudDialogBox.propTypes = propTypes;

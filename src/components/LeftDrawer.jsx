@@ -26,12 +26,8 @@ class LeftDrawer extends Component {
             <Auth />
           </MenuItem>
           <Divider />
-          <MenuItem
-            onTouchTap={() => this.props.handleNavigate('/teams')}
-            primaryText="Teams"
-          />
-          <QuestionMenuItem closeDrawer={this.props.onRequestChange}/>
           <TeamMenuItem closeDrawer={this.props.onRequestChange} />
+          <QuestionMenuItem closeDrawer={this.props.onRequestChange} />
         </div>
       );
     }
