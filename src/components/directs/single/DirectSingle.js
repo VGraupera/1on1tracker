@@ -24,9 +24,7 @@ const style = {
     marginTop: 10,
   },
   cardHeaderFlex: {
-    display: 'flex',
-    flexDirection:'column',
-    justifyContent:'center'
+
   },
 };
 
@@ -52,15 +50,14 @@ class DirectSingle extends Component {
         <Paper style={style.paper}>
           <Card>
             <CardHeader
-              style={style.cardHeaderFlex}
               title={<h1>{direct.name}</h1>}
-              avatar={<div>
-                <Avatar
+              avatar={
+                <div><Avatar
                   size={80}
                 >
                   JB
-                </Avatar>
-              </div>}
+                </Avatar></div>
+              }
               subtitle={<div>
                 <p>Some Text </p>
                 <h3>Team Name</h3>
