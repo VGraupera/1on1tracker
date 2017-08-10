@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
 
-import { getIsArchived } from '../../../../selectors/routing';
-import InnerHtmlStripTags from '../../../common/InnerHtmlStripTags';
+import { getIsArchived } from '../../../../../selectors/routing';
+import InnerHtmlStripTags from '../../../../common/InnerHtmlStripTags';
 
 
 class DirectMeetingList extends Component {

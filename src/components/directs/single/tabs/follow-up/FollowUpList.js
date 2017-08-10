@@ -4,7 +4,7 @@ import {
   List,
   ListItem,
 } from 'material-ui/List';
-import FollowUpItem from '../../../followUps/FollowUpItem';
+import FollowUpItem from '../../../../followUps/FollowUpItem';
 
 class FollowUpList extends Component {
   componentDidMount() {

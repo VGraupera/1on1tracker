@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import createCachedSelector from 're-reselect';
 import objNaturalSort from 'object-property-natural-sort';
 import groupArray from 'group-array';
 import sort from 'mout/array/sort';
@@ -10,7 +11,7 @@ import { getTeamsArray } from './teams';
  * @description Return directs from state
  * @param {Object} state app state
  */
-const getDirect = (state) => {
+const getDirects = (state) => {
   if (!(state.directs.list instanceof Map)) {
     return [];
   }
@@ -23,7 +24,7 @@ const sortBy = state => state.directs.sortBy;
  * @description selector for directs array
  * @return {Array} array of direct objects
  */
-export const getDirectsArray = createSelector(getDirect, (directs) => {
+export const getDirectsArray = createSelector(getDirects, (directs) => {
   const arr = [];
   directs.forEach((direct, key) => {
     arr.push({ ...direct, ...{ id: key } });
@@ -85,3 +86,18 @@ export const getDirectsArrayWithTeam = createSelector(
 
     return directsArray;
   });
+
+export const getDirect = createCachedSelector(
+  [getDirectsArray,getTeams, (state, id) => id],
+  (directs,teams, id) => {
+    const direct = directs.find(directSingle => directSingle.id === id);
+    let teamName = '';
+    if (direct.team) {
+      const teamDirect = teams.find(team => team.id === direct.team);
+      if (typeof teamDirect !== 'undefined') {
+        teamName = teamDirect.name;
+      }
+    }
+    return { ...direct, ...{ teamName } };
+  },
+)((state, id) => id);

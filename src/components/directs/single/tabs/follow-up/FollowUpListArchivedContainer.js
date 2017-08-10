@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import { archivedFollowUps } from '../../../../actions/followUps';
+import { archivedFollowUps } from '../../../../../actions/followUps';
 import FollowUpList from './FollowUpList';
-import ShowOnArchivedHOC from '../../../../HOCs/archive/ShowOnArchivedHOC';
+import ShowOnArchivedHOC from '../../../../../HOCs/archive/ShowOnArchivedHOC';
 
 const mapStateToProps = (state, ownProps) => {
   return {
