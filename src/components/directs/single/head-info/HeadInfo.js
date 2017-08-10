@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 
 import EditIconLink from './EditIconLink';
-import DirectAvatar from '../../DirectAvatar';
+import DirectAvatar from '../../common/DirectAvatar';
 import ActionsButtons from './ActionsButtons';
 import UnarchiveBtn from './UnarchiveBtn';
 

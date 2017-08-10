@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { SORT_WITHOUT_TEAM_NAME } from '../../../../constants/general';
 import DirectItemNewMeetingIcon from './DirectItemNewMeetingIcon';
 import ArchivedLinkGenerator from './ArchivedLinkGenerator';
-import DirectAvatar from '../../DirectAvatar';
+import DirectAvatar from '../../common/DirectAvatar';
 
 const propTypes = {
   direct: PropTypes.shape({

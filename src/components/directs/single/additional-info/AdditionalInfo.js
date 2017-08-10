@@ -1,9 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import {
-  Card,
-  CardText,
-} from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 import PropTypes from 'prop-types';
 
 import Phone from './Phone';

@@ -21,6 +21,7 @@ const initials = (name) => {
  * @function DirectAvatar
  * @param {String} name Direct name
  * @param {String} category Direct color catagory
+ * @param {Object} avatarProps Props for Avatar component
  * @returns {XML}
  */
 function DirectAvatar({ name, category, ...avatarProps }) {
