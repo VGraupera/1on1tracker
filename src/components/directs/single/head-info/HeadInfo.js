@@ -4,7 +4,6 @@ import {
   Card,
   CardHeader,
 } from 'material-ui/Card';
-import Avatar from 'material-ui/Avatar';
 import PropTypes from 'prop-types';
 
 import EditIconLink from './EditIconLink';
