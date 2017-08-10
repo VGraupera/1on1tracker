@@ -12,8 +12,8 @@ const propTypes = {
  * @param {Object} cardTextProps CardText props
  * @returns {XML}
  */
-function StartDate({startDate, ...cardTextProps}) {
-  const date = new Date(startDate).toLocaleDateString()
+function StartDate({ startDate, ...cardTextProps }) {
+  const date = new Date(startDate).toLocaleDateString();
   return (
     <CardText {...cardTextProps} >
       {date}

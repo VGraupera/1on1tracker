@@ -61,7 +61,6 @@ function HeadInfo(props) {
             </div>
           }
         />
-
         <ActionsButtons id={id} />
         <UnarchiveBtn id={id} />
       </Card>
