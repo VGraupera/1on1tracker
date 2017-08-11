@@ -97,7 +97,7 @@ export default class DirectForm extends Component {
         <Field
           name="notes"
           component={TextField}
-          hintText="Notes"
+          hintText="Spouse, Children, Pets, Hobbies, Friends, History, etc."
           floatingLabelText="Notes"
           multiLine={true}
           rows={4}
