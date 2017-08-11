@@ -89,6 +89,7 @@ export default class DirectForm extends Component {
         <Field
           name="startDate"
           component={DatePicker}
+          format={value => value === '' ? null : value}
           formatDate={this.formatDate}
           autoOk={true}
           hintText="Start Date"

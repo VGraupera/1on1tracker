@@ -1,16 +1,12 @@
 import React from 'react';
 import { CardActions } from 'material-ui/Card';
 import { Link } from 'react-router';
-import {
-  List,
-  ListItem,
-} from 'material-ui/List';
 import MeetingIcon from 'material-ui/svg-icons/action/speaker-notes';
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import PropTypes from 'prop-types';
 
-import HideOnArchivedHOC from '../../../HOCs/archive/HideOnArchivedHOC';
+import HideOnArchivedHOC from '../../../../HOCs/archive/HideOnArchivedHOC';
 
 /**
  * @description propTypes for DirectSingleActions
@@ -20,6 +16,16 @@ const propTypes = {
   id: PropTypes.string.isRequired,
 };
 
+const style = {
+  wrapperDiv: {
+    display: 'inline-block',
+    marginBottom: 5,
+    marginTop: 5,
+    marginRight: 30,
+    marginLeft: 30,
+  },
+};
+
 /**
  * @function DirectSingleActions
  * @param {String} id id of direct
@@ -27,24 +33,23 @@ const propTypes = {
  */
 function DirectSingleActions({ id }) {
   return (
-    <CardActions>
-      <List>
-        <ListItem
-          primaryText="New Meeting"
-          leftIcon={<MeetingIcon />}
+    <CardActions >
+      <div style={style.wrapperDiv}>
+        <FloatingActionButton
           containerElement={<Link to={`/directs/${id}/meetings/new`} />}
-        />
-        <ListItem
-          primaryText="New Follow Up"
-          leftIcon={<FollowUpIcon />}
+        >
+          <MeetingIcon />
+        </FloatingActionButton>
+        <h4>Meeting</h4>
+      </div>
+      <div style={style.wrapperDiv}>
+        <FloatingActionButton
           containerElement={<Link to={`/directs/${id}/followUps/new`} />}
-        />
-        <ListItem
-          primaryText="Edit"
-          leftIcon={<EditIcon />}
-          containerElement={<Link to={`/directs/${id}/edit`} />}
-        />
-      </List>
+        >
+          <FollowUpIcon />
+        </FloatingActionButton>
+        <h4>Follow Up</h4>
+      </div>
     </CardActions>
   );
 }

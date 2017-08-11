@@ -13,6 +13,7 @@ import HideOnArchivedHOC from '../../../../HOCs/archive/HideOnArchivedHOC';
  */
 const propTypes = {
   id: PropTypes.string.isRequired,
+  isArchived: PropTypes.bool.isRequired,
 };
 
 /**
@@ -22,7 +23,7 @@ const propTypes = {
  * @constructor
  */
 function DirectItemNewMeetingIcon(props) {
-  const { id, ...IconButtonProps } = props;
+  const { id, isArchived, ...IconButtonProps } = props;
 
   const handleClick = (e) => {
     e.preventDefault();

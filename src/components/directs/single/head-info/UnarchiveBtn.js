@@ -6,11 +6,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { white , teal400 } from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
-import directAction, { archivedDirects as archivedDirectsAction } from '../../../actions/directs';
-import followUpActions, { archivedFollowUps as archivedFollowUpsAction } from '../../../actions/followUps';
-import meetingActions, { archivedMeetings as archivedMeetingsAction } from '../../../actions/meetings';
-import ShowOnArchivedHOC from '../../../HOCs/archive/ShowOnArchivedHOC';
-import { ARCHIVED_URL_SUFFIX } from '../../../constants/general';
+import directAction, { archivedDirects as archivedDirectsAction } from '../../../../actions/directs';
+import followUpActions, { archivedFollowUps as archivedFollowUpsAction } from '../../../../actions/followUps';
+import meetingActions, { archivedMeetings as archivedMeetingsAction } from '../../../../actions/meetings';
+import ShowOnArchivedHOC from '../../../../HOCs/archive/ShowOnArchivedHOC';
+import { ARCHIVED_URL_SUFFIX } from '../../../../constants/general';
 
 /**
  * @description propTypes for UnarchiveBtn
