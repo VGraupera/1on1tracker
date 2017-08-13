@@ -3,6 +3,7 @@ import * as types from '../actions/types';
 export default function (state = {}, action) {
   switch (action.type) {
     case types.LOAD_QUESTIONS_REQUEST:
+    case types.IMPORT_QUESTIONS_REQUEST:
       return {
         ...state,
         ...{ loading: true },
@@ -34,6 +35,22 @@ export default function (state = {}, action) {
       return {
         ...state,
         activeQuestion: null,
+      };
+    case types.IMPORT_QUESTIONS_SUCCESS:
+      return {
+        ...state,
+        ...{
+          loading: false,
+          error: null,
+        },
+      };
+    case types.IMPORT_QUESTIONS_FAILURE:
+      return {
+        ...state,
+        ...{
+          loading: false,
+          error: action.payload,
+        },
       };
     default:
       return state;

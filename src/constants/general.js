@@ -48,3 +48,5 @@ export const ARCHIVED_PATH_PREFIX = 'archived/';
  * @default
  */
 export const ARCHIVED_URL_SUFFIX = 'archived';
+
+export const SUGGESTED_QUESTION_URL = 'https://s3-us-west-1.amazonaws.com/1on1tracker/questions.json';
