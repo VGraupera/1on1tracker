@@ -5,6 +5,7 @@ import MeetingIcon from 'material-ui/svg-icons/action/speaker-notes';
 import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import PropTypes from 'prop-types';
+import { lightBlue500, cyan500 } from 'material-ui/styles/colors';
 
 import HideOnArchivedHOC from '../../../../HOCs/archive/HideOnArchivedHOC';
 
@@ -37,6 +38,7 @@ function DirectSingleActions({ id }) {
       <div style={style.wrapperDiv}>
         <FloatingActionButton
           containerElement={<Link to={`/directs/${id}/meetings/new`} />}
+          backgroundColor={lightBlue500}
         >
           <MeetingIcon />
         </FloatingActionButton>
@@ -45,6 +47,7 @@ function DirectSingleActions({ id }) {
       <div style={style.wrapperDiv}>
         <FloatingActionButton
           containerElement={<Link to={`/directs/${id}/followUps/new`} />}
+          backgroundColor={cyan500}
         >
           <FollowUpIcon />
         </FloatingActionButton>

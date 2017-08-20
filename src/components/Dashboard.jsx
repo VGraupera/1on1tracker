@@ -10,6 +10,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MeetingIcon from 'material-ui/svg-icons/action/speaker-notes';
 import FollowUpIcon from 'material-ui/svg-icons/action/assignment';
 import DirectIcon from 'material-ui/svg-icons/social/person-add';
+import { lightBlue500, cyan500 } from 'material-ui/styles/colors';
 
 import MeetingItem from './meetings/MeetingItem';
 import FollowUpItem from './followUps/FollowUpItem';
@@ -109,12 +110,14 @@ export class Dashboard extends Component {
         <FloatingActionButton
           style={meetingButtonStyle}
           containerElement={<Link to="/meetings/new" />}
+          backgroundColor={lightBlue500}
         >
           <MeetingIcon />
         </FloatingActionButton>
         <FloatingActionButton
           style={followupButtonStyle}
           containerElement={<Link to="/followUps/new" />}
+          backgroundColor={cyan500}
         >
           <FollowUpIcon />
         </FloatingActionButton>
