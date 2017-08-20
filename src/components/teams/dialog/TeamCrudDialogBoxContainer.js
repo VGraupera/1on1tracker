@@ -2,11 +2,7 @@ import { connect } from 'react-redux';
 
 import TeamsCrudDialogBox from './TeamsCrudDialogBox';
 import teamAction from '../../../actions/teams';
-import { getTeamsArrayWithDeleteFlag } from '../../../selectors/teams';
 
-const mapStateToProps = state => ({
-  teams: getTeamsArrayWithDeleteFlag(state),
-});
 
 const mapDispatchToProps = dispatch => ({
   onDelete: (id) => {
@@ -21,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamsCrudDialogBox);
+export default connect(null, mapDispatchToProps)(TeamsCrudDialogBox);

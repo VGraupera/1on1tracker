@@ -8,6 +8,7 @@ import meetingsReducerFactory from './meetings';
 import followUpsReducerFactory from './followUps';
 import teams from './teams';
 import questions from './questions';
+import categoriesQuestions from './categoriesQuestions';
 
 import auth from './auth';
 import header from './header';
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   header,
   teams,
   questions,
+  categoriesQuestions,
   form: formReducer,
   routing: routerReducer });
 

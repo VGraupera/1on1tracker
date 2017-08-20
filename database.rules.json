@@ -29,8 +29,15 @@
       }
     },
     "questions": {
-      ".indexOn": ["question"],
       "$uid": {
+        ".indexOn": ["question","externalID"],
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "categoriesQuestions": {
+      "$uid": {
+        ".indexOn": ["name"],
         ".read": "auth != null && auth.uid == $uid",
         ".write": "auth != null && auth.uid == $uid"
       }

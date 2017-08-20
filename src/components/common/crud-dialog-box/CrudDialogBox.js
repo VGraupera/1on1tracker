@@ -8,7 +8,6 @@ const propTypes = {
   title: PropTypes.string.isRequired,
   openDialog: PropTypes.bool.isRequired,
   handleCloseDialog: PropTypes.func.isRequired,
-  list: PropTypes.array.isRequired,
   ListComponent: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
   FormComponent: PropTypes.func.isRequired,
@@ -59,9 +58,6 @@ class CrudDialogBox extends Component {
     this.hideForm();
   };
 
-  handleFormCancel = () => {
-    this.hideForm();
-  };
 
   handleClickOnItem = (data) => {
     this.setState({
@@ -77,12 +73,12 @@ class CrudDialogBox extends Component {
   };
 
   renderList = () => {
-    const { list, ListComponent } = this.props;
+    const { ListComponent, ...rest } = this.props;
     return (
       <ListComponent
         clickOnItem={this.handleClickOnItem}
         onDelete={this.handleOnDeleteItem}
-        list={list}
+        {...rest}
       />);
   };
 
@@ -92,7 +88,7 @@ class CrudDialogBox extends Component {
     return (
       <FormComponent
         handleFormSubmit={this.handleFormSubmit}
-        handleFormCancel={this.handleFormCancel}
+        handleFormCancel={this.hideForm}
         initialValues={clickedItem}
       />
     );
@@ -105,14 +101,10 @@ class CrudDialogBox extends Component {
   render() {
     const { showForm } = this.state;
     const { openDialog } = this.props;
+    const dialogProps = showForm ? this.setDialogPropsForForm() : this.setDialogPropsForList();
+    const list = this.renderList();
+    const form = this.renderForm();
 
-    let content = this.renderList();
-    let dialogProps = this.setDialogPropsForList();
-
-    if (showForm) {
-      content = this.renderForm();
-      dialogProps = this.setDialogPropsForForm();
-    }
     return (
       <Dialog
         modal={false}
@@ -121,7 +113,8 @@ class CrudDialogBox extends Component {
         autoScrollBodyContent={true}
         {...dialogProps}
       >
-        {content}
+        {!showForm && list}
+        {showForm && form}
       </Dialog>
     );
   }

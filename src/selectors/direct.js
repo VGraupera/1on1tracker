@@ -88,8 +88,8 @@ export const getDirectsArrayWithTeam = createSelector(
   });
 
 export const getDirect = createCachedSelector(
-  [getDirectsArray,getTeams, (state, id) => id],
-  (directs,teams, id) => {
+  [getDirectsArray, getTeams, (state, id) => id],
+  (directs, teams, id) => {
     const direct = directs.find(directSingle => directSingle.id === id);
     let teamName = '';
     if (direct.team) {

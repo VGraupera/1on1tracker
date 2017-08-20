@@ -3,6 +3,7 @@ import * as types from '../actions/types';
 export default function (state = {}, action) {
   switch (action.type) {
     case types.LOAD_QUESTIONS_REQUEST:
+    case types.IMPORT_QUESTIONS_REQUEST:
       return {
         ...state,
         ...{ loading: true },
@@ -21,7 +22,6 @@ export default function (state = {}, action) {
         ...{
           activeQuestion: null,
           list: [],
-          loading: false,
           error: null,
         },
       };
@@ -35,6 +35,24 @@ export default function (state = {}, action) {
         ...state,
         activeQuestion: null,
       };
+    case types.IMPORT_QUESTIONS_SUCCESS:
+      return {
+        ...state,
+        ...{
+          loading: false,
+          error: null,
+        },
+      };
+    case types.IMPORT_QUESTIONS_FAILURE:
+      return {
+        ...state,
+        ...{
+          loading: false,
+          error: action.payload,
+        },
+      };
+    case types.SET_QUESTIONS_FILTER:
+      return { ...state, ...{ filterByCategory: action.payload } };
     default:
       return state;
   }

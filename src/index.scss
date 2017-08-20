@@ -110,3 +110,12 @@ form.followUp {
 	white-space: nowrap;
 	width: 90%;
 }
+
+.import-question-loader {
+	animation: import-question-animation	 infinite 1s linear;
+}
+
+@keyframes import-question-animation {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
