@@ -65,6 +65,13 @@ const initialState = {
     list: [],
     loading: false,
     error: null,
+    filterByCategory: false,
+  },
+  categoriesQuestions: {
+    activeCategoriesQuestions: null,
+    list: [],
+    loading: false,
+    error: null,
   },
 };
 

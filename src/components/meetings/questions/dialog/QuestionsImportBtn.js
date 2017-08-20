@@ -16,11 +16,9 @@ const propTypes = {
  */
 function QuestionsImportBtn({ importQuestion, loading }) {
   return (
-    <div style={{ textAlign: 'right' }}>
-      <IconButton onTouchTap={importQuestion} tooltipPosition="bottom-left" tooltip="Import suggested questions">
-        <div className={loading ? 'import-question-loader' : ''}><AutoRenew /></div>
-      </IconButton>
-    </div>
+    <IconButton onTouchTap={importQuestion} tooltipPosition="bottom-left" tooltip="Import suggested questions">
+      <div className={loading ? 'import-question-loader' : ''}><AutoRenew /></div>
+    </IconButton>
   );
 }
 

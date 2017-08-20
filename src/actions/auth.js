@@ -12,6 +12,7 @@ import meetingActions, { archivedMeetings as archivedMeetingsAction } from './me
 import followUpActions, { archivedFollowUps as archivedFollowUpsAction  } from './followUps';
 import teamsActions from './teams';
 import questions from './questions';
+import categoriesQuestions from './categoriesQuestions';
 
 const recordLogin = (accountData) => {
   firebaseDb.ref('accounts').child(accountData.uid).set(accountData)
@@ -46,6 +47,7 @@ export const listenToAuth = () => {
         archivedFollowUpsAction.subscribe(dispatch, getState);
         teamsActions.subscribe(dispatch, getState);
         questions.subscribe(dispatch, getState);
+        categoriesQuestions.subscribe(dispatch,getState);
         browserHistory.push(rootPath(true));
 
         recordLogin({

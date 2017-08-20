@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CrudDialogBox from '../../../common/crud-dialog-box/CrudDialogBox';
-import QuetionsList from './QuetionsList';
+import QuestionsList from './QuestionsList';
 import QuestionForm from './QuestionForm';
 
 const propTypes = {
@@ -10,10 +10,6 @@ const propTypes = {
   submitQuestionForm: PropTypes.func.isRequired,
   onDeleteQuestion: PropTypes.func.isRequired,
   openDialog: PropTypes.bool.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    question: PropTypes.string.isRequired,
-  })).isRequired,
 };
 
 /**
@@ -25,20 +21,20 @@ function QuestionsCrudDialogBox(props) {
   const {
     openDialog,
     handleCloseDialog,
-    questions,
     onDeleteQuestion,
     submitQuestionForm,
+    ...rest
   } = props;
 
   const dialogProps = {
     title: 'Question',
     openDialog,
     handleCloseDialog,
-    list: questions,
-    ListComponent: QuetionsList,
+    ListComponent: QuestionsList,
     onDeleteItem: onDeleteQuestion,
     FormComponent: QuestionForm,
     submitForm: submitQuestionForm,
+    ...rest,
   };
 
   return (<CrudDialogBox {...dialogProps} />);

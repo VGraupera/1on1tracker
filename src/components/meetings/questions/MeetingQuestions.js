@@ -46,8 +46,8 @@ class MeetingQuestions extends Component {
           toggled={showAllQuestions}
           onToggle={this.handleToggleList}
         />}
-        {!isEmpty && !showAllQuestions && <QuestionSingle {...{ questions }} />}
-        {!isEmpty && showAllQuestions && <QuestionsList {...{ questions }} />}
+        {!isEmpty && !showAllQuestions && <QuestionSingle questions={questions} />}
+        {!isEmpty && showAllQuestions && <QuestionsList questions={questions} />}
         {(isEmpty || showAllQuestions) && <QuestionsSettings />}
       </div>
     );

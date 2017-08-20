@@ -22,7 +22,6 @@ export default function (state = {}, action) {
         ...{
           activeQuestion: null,
           list: [],
-          loading: false,
           error: null,
         },
       };
@@ -52,6 +51,8 @@ export default function (state = {}, action) {
           error: action.payload,
         },
       };
+    case types.SET_QUESTIONS_FILTER:
+      return { ...state, ...{ filterByCategory: action.payload } };
     default:
       return state;
   }

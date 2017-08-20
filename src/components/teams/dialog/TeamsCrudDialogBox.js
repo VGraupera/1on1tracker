@@ -8,7 +8,6 @@ import TeamForm from './TeamForm';
 const propTypes = {
   openDialog: PropTypes.bool.isRequired,
   handleCloseDialog: PropTypes.func.isRequired,
-  teams: PropTypes.array.isRequired,
   onDelete: PropTypes.func.isRequired,
   submitForm: PropTypes.func.isRequired,
 };
@@ -22,7 +21,6 @@ function TeamsCrudDialogBox(props) {
   const {
     openDialog,
     handleCloseDialog,
-    teams,
     onDelete,
     submitForm,
   } = props;
@@ -31,7 +29,6 @@ function TeamsCrudDialogBox(props) {
     title: 'Team',
     openDialog,
     handleCloseDialog,
-    list: teams,
     ListComponent: TeamList,
     onDeleteItem: onDelete,
     FormComponent: TeamForm,
