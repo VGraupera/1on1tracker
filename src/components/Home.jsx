@@ -61,6 +61,7 @@ const style = {
   },
   screenshot: {
     border: '1px solid #ccc',
+    maxWidth: 360,
   },
   blurbs: {
     marginBottom: '50px',
@@ -75,18 +76,20 @@ export class Home extends Component {
         <div style={style.hero} />
         <div style={style.heroText}>
           <h1 style={style.heroTitle}>Simple. Fast. Handy.</h1>
-          <h2>One on One tracker for busy managers.</h2>
+          <h2>One on One tracker for busy managers. Designed for on the go using your smartphone.</h2>
         </div>
 
         <div style={style.sectionOdd}>
-          <h1 style={style.greenHeader}>We get it. One on one meetings are
+          <h1 style={style.greenHeader}>One on one meetings are
             critical leading your team.</h1>
           <div style={style.divideTwo}>
             <ul style={style.blurbs}>
               <li>No more taking notes on paper that can get lost.</li>
-              <li>Link follow up actions to direct reports and meetings.</li>
+              <li>Link follow up actions to people and meetings.</li>
+              <li>Group your people into teams</li>
+              <li>Includes a library of 300 suggested questions.</li>
               <li>Designed for easy note taking and follow up on your phone
-                while you are on the move.</li>
+                while you are away from your desk or computer.</li>
             </ul>
           </div>
         </div>
@@ -140,5 +143,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  ShowLoaderHOC('authStatus',AUTH_AWAITING_RESPONSE)(Home)
+  ShowLoaderHOC('authStatus', AUTH_AWAITING_RESPONSE)(Home),
 );
