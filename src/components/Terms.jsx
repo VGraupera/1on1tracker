@@ -14,14 +14,14 @@ const style = {
 const Terms = () => (
   <div className="container terms">
     <h1 style={style.title}>Terms and Conditions</h1>
-    <p>Last updated: March 24, 2017</p>
+    <p>Last updated: October 14, 2017</p>
 
     <Divider />
     <ol>
       <li>
         <p>
           Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the
-          https://www.1on1tracker.com website (the "Service") operated by The VDG Group ("us", "we", or "our").
+          https://www.1on1tracker.com website (the "Service") operated by 1on1tracker ("us", "we", or "our").
         </p>
         <p>
           By accessing this web site, you are agreeing to be bound by these web site Terms and Conditions,
@@ -31,26 +31,34 @@ const Terms = () => (
           by applicable copyright and trade mark law.
         </p>
         <p>
-          We may terminate or suspend access to our Service immediately, without prior notice or liability,
-          for any reason whatsoever, including without limitation if you breach the Terms.
           You agree to use the Service at your own risk.
         </p>
-        <p>
-          All provisions of the Terms which by their nature should survive termination shall survive
-          termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and
-          limitations of liability.
-        </p>
+      </li>
+      <li>
+        <h3>Accounts</h3>
+        <p>When you create an account with us, you must provide us information that is
+          accurate, complete, and current at all times. Failure to do so constitutes a
+          breach of the Terms, which may result in immediate termination of your account
+          on our Service.</p>
+
+        <p>You are responsible for safeguarding the password that you use to access the
+          Service and for any activities or actions under your password, whether your
+          password is with our Service or a third-party service.</p>
+
+        <p>You agree not to disclose your password to any third party. You must notify us
+          immediately upon becoming aware of any breach of security or unauthorized use
+          of your account.</p>
       </li>
       <li>
         <h3>Disclaimer of Warranties</h3>
         <p>
           YOU UNDERSTAND AND AGREE THAT THE SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS AND
-          THAT THE VDG GROUP EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED,
+          THAT 1ON1TRACKER EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED,
           INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
           PURPOSE AND NON-INFRINGEMENT.
         </p>
         <p>
-          THE VDG GROUP DOES NOT WARRANT THAT (I) THE SERVICE WILL MEET YOUR SPECIFIC REQUIREMENTS,
+          1ON1TRACKER DOES NOT WARRANT THAT (I) THE SERVICE WILL MEET YOUR SPECIFIC REQUIREMENTS,
           (II) THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE,
           (III) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE WILL BE ACCURATE OR RELIABLE,
           (IV) THE QUALITY OF ANY PRODUCTS, SERVICES, INFORMATION, OR OTHER MATERIAL PURCHASED OR
@@ -61,7 +69,7 @@ const Terms = () => (
       <li>
         <h3>Limitations</h3>
         <p>
-          YOU EXPRESSLY UNDERSTAND AND AGREE THAT THE VDG GROUP SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT,
+          YOU EXPRESSLY UNDERSTAND AND AGREE THAT 1ON1TRACKER SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT,
           INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO, DAMAGES
           FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF VDG GROUP HAS BEEN
           ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), RESULTING FROM: (I) THE USE OR THE INABILITY TO USE
@@ -69,9 +77,26 @@ const Terms = () => (
           GOODS, DATA, INFORMATION OR SERVICES PURCHASED OR OBTAINED OR MESSAGES RECEIVED OR TRANSACTIONS
           ENTERED INTO THROUGH OR FROM THE SERVICE; (III) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR
           TRANSMISSIONS OR DATA; (IV) STATEMENTS OR CONDUCT OF ANY THIRD PARTY ON THE SERVICE;
-          (V) OR ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT WILL THE VDG GROUP’S TOTAL CUMULATIVE
+          (V) OR ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT WILL 1ON1TRACKER’S TOTAL CUMULATIVE
           DAMAGES EXCEED US$ 100.
         </p>
+      </li>
+      <li>
+        <h3>Termination</h3>
+        <p>We may terminate or suspend access to our Service immediately, without prior
+          notice or liability, for any reason whatsoever, including without limitation
+          if you breach the Terms.</p>
+        <p>All provisions of the Terms which by their nature should survive termination
+          shall survive termination, including, without limitation, ownership
+          provisions, warranty disclaimers, indemnity and limitations of liability.</p>
+        <p>We may terminate or suspend your account immediately, without prior notice or
+          liability, for any reason whatsoever, including without limitation if you
+          breach the Terms.</p>
+        <p>Upon termination, your right to use the Service will immediately cease. If you
+          wish to terminate your account, you may simply discontinue using the Service.</p>
+        <p>All provisions of the Terms which by their nature should survive termination
+          shall survive termination, including, without limitation, ownership
+          provisions, warranty disclaimers, indemnity and limitations of liability.</p>
       </li>
       <li>
         <h3>Security</h3>
