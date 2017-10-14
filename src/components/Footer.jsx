@@ -14,7 +14,7 @@ const Footer = () => (
     </ul>
     <p>Use of this website signifies your agreement to the Terms and Conditions and Privacy Policy.</p>
     <div id="toplink">
-      <a href="" className="top-link" title="Back to top">Back To Top <ArrowIcon color="#fff" /></a>
+      <a href="#" className="top-link" title="Back to top">Back To Top <ArrowIcon color="#fff" /></a>
     </div>
   </div>
 );
