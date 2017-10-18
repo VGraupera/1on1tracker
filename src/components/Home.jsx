@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import Footer from './Footer';
-
 import { openAuth } from '../actions/auth';
 
 import heroImage from '../images/Cover.jpg';
@@ -123,7 +121,6 @@ export class Home extends Component {
             <p>Quickly record one on ones from list of direct reports.</p>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

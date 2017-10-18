@@ -55,9 +55,14 @@ class LeftDrawer extends Component {
           onTouchTap={() => this.props.handleNavigate('/privacy')}
           primaryText="Privacy Policy"
         />
+        <Divider />
         <MenuItem
           onTouchTap={() => this.props.handleNavigate('/about')}
-          primaryText="About"
+          primaryText="About 1on1tracker"
+        />
+        <MenuItem
+          onTouchTap={() => this.props.handleNavigate('/about-me')}
+          primaryText="About me"
         />
       </Drawer>
     );

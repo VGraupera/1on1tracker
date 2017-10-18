@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
+import Footer from './Footer';
 
 /**
  * @description propTypes for BottomNav
@@ -60,7 +61,7 @@ function BottomNav({ handleNavigate }) {
       </Paper>
     );
   }
-  return null;
+  return <Footer />;
 }
 
 BottomNav.propTypes = propTypes;
