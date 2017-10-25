@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardText } from 'material-ui/Card';
 import PropTypes from 'prop-types';
+import PhoneIcon from 'material-ui/svg-icons/communication/phone';
 
 const propTypes = {
   phone: PropTypes.string.isRequired,
@@ -15,7 +16,10 @@ const propTypes = {
 function Phone({ phone, ...cardTextProps }) {
   return (
     <CardText {...cardTextProps} >
-      <a href={`tel:${phone}`}>{phone}</a>
+      <PhoneIcon />
+      <a href={`tel:${phone}`}>
+        {phone}
+      </a>
     </CardText>
   );
 }
