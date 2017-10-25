@@ -15,10 +15,12 @@ const propTypes = {
 class Account extends Component {
   render() {
     return (
-      <div className="container account">
+      <div className="container about account">
         <h1>{this.props.displayName}</h1>
-        <p>{this.props.email}</p>
-        <img src={this.props.photoURL} alt="avatar"/>
+        <h2>{this.props.email}</h2>
+        <p>
+          <img src={this.props.photoURL} alt="avatar"/>
+        </p>
       </div>
     );
   }
