@@ -1,19 +1,9 @@
 import React from 'react';
 import Divider from 'material-ui/Divider';
 
-import { brightGreen } from '../colors';
-
-const style = {
-  background: {
-  },
-  title: {
-    color: brightGreen,
-  }
-};
-
 const Terms = () => (
-  <div className="container terms">
-    <h1 style={style.title}>Terms and Conditions</h1>
+  <div className="container about">
+    <h1>Terms and Conditions</h1>
     <p>Last updated: October 14, 2017</p>
 
     <Divider />

@@ -1,20 +1,9 @@
 import React from 'react';
 import Divider from 'material-ui/Divider';
 
-import { brightGreen } from '../colors';
-
-const style = {
-  background: {
-    padding: '50px'
-  },
-  title: {
-    color: brightGreen
-  }
-};
-
 const Privacy = () => (
-  <div style={style.background}>
-    <h1 style={style.title}>Privacy Policy</h1>
+  <div className="container about">
+    <h1>Privacy Policy</h1>
     <p>Last updated: March 24, 2017</p>
 
     <Divider />
