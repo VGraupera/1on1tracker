@@ -19,6 +19,7 @@ import Checkbox from 'material-ui/Checkbox';
 
 import followUpActions from '../../actions/followUps';
 import meetingActions from '../../actions/meetings';
+import InnerHtmlStripTags from '../common/InnerHtmlStripTags';
 
 class FollowUpShow extends Component {
   componentDidMount() {
@@ -43,11 +44,14 @@ class FollowUpShow extends Component {
       rows.push(
         <Subheader>Re: this Meeting</Subheader>
       );
+      const notesString = meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes;
       rows.push(
         <ListItem
           key={this.props.followUp.meetingKey}
           primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
-          secondaryText={(meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)}
+          secondaryText={
+            <div><InnerHtmlStripTags html={notesString} /></div>
+          }
           containerElement={<Link to={`/meetings/${this.props.followUp.meetingKey}`} />}
         />);
     }
