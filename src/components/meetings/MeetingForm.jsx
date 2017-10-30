@@ -84,6 +84,7 @@ class MeetingForm extends Component {
             label={submitText}
             primary={true}
             disabled={pristine || submitting}
+            style={{ width: '100%' }}
           />
         </div>
       </form>
