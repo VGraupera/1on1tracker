@@ -38,7 +38,7 @@ class DirectMeetingList extends Component {
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={
-              <div style={{ width: '50%' }}>
+              <div>
                 <InnerHtmlStripTags html={notesString} />
               </div>
             }
