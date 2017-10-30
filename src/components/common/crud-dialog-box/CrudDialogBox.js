@@ -105,12 +105,18 @@ class CrudDialogBox extends Component {
     const list = this.renderList();
     const form = this.renderForm();
 
+    const customContentStyle = {
+      width: '90%',
+      maxWidth: '600',
+    };
+
     return (
       <Dialog
         modal={false}
         open={openDialog}
         onRequestClose={this.handleClose}
         autoScrollBodyContent={true}
+        contentStyle={customContentStyle}
         {...dialogProps}
       >
         {!showForm && list}
