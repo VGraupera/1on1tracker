@@ -32,16 +32,14 @@ class DirectMeetingList extends Component {
       this.state.selectedMeetings &&
       this.state.selectedMeetings.size > 0) {
       this.state.selectedMeetings.forEach((meeting, key) => {
+        const notesString = meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes;
         rows.push(
           <ListItem
             key={key}
             primaryText={new Date(meeting.meetingDate).toLocaleDateString()}
             secondaryText={
               <div style={{ width: '50%' }}>
-                <InnerHtmlStripTags html={
-                  (meeting.directsNotes ? meeting.directsNotes : meeting.managersNotes)
-                }
-                />
+                <InnerHtmlStripTags html={notesString} />
               </div>
             }
             containerElement={<Link to={`/meetings/${key}`} />}

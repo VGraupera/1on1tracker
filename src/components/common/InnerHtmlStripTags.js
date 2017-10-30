@@ -16,6 +16,10 @@ const propTypes = {
  * @returns {XML}
  */
 function InnerHtmlStripTags({ html }) {
+  if (!html) {
+    return null;
+  }
+
   const stripedHtml = String(html)
     .trim()
     .replaceAll('&nbsp;', ' ')
