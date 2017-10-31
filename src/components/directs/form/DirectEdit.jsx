@@ -57,12 +57,18 @@ class DirectEdit extends Component {
         <RaisedButton
           label="Delete"
           secondary={true}
-          style={{marginTop: 20}}
+          style={{
+            marginTop: 20,
+            marginBottom: 20,
+            width: '100%' }}
           onTouchTap={this.onDelete}
         />
         <RaisedButton
           label="Archive"
-          style={{marginTop: 20,marginLeft:10}}
+          style={{
+            marginTop: 0,
+            marginBottom: 30,
+            width: '100%' }}
           onTouchTap={this.onArchived}
           backgroundColor={teal400}
           labelColor={white}

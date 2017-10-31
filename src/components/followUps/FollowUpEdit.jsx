@@ -67,8 +67,11 @@ class FollowUpEdit extends Component {
         <RaisedButton
           label="Delete"
           secondary={true}
-          style={{ marginTop: 20 }}
           onTouchTap={this.onDelete}
+          style={{
+            marginTop: 20,
+            marginBottom: 30,
+            width: '100%' }}
         />
       </div>
     );

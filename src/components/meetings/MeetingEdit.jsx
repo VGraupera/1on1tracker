@@ -67,9 +67,9 @@ class MeetingEdit extends Component {
           label="Delete"
           secondary={true}
           onTouchTap={this.onDelete}
-          style={{ 
-            marginTop: 20, 
-            marginBottom: 30, 
+          style={{
+            marginTop: 20,
+            marginBottom: 30,
             width: '100%' }}
         />
       </div>
