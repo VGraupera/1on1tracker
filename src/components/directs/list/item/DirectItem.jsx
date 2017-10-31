@@ -21,15 +21,17 @@ const propTypes = {
 const DirectItem = (props) => {
   let teamName = props.direct.teamName;
   if (SORT_WITHOUT_TEAM_NAME === teamName) {
-    teamName = '';
+    teamName = null;
   }
 
+  const line1 = [props.direct.title, props.direct.phone].filter(val => val).join("\u00a0")
+  
   return (
     <ListItem
       style={{ zIndex: 0, lineHeight: 0 }}
       innerDivStyle={{ lineHeight: 1,paddingBottom:13,paddingTop:13 }}
       primaryText={props.direct.name}
-      secondaryText={<div><div>{props.direct.title}&nbsp;{props.direct.phone}</div><div>{teamName}</div></div>}
+      secondaryText={<div><div>{line1}</div><div>{teamName}</div></div>}
       secondaryTextLines={2}
       containerElement={<ArchivedLinkGenerator to={`/directs/${props.id}`} />}
       leftAvatar={<DirectAvatar category={props.direct.category} name={props.direct.name} />}
