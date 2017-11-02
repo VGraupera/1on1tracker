@@ -1,21 +1,5 @@
 import React from 'react';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-
-/**
- * @description css style for Loader
- * @type {Object}
- */
-const style = {
-  container: {
-    position: 'absolute',
-    top: '30%',
-    left: '45%',
-  },
-  refresh: {
-    display: 'inline-block',
-    position: 'relative',
-  },
-};
+import './ShowLoaderHOC.css';
 
 /**
  * @description Loader show/hide HOC.
@@ -31,16 +15,9 @@ const ShowLoaderHOC = (propKey, expectedValue) => (WrappedComponent) => {
    */
   function Loader(props) {
     const loader = (
-      <div style={style.container}>
-
-        <RefreshIndicator
-          size={50}
-          left={70}
-          top={10}
-          loadingColor="#FF9800"
-          status="loading"
-          style={style.refresh}
-        />
+      <div className="spinner">
+        <div className="double-bounce1"></div>
+        <div className="double-bounce2"></div>
       </div>
     );
 
