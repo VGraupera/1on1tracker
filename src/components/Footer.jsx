@@ -10,6 +10,9 @@ const Footer = () => (
             <h3>About</h3>
           </li>
           <li>
+            <Link to="/features">Features</Link>
+          </li>
+          <li>
             <Link to="/about">About 1on1tracker</Link>
           </li>
           <li>

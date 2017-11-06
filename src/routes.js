@@ -22,6 +22,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
 import AboutMe from './components/AboutMe';
+import Features from './components/Features';
 import Account from './components/Account';
 import Terms from './components/Terms';
 import Privacy from './components/Privacy';
@@ -41,6 +42,7 @@ export default function Routes(store) {
       <IndexRoute component={SetTextHOC(Home, '1on1 Tracker')} />
       <Route path="about" component={SetTextHOC(About, 'About')} />
       <Route path="about-me" component={SetTextHOC(AboutMe, 'About')} />
+      <Route path="features" component={SetTextHOC(Features, 'Features')} />
       <Route path="account" component={SetTextHOC(Account, 'My Account')} />
       <Route path="dashboard" component={SetTextHOC(Dashboard, '1on1 Tracker')} />
       <Route path="terms" component={Terms} />

@@ -13,24 +13,22 @@ const AboutMe = () => {
         with this app, but I designed it and coded most of it.</p>
       <p>Vidal Graupera</p>
       <p>Feel free to get in touch with me for ANYTHING at <a href="mailto:vgraupera@gmail.com">vgraupera@gmail.com</a>!</p>
-      <p>
-        Some links:
-        <ul>
-          <li>
-            <a href="http://www.vidalgraupera.com">My personal site</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/vidalgraupera/">My LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/vgraupera">My Twitter</a>
-          </li>
-          <li>
-            Source code on <a href="https://github.com/VGraupera/1on1tracker">Github</a>
-          </li>
+      <p>Some links:</p>
+      <ul>
+        <li>
+          <a href="http://www.vidalgraupera.com">My personal site</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/vidalgraupera/">My LinkedIn</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/vgraupera">My Twitter</a>
+        </li>
+        <li>
+          Source code on <a href="https://github.com/VGraupera/1on1tracker">Github</a>
+        </li>
 
-        </ul>
-      </p>
+      </ul>
     </div>
 );
 }
