@@ -175,6 +175,12 @@ form.followUp {
   .feature {
     padding: 40px 0;
     border-top: 2px solid #eeeff0;
+      .graphic-block {
+        text-align: center;
+        img {
+          margin-bottom: 10px;
+        }
+      }
   }
 }
 
@@ -193,7 +199,7 @@ form.followUp {
 }
 
 .screen-shot {
-  width: 80%;
+  width: 85%;
   border: 1px solid #ccc;
   max-width: 360px;
 }
