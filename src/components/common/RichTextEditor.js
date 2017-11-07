@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import ReactRTE from 'react-rte';
+import ReactQuill from 'react-quill'; // ES6
+import 'react-quill/dist/quill.snow.css'; // ES6
+
 import { TextField } from 'redux-form-material-ui';
 import PropTypes from 'prop-types';
 
@@ -34,7 +36,7 @@ const style = {
 class RichTextEditor extends Component {
 
   state = {
-    value: this.props.input.value ? ReactRTE.createValueFromString(this.props.input.value, 'html') : ReactRTE.createEmptyValue(),
+    value: this.props.input.value
   };
 
   /**
@@ -43,11 +45,7 @@ class RichTextEditor extends Component {
    */
   handleChange = (value) => {
     this.setState({ value });
-    let html = value.toString('html');
-    if (!value.getEditorState().getCurrentContent().hasText()) {
-      html = '';
-    }
-    this.props.input.onChange(html);
+    this.props.input.onChange(value);
   };
 
   /**
@@ -55,6 +53,21 @@ class RichTextEditor extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
+
+    const  modules = {
+      toolbar: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'italic', 'underline','strike', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ],
+    };
+
+    const formats = [
+      'header',
+      'bold', 'italic', 'underline', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+    ];
+
     return (
       <div style={style.wrapperDiv}>
         <TextField
@@ -64,7 +77,13 @@ class RichTextEditor extends Component {
           floatingLabelStyle={style.floatingLabelStyle}
           style={style.textFieldStyle}
         />
-        <ReactRTE value={this.state.value} onChange={this.handleChange} />
+        <ReactQuill
+          theme="snow"
+          modules={modules}
+          formats={formats}
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
