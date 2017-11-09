@@ -1,6 +1,6 @@
 {
   "name": "one-on-one",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "A simple tracking app for one-on-one meetings",
   "private": true,
   "devDependencies": {
