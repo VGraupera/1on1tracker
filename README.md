@@ -11,6 +11,8 @@ so I created this.
 
 A *live* version can be found at [https://www.1on1tracker.com](https://www.1on1tracker.com)
 
+[![Quick Demo of 1on1tracker.com mobile website](https://img.youtube.com/vi/n42TtZIKzEU/0.jpg)](https://www.youtube.com/watch?v=n42TtZIKzEU "Quick Demo of 1on1tracker.com mobile website")
+
 ### Stack
 
 - React
@@ -56,11 +58,8 @@ The basic feature set is a list of meetings with notes linked to direct reports.
 - Better UI design and styling
 - Sorting
 - Search
-- Example questions
-- React Native version
 - Google hangout integration
 - Slack integration
-- Watch app
 - Reports
 - Test coverage
 
