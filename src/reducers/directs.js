@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 export default function (name = '') {
-  return function (state = {}, action) {
+  return (state = {}, action) => {
     switch (action.type) {
       case name + types.LOAD_DIRECTS_REQUEST:
         return {

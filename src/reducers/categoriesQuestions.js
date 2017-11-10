@@ -1,6 +1,6 @@
 import * as types from '../actions/types';
 
-export default function (state = {}, action) {
+export default (state = {}, action) => {
   switch (action.type) {
     case types.LOAD_CATEGORIES_QUESTIONS_REQUEST:
       return {
@@ -38,4 +38,4 @@ export default function (state = {}, action) {
     default:
       return state;
   }
-}
+};

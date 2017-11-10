@@ -23,7 +23,7 @@ class MeetingItem extends Component {
       return (<ListItem
         primaryText={direct ? direct.name : '???'}
         style={{ lineHeight: 0 }}
-        innerDivStyle={{ lineHeight: 1.4, paddingBottom:12,paddingTop:12 }}
+        innerDivStyle={{ lineHeight: 1.4, paddingBottom: 12, paddingTop: 12 }}
         secondaryText={
           <div><InnerHtmlStripTags html={MeetingItem.summary(meeting)} /></div>
         }

@@ -1,6 +1,6 @@
 import * as types from '../actions/types';
 
-export default function (state = {}, action) {
+export default (state = {}, action) => {
   switch (action.type) {
     case types.HEADER_SET_TEXT:
       return { ...state,
@@ -11,4 +11,4 @@ export default function (state = {}, action) {
     default:
       return state;
   }
-}
+};

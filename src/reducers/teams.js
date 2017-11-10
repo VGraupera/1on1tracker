@@ -1,6 +1,6 @@
 import * as types from '../actions/types';
 
-export default function (state = {}, action) {
+export default (state = {}, action) => {
   switch (action.type) {
     case types.LOAD_TEAMS_REQUEST:
       return {
@@ -29,4 +29,4 @@ export default function (state = {}, action) {
     default:
       return state;
   }
-}
+};
